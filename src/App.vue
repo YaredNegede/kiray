@@ -1,43 +1,46 @@
-<template  style="width: 100%">
-     <div id="app" class="container">
+<template >
+     <div id="app" class="container app"  style="width: 100%;background-color:#cccccc">
 
        <div class="row">
           <menus></menus>
        </div>
 
-       <div class="row">
+       <div class="row" style="margin:5px">
 
-       <div class="row" style="padding:12px;margin:1px">
-            <div class="jumbotron col-lg-12" style="margin:3px">
-               <h1>Glass</h1>
+       <div class="row" >
+            <div class="jumbotron col-lg-6" style="border: solid 2px gray;margin-left:12px">
+              <Home></Home>
+             </div>
+		   <div class="jumbotron col-lg-5" style="border: solid 2px gray;margin-left:12px">
+                
               <router-view></router-view>
              </div>
         </div>
-        <div class="row" style="padding:12px;margin:1px">
-            <div class="jumbotron col-lg-4" style="margin:3px">
-               <h4>Glass</h4>
+        <div class="row">
+            <div class="jumbotron col-lg-3 "  style="border: solid 2px gray;margin-left:12px">
+               <h4>9to5</h4>
                <h5>Professional freelancers and the essentials to find them.</h5>
                <p><a class="btn btn-primary btn-lg" role="button"> Sign Up</a> </p>
              </div>
 
-             <div class="jumbotron col-lg-4 padJumbotron" style="margin:3px">
-                <h4>Glass Pro</h4>
+             <div class="jumbotron col-lg-3 " style="border: solid 2px gray;margin-left:12px">
+                <h4>9to5 Pro</h4>
                 <h5>Premium talent, pre-vetted and handpicked for you.Full Details</h5>
                 <p><a class="btn btn-primary btn-lg" role="button">Sign Up</a> </p>
               </div>
 
-              <div class="jumbotron col-lg-3 padJumbotron" style="margin:3px">
-                 <h4>Glass Enterprise</h4>
+              <div class="jumbotron col-lg-3 " style="border: solid 2px gray;margin-left:12px">
+                 <h4>9to5 Enterprise</h4>
                  <h5>End-to-end Freelancer Management System.</h5>
-                 <p><a class="btn btn-primary btn-lg" role="button">Sign Up</a> </p>
+                 <p><a class="btn btn-primary btn-lg " role="button">Sign Up</a> </p>
                </div>
 
            </div>
 
          </div>
-        <div class="row" style="position:static;bottom:0px;z-index:10;opacity:1;background-color:#eee">
+        <div class="row" >
 
-        <div class="col-lg-4">
+          <div class="col-lg-4">
               <h4>COMPANY INFO</h4>
               <ul class="list-unstyled">
                 <li>About Us</li>
@@ -82,26 +85,19 @@
 <script>
 
 import menus from './components/component/menus.vue'
-import Login from './components/component/Login.vue'
-import SignUp from './components/component/SignUp.vue'
+import Home from './components/component/Home.vue'
 import router from './router'
 import axios from 'axios'
 
 export default {
   beforeCreate: function () { },
   name: 'app',
-  components: {axios, router, menus, Login, SignUp},
+  components: {axios, router, menus, Home},
   router,
   methods: {}
 }
 </script>
 
 <style scoped>
-  bod{
-    padding:0px;
-    background-color:red;
-  }
-  padJumbotron{
-    margin:15px
-  }
+  
 </style>

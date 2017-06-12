@@ -4,37 +4,33 @@
 	
 	<div class="row">
 		<div class=" col-lg-6">
-			<label>Email</label>
+			<label>First Name</label>
 	    </div> 
 		<div class=" col-lg-6">
-			<input type="email"  class="form-control" placeholder="email@compony.com"/>
+			<select class="form-control">
+				<option>Programmer</option>
+				<option>Graphics Designer</option>
+				<option>Architect</option>
+			</select>
 	    </div> 
 	</div>
 	<div class="row">
 		<div class=" col-lg-6">
-			<label>Username</label>
+			<label>Middle Name</label>
 	    </div> 
 		<div class=" col-lg-6">
-			<input type="text"  class="form-control" placeholder="Yared Negede"/>
+			<input type="text"  class="form-control"/>
 	    </div> 
 	</div>
 	<div class="row">
 		<div class=" col-lg-6">
-			<label>Password</label>
+			<label>Sur Name</label>
 	    </div> 
 		<div class=" col-lg-6">
-			<input type="text"  class="form-control" placeholder="Password"/>
+			<input type="text"  class="form-control"/>
 	    </div> 
 	</div>
-	<div class="row">
-		<div class=" col-lg-6">
-			<label>Repeat Password</label>
-	    </div> 
-		<div class=" col-lg-6">
-			<input type="text"  class="form-control" placeholder="Repeat Password"/>
-	    </div> 
-	</div>
-		
+	
  </div>
 </div>
 </template>
@@ -42,7 +38,7 @@
 <script>
 
 export default {
-  name: 'SingUp',
+  name: 'BrowseFreelancer',
   methods: {}
 }
 </script>

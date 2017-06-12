@@ -1,27 +1,20 @@
-<template> 
-	<div class="container">		 
-		<p>			
+<template>
+<div spellcheck="true" style="width:350px">
+	<div class="container">
 		 <div class="row">
-			<div class=" col-lg-6">
-				<label class="form-label">Username</label>
-	</div>
 			 <div class=" col-lg-6 ">
-				<input type="text" class="form-control" placeholder="Username"/>	
-	</div>
+				 <label for="">Username</label>
+				<input name="username" type="text"  placeholder="Username" class="inputStyle"/>
+			 </div>
 		</div>
 		<div class="row">
-			<div class=" col-lg-6">
-				<label class="form-label">Password</label> 
-			</div>
-			 <div class=" col-lg-6"> 
-				 <input type="password" class="form-control" placeholder="Password"/>
+				 <div class=" col-lg-6">
+				 <label for="password">Password</label>
+				 <input name="password" type="password"  placeholder="Password" class="inputStyle"/>
 			</div>
 		</div>
-		
-		 
-	
+    </div>
 </div>
-	
 </template>
 
 <script>
@@ -38,4 +31,9 @@ export default {
     color:white;
     padding:5px;
   }
+	inputStyle{
+		margin: none;
+		padding: 3px;
+		margin: 3px;
+	}
 </scope>
