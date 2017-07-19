@@ -11,11 +11,10 @@
 	   <li><router-link to="/BrowseJob">Browse Job</router-link></li>
 	   <li><router-link to="/BrowseFreelancer">Browse Freelancer</router-link></li>
 	   <li>
-        <div class="form-group"> <input   @click="alert()"  style="margin:8px;width:400px" type="text" class="form-control" placeholder="Search"> </div>
+        <div class="form-group"> <input  @click="alert()"  style="margin:8px;width:400px" type="text" class="form-control" placeholder="Search"> </div>
        </li>
 	   <li><router-link to="/SignUp">Sign-Up</router-link></li>
-	   <li><router-link to="/Login">Login</router-link></li>
-	   
+	   <li><router-link to="/Login">Login</router-link></li>   
     </ul>
     </div>
     </nav>
@@ -24,7 +23,7 @@
 <script>
 
 export default {
-  name: 'item',
+  name: 'menus',
   methods: {
     alert () {
       alert('Wait for it')

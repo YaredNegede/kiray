@@ -1,8 +1,27 @@
 <template>
 <div spellcheck="true" style="width:350px">
-	
-	<h1>PostJob</h1>
-	
+
+	<form>
+	  <div class="container">
+	    <div class="row">
+	    <label for="d">aaaa</label>
+	      <input type="text"  name = "d"/>
+	    </div>
+	    <div class="row">
+	    <label for="c">aaaa</label>
+	       <input  name = "c" type="text"/>
+	    </div>
+	    <div class="row">
+	    <label for="b">aaaa</label>
+	       <input  name = "b" type="text"/>
+	    </div>
+	    <div class="row">
+	       <label for="a">aaaa</label>
+	       <input name = "a" type="text"/>
+	    </div>
+	  </div>
+	</form>
+
 </div>
 </template>
 

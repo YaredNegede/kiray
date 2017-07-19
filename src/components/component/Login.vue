@@ -4,13 +4,18 @@
 		 <div class="row">
 			 <div class=" col-lg-6 ">
 				 <label for="">Username</label>
-				<input name="username" type="text"  placeholder="Username" class="inputStyle"/>
+				<input name="username" type="text"  placeholder="Username"  class="form-control"/>
 			 </div>
 		</div>
 		<div class="row">
 				 <div class=" col-lg-6">
 				 <label for="password">Password</label>
-				 <input name="password" type="password"  placeholder="Password" class="inputStyle"/>
+				 <input name="password" type="password"  placeholder="Password"  class="form-control"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class=" col-lg-6" style="padding:15px">
+				 <input name="login" type="button"  value="login" class="btn btn-primary"/>
 			</div>
 		</div>
     </div>
