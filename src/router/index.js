@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from '../App'
-import Login from '../components/component/Login'
 import SignUp from '../components/component/SignUp'
 import BrowseFreelancer from '../components/component/BrowseFreelancer'
 import PostJob from '../components/component/PostJob'
+import profile from '../components/component/profile'
+import Home from '../components/component/Home'
 import BrowseJob from '../components/component/BrowseJob'
 
 Vue.use(Router)
@@ -12,13 +13,18 @@ Vue.use(Router)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'app',
     component: App
   },
   {
-    path: '/Login',
-    name: 'Login',
-    component: Login
+    path: '/home',
+    name: 'home',
+    component: Home
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: profile
   },
   {
     path: '/SignUp',
@@ -45,3 +51,4 @@ const routes = [
 export default new Router({
   routes: routes
 })
+

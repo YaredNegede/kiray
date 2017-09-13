@@ -1,10 +1,10 @@
 <template>
+	<div><h1>Adds</h1></div>
 </template>
-
 <script>
 
 export default {
-  name: 'item',
+  name: 'add',
   props: { show: true },
   methods: {}
 }
