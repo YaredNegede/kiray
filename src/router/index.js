@@ -2,11 +2,14 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import App from '../App'
 import SignUp from '../components/component/SignUp'
-import BrowseFreelancer from '../components/component/BrowseFreelancer'
-import PostJob from '../components/component/PostJob'
-import profile from '../components/component/profile'
+import addInformation from '../components/component/addInformation'
+import contractDetail from '../components/component/contractDetail'
 import Home from '../components/component/Home'
-import BrowseJob from '../components/component/BrowseJob'
+import renterDetail from '../components/component/renterDetail'
+import shopDetail from '../components/component/shopDetail'
+import rentersDetail from '../components/component/rentersDetail'
+import addContract from '../components/component/addContract'
+import Loggedin from '../components/component/Loggedin'
 
 Vue.use(Router)
 
@@ -22,9 +25,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/profile',
-    name: 'profile',
-    component: profile
+    path: '/contractDetail',
+    name: 'contractDetail',
+    component: contractDetail
   },
   {
     path: '/SignUp',
@@ -32,19 +35,34 @@ const routes = [
     component: SignUp
   },
   {
-    path: '/BrowseFreelancer',
-    name: 'BrowseFreelancer',
-    component: BrowseFreelancer
+    path: '/addInformation',
+    name: 'addInformation',
+    component: addInformation
   },
   {
-    path: '/PostJob',
-    name: 'PostJob',
-    component: PostJob
+    path: '/renterDetail',
+    name: 'renterDetail',
+    component: renterDetail
   },
   {
-    path: '/BrowseJob',
-    name: 'BrowseJob',
-    component: BrowseJob
+    path: '/rentersDetail',
+    name: 'rentersDetail',
+    component: rentersDetail
+  },
+  {
+    path: '/shopDetail',
+    name: 'shopDetail',
+    component: shopDetail
+  },
+  {
+    path: '/addContract',
+    name: 'addContract',
+    component: addContract
+  },
+  {
+    path: '/Loggedin',
+    name: 'Loggedin',
+    component: Loggedin
   }
 ]
 

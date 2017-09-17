@@ -1,9 +1,8 @@
-	
 <template  id="SingUp">
 	
 	<div class="panel panel-default"  style="background-color:#00AAAA">
 	
-		<div class="panel-heading"> Sign Up </div> 
+		<div class="panel-heading" style="background-color:#00BBBB;color:white"> Sign Up </div> 
 
 		<div class="panel-body"> 
 		
@@ -25,15 +24,6 @@
 				</div>
 				<div class="col-lg-6" style="background-color:#00AAAA">
 					<input type="text"  class="form-control " placeholder="Your Name" v-model="name" style="background-color:#00AAAA;color:white"/>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class=" col-lg-3">
-					<label  style="color:white">Email</label>
-				</div>
-				<div class=" col-lg-6">
-					<input type="email"  class="form-control" placeholder="email@compony.com" v-model="email" style="background-color:#00AAAA;color:white"/>
 				</div>
 			</div>
 
@@ -95,7 +85,7 @@ export default {
       tel: '',
       password: '',
       password2: '',
-      userType: ['Employer', 'Employee']
+      userType: ['Renter', 'Rentee']
     }
   },
   methods: {

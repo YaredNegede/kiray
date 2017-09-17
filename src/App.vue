@@ -2,7 +2,6 @@
 
 import Home from './components/component/Home.vue'
 import menus from './components/component/menus.vue'
-import add from './components/component/add.vue'
 import footerDiv from './components/component/footerDiv.vue'
 import router from './router'
 import axios from 'axios'
@@ -12,7 +11,7 @@ export default {
    this.$router.push('Home')
   },
   name: 'app',
-  components: {axios, router, Home,add, footerDiv, menus},
+  components: {axios, router, Home, footerDiv, menus},
   router,
   data: function (){
     return {loggedin:false}
@@ -67,7 +66,7 @@ export default {
 			</div>
 		     		
 		</div>  
-	  <footerDiv class="footerMyStyle"></footerDiv>
+	 
 	</div>
 
 </template>

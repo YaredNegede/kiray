@@ -15,7 +15,6 @@
 
 		<div class="row" style="padding:15px">
 			<input name="login" type="button"  value="login" class="btn btn-primary" @click="login"/>
-			<router-link to="/SignUp" class="btn btn-primary">Register</router-link  >
 		</div>
 
 	</div>	
@@ -28,7 +27,7 @@ import router from '../../router'
 import axios from 'axios'
 
 export default {
-  name: 'Login',
+  name: 'Loggedin',
   components: {axios, router},
   data: function () {
     return {
@@ -40,7 +39,7 @@ export default {
     login () {
       if (this.validate()) {
         this.userdata = axios.get('/')
-        this.$router.push('profile')
+        this.$router.push('contractDetail')
       }
     },
     validate () {
