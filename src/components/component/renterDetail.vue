@@ -1,28 +1,71 @@
 
+<script>
+
+export default {
+  name: 'renterDetail',
+  beforeCreate: function () {
+    console.log('===========================')
+    var tmp = this.$store.state.temp.ID
+    this.data = this.$store.state.data.ServiceRecievers.filter(function (ServiceReciever) {
+      return ServiceReciever.ID === tmp
+    })[0]
+    console.log(this.data)
+  },
+  props: { show: true },
+  components: {},
+  computed: {
+    name () {
+      return (typeof this.data.Name === 'undefined' || this.data.Name === null) ? '' : this.data.Name
+    },
+    fatherName () {
+      return (typeof this.data.FatherName === 'undefined' || this.data.FatherName === null) ? '' : this.data.FatherName
+    },
+    id () {
+      return (typeof this.data.ID === 'undefined' || this.data.ID === null) ? '' : this.data.ID
+    },
+    IDType () {
+      return (typeof this.data.IDType === 'undefined' || this.data.IDType === null) ? '' : this.data.IDType
+    },
+    phoneNumber () {
+      return (typeof this.data.PhoneNumber === 'undefined' || this.data.PhoneNumber === null) ? '' : this.data.PhoneNumber
+    },
+    shopNumber () {
+      return (typeof this.data.ShopNumber === 'undefined' || this.data.ShopNumber === null) ? '' : this.data.ShopNumber
+    }
+  },
+  data: function () {
+    return {}
+  },
+  methods: {
+    registerProfile () {}
+  }
+}
+</script>
+<style scoped>
+
+</scope>
+
 <template>
-<div class="panel panel-default" style="background-color:#00AAAA">
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Renter Detail</div> 
+<div class="panel panel-default" style="background-color:#00AAAA" id="renterDetail">
+	<div class="panel-heading" style="background-color:#00BBBB;color:white">Renter Detail</div> 
 		<div style="padding:30px">
-					<div class="row">
+					<div class="row" v-show=show>
 						<div class="col-lg-3">
 							<label  style="color:white">Shop Number</label>
 						</div>
 						<div class="col-lg-6" style="background-color:#00AAAA">
-							<select type="text"  class="form-control " placeholder="Building" v-model="name" style="background-color:#00AAAA;color:white">
-								<option>SNAP-312412</option>
-								<option>SNAP-321312</option>
-								<option>SNAP-636334</option>
+							<select type="text"  class="form-control " placeholder="Building"   style="background-color:#00AAAA;color:white">
+								<option ></option>								
 							</select>
 						</div>
 					</div>
 	
-			
 					<div class="row">
 						<div class="col-lg-3">
 							<label  style="color:white">Name</label>
 						</div>
 						<div class="col-lg-6" style="background-color:#00AAAA">
-							<input type="text"  class="form-control " placeholder="Your Name" v-model="name" style="background-color:#00AAAA;color:white"/>
+							<input v-model="name" type="text"  class="form-control " placeholder="Your Name" style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 					
@@ -31,7 +74,7 @@
 							<label  style="color:white">Father Name</label>
 						</div>
 						<div class="col-lg-6" style="background-color:#00AAAA">
-							<input type="text"  class="form-control " placeholder="Your Name" v-model="name" style="background-color:#00AAAA;color:white"/>
+							<input  v-model="fatherName" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -40,7 +83,7 @@
 							<label  style="color:white">ID number</label>
 						</div>
 						<div class=" col-lg-6">
-							<input type="email"  class="form-control" placeholder="email@compony.com" v-model="email" style="background-color:#00AAAA;color:white"/>
+							<input v-model="id"  type="text"  class="form-control" placeholder="ID number"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -49,40 +92,20 @@
 							<label  style="color:white">ID type</label>
 						</div>
 						<div class=" col-lg-6">
-							<input type="phone"  class="form-control" placeholder="+215 091271312" v-model="tel" style="background-color:#00AAAA;color:white"/>
+							<input  v-model="IDType" type="text"  class="form-control" placeholder="Enter id type"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 			
 					<div class="row">
+	
 						<div class=" col-lg-3">
 							<label  style="color:white">Phone Number</label>
 						</div>
 						<div class=" col-lg-6">
-							<input type="tel"  class="form-control" placeholder="+215 091271312" v-model="tel" style="background-color:#00AAAA;color:white"/>
+							<input v-model="phoneNumber" type="tel"  class="form-control" placeholder="+215 091271312"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 		
-				</div>
+			</div>
 	</div>
-
 </template>
-
-<script>
-
-export default {
-  name: 'renterDetail',
-  props: { show: true },
-  components: {},
-  data: function () {
-    return {}
-  },
-  methods: {
-    registerProfile () {
-      console.log(this.skills)
-    }
-  }
-}
-</script>
-<style scoped>
-
-</scope>

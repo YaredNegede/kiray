@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from '../App'
-import SignUp from '../components/component/SignUp'
+import signUp from '../components/component/signUp'
 import addInformation from '../components/component/addInformation'
 import contractDetail from '../components/component/contractDetail'
-import Home from '../components/component/Home'
+import home from '../components/component/home'
 import renterDetail from '../components/component/renterDetail'
 import shopDetail from '../components/component/shopDetail'
 import rentersDetail from '../components/component/rentersDetail'
 import addContract from '../components/component/addContract'
-import Loggedin from '../components/component/Loggedin'
+import loggedin from '../components/component/loggedin'
 
 Vue.use(Router)
 
@@ -22,7 +22,8 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: Home
+    component: home,
+    children: [{ path: 'login', component: loggedin }]
   },
   {
     path: '/contractDetail',
@@ -30,9 +31,9 @@ const routes = [
     component: contractDetail
   },
   {
-    path: '/SignUp',
-    name: 'SignUp',
-    component: SignUp
+    path: '/signUp',
+    name: 'signUp',
+    component: signUp
   },
   {
     path: '/addInformation',
@@ -60,13 +61,12 @@ const routes = [
     component: addContract
   },
   {
-    path: '/Loggedin',
-    name: 'Loggedin',
-    component: Loggedin
+    path: '/loggedin',
+    name: 'loggedin',
+    component: loggedin
   }
 ]
 
 export default new Router({
   routes: routes
 })
-

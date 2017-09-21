@@ -1,3 +1,33 @@
+
+<script>
+
+export default {
+  name: 'contractDetail',
+  props: { show: true },
+  components: {},
+  computed: {
+    contracts: function () { return this.$store.getters.getData.Contracts }
+  },
+  methods: {
+    viewRentee (event) {
+      this.$store.getters.getTemp.ID = event.srcElement.innerText
+      this.$router.push('/renterDetail')
+    },
+    viewShop (event) {
+      this.$store.state.temp.ID = event.srcElement.innerText
+      this.$router.push('/shopDetail')
+    },
+    viewContract (event) {
+      this.$store.state.temp.ID = event.srcElement.innerText
+      this.$router.push('/viewContract')
+    }
+  }
+}
+</script>
+<style scoped>
+
+</scope>
+	
 <template>
 
   <div class="panel panel-default" style="background-color:#00AAAA;color:white">
@@ -8,10 +38,20 @@
 			<a style="color:white" href="#/addContract"> Create Contract<span class="badge">+</span></a>
 	<hr>
 		<table class="table" style="color:white"> 
-			<th>No</th><th>Name</th><th>Father Name</th><th>Magnitude</th><th>Unit</th><th>Status</th><th>Period</th><th>Start time</th><th>End time</th>
-			<tr v-for="tekeray in tekeray">{{tekeray}}<td>Yared</td><td>Negede</td><td>{{tekeray * 100}}</td><td>Square Meter</td><td>Paid</td><td>{{tekeray}} Month</td><td>Sep {{tekeray}} ,2017</td><td>Dec {{tekeray}} ,2017</td><td><a href="#/renterDetail">Renter Datail</a></td>
-			<td><a href="#/shopDetail">Shop Datail</a></td>
-			<td><a href="#/addContract">Edit Datail</a></td>
+			<th>Name</th><th>Father Name</th><th>Magnitude</th><th>Unit</th><th>Status</th><th>Period</th><th>Start time</th><th>End time</th>
+			<th>Rentee</th>	<th>Shop</th>	<th>Contract Number</th>
+			<tr v-for="contract in contracts">
+				<td>{{contract.name}}</td>
+				<td>{{contract.FatherName}}</td>
+				<td>{{contract.Magnitude}}</td>
+				<td>{{contract.Unit}}</td>
+				<td>{{contract.Status}}</td>
+				<td>{{contract.Period}}</td>
+				<td>{{contract.StartTime}}</td>
+				<td>{{contract.EndTime}}</td>
+				<td><a href="#/renterDetail" @click='viewRentee'>{{contract.Renter}}</a></td>
+				<td><a href="#/shopDetail" @click="viewShop">{{contract.Shop}}</a></td>
+				<td><a href="#/addContract" @click="viewContract">{{contract.ID}}</a></td>
 			</tr>
 		</table> 
 			
@@ -20,23 +60,3 @@
 
 
 </template>
-
-<script>
-
-export default {
-  name: 'contractDetail',
-  props: { show: true },
-  components: {},
-  data: function () {
-    return {'tekeray': [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]}
-  },
-  methods: {
-    registerProfile () {
-      console.log(this.skills)
-    }
-  }
-}
-</script>
-<style scoped>
-
-</scope>

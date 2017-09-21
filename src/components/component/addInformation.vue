@@ -1,11 +1,11 @@
 <template name="addInformation">
-		<div>
+		
+	<div>
 			<buildingDetail></buildingDetail>
 			
 			<shopDetail></shopDetail>
 			
 			<renterDetail></renterDetail>
-			
 			
 			<div class="row">
 				<div class=" col-lg-3">
@@ -32,13 +32,16 @@ import shopDetail from './shopDetail.vue'
 export default {
   name: 'addInformation',
   props: { show: true },
+  beforeCreate: function () {
+    console.log(this.$store.getters.getServiceRecievers)
+  },
   components: {buildingDetail, renterDetail, shopDetail},
   data: function () {
-    return { 'tekeray': [1, 2, 3, 4, 5, 6, 8, 9, 10] }
+    return {}
   },
   methods: {
     save () {
-      this.$router.push('contractDetail')
+      this.$router.push('/contractDetail')
     },
     validate () {
       return this.email && this.name && this.tel && this.password && this.password2

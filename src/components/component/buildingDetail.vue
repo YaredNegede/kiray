@@ -1,4 +1,4 @@
-<template name="buildingDetail">
+<template>
 
 	<div class="panel panel-default" style="background-color:#00AAAA">
 	<div class="panel-heading " style="background-color:#00BBBB;color:white">Building Information</div> 
@@ -11,7 +11,7 @@
 						<div class="col-lg-6" style="background-color:#00AAAA">
 							<div class="row">
 								<div class="col-lg-11">
-										<select type="text"  class="form-control " placeholder="Building" v-model="name" style="background-color:#00AAAA;color:white">
+										<select type="text"  class="form-control " placeholder="Building"  style="background-color:#00AAAA;color:white">
 											<option>SNAP 1</option>
 											<option>SNAP 2</option>
 											<option>SNAP 3</option>

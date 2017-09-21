@@ -23,26 +23,43 @@
 
 <script>
 
-import router from '../../router'
 import axios from 'axios'
 
 export default {
-  name: 'Loggedin',
-  components: {axios, router},
+  components: {axios},
   data: function () {
     return {
-      user: {username: 'Phone Number or email', password: 'Password'},
+      user: {'username': '', 'password': ''},
       userdata: ''
     }
   },
   methods: {
     login () {
-      if (this.validate()) {
-        this.userdata = axios.get('/')
-        this.$router.push('contractDetail')
+      console.log(this.$store)
+      if (this.valid()) {
+        if (this.authenticate()) {
+          this.getUserData()
+          this.$router.push(this.$store.getters.getSurf.rediretTo)
+        }
       }
     },
-    validate () {
+    valid () {
+      return true
+    },
+    authenticate () {
+//      this.sendRequest()
+      return true
+    },
+    getUserData () {
+//      this.sendRequest()
+    },
+    sendRequest (requestData) {
+      this.userdata = axios.post('/').then(function (response) {
+        console.log(response)
+        console.log(this.$store.user.authenticated)
+        this.$store.user.authenticated = true
+        console.log(this.$store.user.authenticated)
+      })
       return true
     }
   }

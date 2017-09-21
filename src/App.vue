@@ -1,21 +1,17 @@
 <script>
 
-import Home from './components/component/Home.vue'
+import home from './components/component/home.vue'
 import menus from './components/component/menus.vue'
 import footerDiv from './components/component/footerDiv.vue'
-import router from './router'
 import axios from 'axios'
 
 export default {
   beforeCreate: function () {
-   this.$router.push('Home')
+   this.$router.push(this.$store.getters.getSurf.currentPath)
   },
   name: 'app',
-  components: {axios, router, Home, footerDiv, menus},
-  router,
-  data: function (){
-    return {loggedin:false}
-  },
+  components: {axios, home, footerDiv, menus},
+  data: function () {return {} },
   methods: {}
 }
 </script>

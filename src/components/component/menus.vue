@@ -2,9 +2,9 @@
 <div id="menus">
    <div class="collapse navbar-collapse" id="example-navbar-collapse" name="menus">
    <ul class="nav navbar-nav">
-	   <li><router-link to="/Home"  style="color:white">Home</router-link></li>
-	   <li><router-link to="/SignUp" style="color:white">Sign-Up</router-link></li>
-	   <li><a href="#"  style="color:white" @click="logout">Logout</a>
+	   <li><router-link to="/home"  style="color:white">Home</router-link></li>
+	   <li><router-link to="/signUp" style="color:white">Sign-Up</router-link></li>
+	   <li><a href="#"  style="color:white" @click="logout" v-show="!data.authenticated">Logout</a>
     </ul>
     </div>
 	</div>
@@ -14,11 +14,18 @@
 
 export default {
   name: 'menus',
-  props: { show: true },
+  beforeCreate: function () {
+    console.log('=============Menu==============')
+    console.log(this.$store.state.user)
+    this.data = this.$store.state.user
+    console.log(this.data)
+  },
   methods: {
     logout: function () {
-      this.$router.push('Home')
-      alert('log out')
+      console.log(this.$store.getters.getUser.authenticated)
+      this.$store.getters.getUser.authenticated = false
+      this.$router.push('/home')
+      console.log(this.$store.getters.getUser.authenticated)
     }
   }
 }
