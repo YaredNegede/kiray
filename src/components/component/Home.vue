@@ -1,4 +1,5 @@
 <script>
+import Turbo from 'turbo'
 
 export default {
   beforeCreate: function () {},
@@ -6,16 +7,36 @@ export default {
   data: function () {
     return {loggedin: false, show: true}
   },
-  components: {},
+  components: {Turbo},
+  computed: {
+    name () {
+      return (typeof this.data.Name === 'undefined' || this.data.Name === null) ? '' : this.data.Name
+    },
+    fatherName () {
+      return (typeof this.data.FatherName === 'undefined' || this.data.FatherName === null) ? '' : this.data.FatherName
+    },
+    id () {
+      return (typeof this.data.ID === 'undefined' || this.data.ID === null) ? '' : this.data.ID
+    },
+    IDType () {
+      return (typeof this.data.IDType === 'undefined' || this.data.IDType === null) ? '' : this.data.IDType
+    },
+    phoneNumber () {
+      return (typeof this.data.PhoneNumber === 'undefined' || this.data.PhoneNumber === null) ? '' : this.data.PhoneNumber
+    },
+    shopNumber () {
+      return (typeof this.data.ShopNumber === 'undefined' || this.data.ShopNumber === null) ? '' : this.data.ShopNumber
+    }
+  },
   methods: {
     addInfo () {
       console.log(this.$store)
       if (this.$store.getters.getUser.authenticated) {
         this.show = false
-        this.$router.push('addInformation')
+        this.$router.push('/addInformation')
       } else {
         this.$store.getters.getSurf.rediretTo = '/addInformation'
-        this.$router.push('home/login')
+        this.$router.push('/home/login')
       }
     },
     viewInfo () {
@@ -24,7 +45,7 @@ export default {
         this.$router.push('/contractDetail')
       } else {
         this.$store.getters.getSurf.rediretTo = '/contractDetail'
-        this.$router.push('home/login')
+        this.$router.push('/home/login')
       }
     }
   }
@@ -48,7 +69,7 @@ export default {
 </style>
 <template >
      <div id="home">
-		 <div class="col-md-2"></div>
+		 <div class="col-md-1"></div>
 		<div class="col-md-10">
           <div class="jumbotron" style="background-color:#00AAAA;">
             <h2 ><b>Companies are managing their building at realtime</b></h2>
@@ -60,13 +81,23 @@ export default {
 			
 			<p style="color:white">
               Are you looking whats up with your client? Click "View Information"
-            </p>
+      </p>
 			  <p>
-					<router-view class="row">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+              					<router-view class="row">
 
-						</router-view>
+				            	</router-view>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
 			</p>
-		<div class="row home" v-show = "show">
+	
+  		 <div class="col-md-1"></div>
+  
+  	<div class="row home" v-show = "show">
 
 			<div class="col-lg-5">
 

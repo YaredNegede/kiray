@@ -3,16 +3,16 @@
 import home from './components/component/home.vue'
 import menus from './components/component/menus.vue'
 import footerDiv from './components/component/footerDiv.vue'
-import axios from 'axios'
+import Turbo from 'turbo'
 
 export default {
   beforeCreate: function () {
    this.$router.push(this.$store.getters.getSurf.currentPath)
+   console.log('App')
+   console.log(Turbo.do.test())
   },
   name: 'app',
-  components: {axios, home, footerDiv, menus},
-  data: function () {return {} },
-  methods: {}
+  components: {home, footerDiv, menus, Turbo},
 }
 </script>
 
@@ -38,11 +38,12 @@ export default {
 		
 		
 	}
+	
 </style>
 
 <template >
 
-   <div id="app" class="container contenerMyStyle" >
+   <div id="app" class="container contenerMyStyle " >
 	  <menus></menus>
 	   
 	   <div  class="row bodyStyle">
@@ -64,5 +65,4 @@ export default {
 		</div>  
 	 
 	</div>
-
 </template>

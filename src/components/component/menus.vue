@@ -1,23 +1,14 @@
-<template>
-<div id="menus">
-   <div class="collapse navbar-collapse" id="example-navbar-collapse" name="menus">
-   <ul class="nav navbar-nav">
-	   <li><router-link to="/home"  style="color:white">Home</router-link></li>
-	   <li><router-link to="/signUp" style="color:white">Sign-Up</router-link></li>
-	   <li><a href="#"  style="color:white" @click="logout" v-show="!data.authenticated">Logout</a>
-    </ul>
-    </div>
-	</div>
-</template>
 
 <script>
+import Turbo from 'turbo'
 
 export default {
   name: 'menus',
+  components: {Turbo},
   beforeCreate: function () {
     console.log('=============Menu==============')
-    console.log(this.$store.state.user)
-    this.data = this.$store.state.user
+    console.log(this.$store.getters.getUser)
+    this.data = this.$store.getters.getUser
     console.log(this.data)
   },
   methods: {
@@ -35,3 +26,14 @@ export default {
 		color:white;
 	}
  </scope>
+<template>
+<div id="menus">
+   <div class="collapse navbar-collapse" id="example-navbar-collapse" name="menus">
+   <ul class="nav navbar-nav">
+	   <li><router-link to="/home"  style="color:white">Home</router-link></li>
+	   <li><router-link to="/signUp" style="color:white" v-show="!data.authenticated">Sign-Up</router-link></li>
+	   <li><a href="#"  style="color:white" @click="logout" v-show="data.authenticated">Logout</a>
+    </ul>
+    </div>
+	</div>
+</template>

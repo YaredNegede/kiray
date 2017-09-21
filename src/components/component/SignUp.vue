@@ -1,6 +1,37 @@
-<template  id="SingUp">
+
+<script>
+import Turbo from 'turbo'
+
+export default {
+  beforeCreate: function () {
+    console.log('=============Sign up==============')
+    var dt = this.$store.getters.getUser
+    this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
+    console.log(this.data)
+  },
+  components: {Turbo},
+  name: 'SingUp',
+  data: function () {
+    return {}
+  },
+  methods: {
+    register () {
+      console.log('Registering ')
+      this.$router.push('/home/login')
+      console.log(this.data)
+    },
+    validate () {}
+  }
+}
+</script>
+
+<style scoped>
 	
-	<div class="panel panel-default"  style="background-color:#00AAAA">
+</scope>
+
+<template>
+	
+	<div id="SingUp" class="panel panel-default"  style="background-color:#00AAAA">
 	
 		<div class="panel-heading" style="background-color:#00BBBB;color:white"> Sign Up </div> 
 
@@ -13,7 +44,7 @@
 				<div class="col-lg-6" style="background-color:#00AAAA">
 					
 					<select class="form-control" placeholder="Your Name" name="userType" style="background-color:#00AAAA;color:white">
-						<option v-for="userType in userType">{{userType}}</option>
+						<option v-for="userType in data.userType">{{userType}}</option>
 					</select>
 				</div>
 			</div>
@@ -23,7 +54,7 @@
 					<label  style="color:white">Name</label>
 				</div>
 				<div class="col-lg-6" style="background-color:#00AAAA">
-					<input type="text"  class="form-control " placeholder="Your Name" v-model="name" style="background-color:#00AAAA;color:white"/>
+					<input v-model="data.name" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
 				</div>
 			</div>
 
@@ -32,7 +63,7 @@
 					<label  style="color:white">Phone Number</label>
 				</div>
 				<div class=" col-lg-6">
-					<input type="phone"  class="form-control" placeholder="+215 091271312" v-model="tel" style="background-color:#00AAAA;color:white"/>
+					<input  v-model="data.tel"  type="phone"  class="form-control" placeholder="Phone number"style="background-color:#00AAAA;color:white"/>
 				</div>
 			</div>
 
@@ -41,7 +72,7 @@
 					<label  style="color:white">Password</label>
 				</div>
 				<div class=" col-lg-6">
-					<input type="password"  class="form-control" placeholder="Password" v-model="password" style="background-color:#00AAAA;color:white"/>
+					<input v-model="data.password" type="password"  class="form-control" placeholder="Password"  style="background-color:#00AAAA;color:white"/>
 				</div>
 			</div>
 
@@ -50,7 +81,7 @@
 					<label  style="color:white">Repeat Password</label>
 				</div>
 				<div class=" col-lg-6">
-					<input type="password"  class="form-control" placeholder="Repeat Password"  v-model="password2" style="background-color:#00AAAA;color:white"/>
+					<input v-model="data.password2" type="password"  class="form-control" placeholder="Repeat Password"   style="background-color:#00AAAA;color:white"/>
 				</div>
 			</div>
 
@@ -67,43 +98,6 @@
 			</div>
 		
 	</div>
-
 	</div>
 		
 </template>
-
-<script>
-
-export default {
-  name: 'SingUp',
-  props: { show: true },
-  data: function () {
-    return {
-      loggedin: true,
-      name: '',
-      email: '',
-      tel: '',
-      password: '',
-      password2: '',
-      userType: ['Renter', 'Rentee']
-    }
-  },
-  methods: {
-    register () {
-      if (this.loggedin) {
-        this.$router.push('profile')
-      } else {
-        this.$router.push('Login')
-      }
-    },
-    validate () {
-      return this.email && this.name && this.tel && this.password && this.password2
-    }
-  }
-}
-</script>
-
-<style scoped>
-	
-</scope>
-

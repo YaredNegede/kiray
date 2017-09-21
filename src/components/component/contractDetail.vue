@@ -1,10 +1,11 @@
 
 <script>
+import Turbo from 'turbo'
 
 export default {
   name: 'contractDetail',
   props: { show: true },
-  components: {},
+  components: {Turbo},
   computed: {
     contracts: function () { return this.$store.getters.getData.Contracts }
   },

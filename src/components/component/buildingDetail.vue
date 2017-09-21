@@ -1,14 +1,16 @@
 
 <script>
+import Turbo from 'turbo'
 
 export default {
   beforeCreate: function () {
     console.log('===========================')
     var dt = this.$store.getters.getData
-    this.data = (typeof dt === 'undefined' || dt === null) ? { user: {'authenticated': true}, componentState: [], temp: {'ID': ''}, surf: {'currentPath': '', 'previousPath': '', 'rediretTo': ''}, data: { 'PropertyName': '', 'Address': '', 'Address2': '', 'Contracts': [], 'Properties': [], 'ServiceRecievers': [] } } : dt
+    this.data = (typeof dt === 'undefined' || dt === null) ? { 'PropertyName': '', 'Address': '', 'Address2': '', 'Contracts': [], 'Properties': [], 'ServiceRecievers': [] } : dt
     console.log(this.data)
     console.log('============================')
   },
+  components: {Turbo},
   name: 'buildingDetail',
   props: { show: true },
   data: function () {
@@ -16,7 +18,7 @@ export default {
   },
   methods: {
     register () {
-      if (this.loggedin) {
+      if (this.$store.getters.getUser.authenticated) {
         this.$router.push('/contractDetail')
       } else {
         this.$router.push('home/login')
@@ -43,7 +45,7 @@ export default {
 							<label  style="color:white">Building Name</label>
 						</div>
 						<div class="col-lg-6"  style="background-color:#00AAAA;color:white">
-							<input type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.PropertyName" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -52,7 +54,7 @@ export default {
 							<label  style="color:white">Address</label>
 						</div>
 						<div class="col-lg-6"  style="background-color:#00AAAA;color:white">
-							<input type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Address" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 			
@@ -61,7 +63,7 @@ export default {
 							<label  style="color:white">Address 2</label>
 						</div>
 						<div class="col-lg-6" style="background-color:#00AAAA">
-							<input type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Address2" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 				</div>

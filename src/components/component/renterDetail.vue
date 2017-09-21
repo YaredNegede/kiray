@@ -1,5 +1,6 @@
 
 <script>
+import Turbo from 'turbo'
 
 export default {
   name: 'renterDetail',
@@ -11,7 +12,7 @@ export default {
     console.log('============================')
   },
   props: { show: true },
-  components: {},
+  components: {Turbo},
   computed: {
     name () {
       return (typeof this.data.Name === 'undefined' || this.data.Name === null) ? '' : this.data.Name

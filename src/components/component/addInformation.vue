@@ -4,29 +4,32 @@
 import buildingDetail from './buildingDetail.vue'
 import renterDetail from './renterDetail.vue'
 import shopDetail from './shopDetail.vue'
+import Turbo from 'turbo'
 
 export default {
   name: 'addInformation',
   props: { show: true },
   beforeCreate: function () {
-    console.log(this.$store.getters.getServiceRecievers)
+    console.log('addInformation')
+    console.log(this.$store.getters.getData)
   },
-  components: {buildingDetail, renterDetail, shopDetail},
+  components: {buildingDetail, renterDetail, shopDetail, Turbo},
   data: function () {
     return {}
   },
   methods: {
     save () {
+      console.log('Save')
       this.$router.push('/contractDetail')
-    },
-    validate () {
-      return this.email && this.name && this.tel && this.password && this.password2
     }
   }
 }
 </script>
+
 <style scoped>
+
 </scope>
+
 <template name="addInformation">
 		
 	<div>

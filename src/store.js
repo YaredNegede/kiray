@@ -4,61 +4,49 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  user: {'authenticated': true},
+  user: {'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
   componentState: [],
   temp: {'ID': ''},
   surf: {'currentPath': 'home', 'previousPath': '', 'rediretTo': ''},
   data: {
-    'PropertyName': '',
-    'Address': '',
-    'Address2': '',
+    'PropertyName': 'SNAP PLAZA',
+    'Address': 'Addis Ababa',
+    'Address2': 'Bole',
     'Contracts': [{'ID': 'C123', 'name': 'Yared', 'FatherName': 'Negede', 'Magnitude': '120', 'Unit': 'Square Meter', 'Status': 'New', 'Period': '3', 'StartTime': '12/23/2016', 'EndTime': '12/23/2017', 'Renter': 'DEC1231', 'Shop': '123'}],
     'Properties': [{'ShopNumber': '123', 'Floor': '1', 'Purpuse': 'Men Close'}],
-    'ServiceRecievers': [{'Name': 'Yared', 'FatherName': 'Negede', 'ID': 'DEC1231', 'IDType': 'Passport', 'PhoneNumber': '0912435466'}]
-  }
-}
-// mutations are operations that actually mutates the state.
-// each mutation handler gets the entire state tree as the
-// first argument, followed by additional payload arguments.
-// mutations must be synchronous and can be recorded by plugins
-// for debugging purposes.
-const mutations = {
-  increment (state) {
-    state.count++
-  },
-  decrement (state) {
-    state.count--
+    'ServiceRecievers': [{'Name': 'Yared', 'FatherName': 'Negede', 'ID': 'DEC1231', 'IDType': 'Passport', 'PhoneNumber': '0912435466'}, {'Name': 'Kassahun', 'FatherName': 'Teferi', 'ID': 'DEC2342', 'IDType': 'Passport', 'PhoneNumber': '0912435466'}]
   }
 }
 
-// actions are functions that cause side effects and can involve
-// asynchronous operations.
-const actions = {
-  increment: ({ commit }) => commit('increment'),
-  decrement: ({ commit }) => commit('decrement'),
-  incrementIfOdd ({ commit, state }) {
-    if ((state.count + 1) % 2 === 0) {
-      commit('increment')
-    }
-  },
-  incrementAsync ({ commit }) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        commit('increment')
-        resolve()
-      }, 1000)
-    })
-  }
-}
+const mutations = {}
 
-// getters are functions
+const actions = {}
+
 const getters = {
-  getUser: function (state) { return state.user },
-  getComponentState: function (state) { return state.componentState },
-  getSurf: function (state) { return state.surf },
-  getData: function (state) { return state.data },
-  getServiceRecievers: function (state) { return state.data.ServiceRecievers },
-  getProperties: function (state) { return state.data.Properties },
+  getUser: function (state) {
+    console.log('Getting user for : ')
+    return state.user
+  },
+  getComponentState: function (state) {
+    console.log('Getting state for : ')
+    return state.componentState
+  },
+  getSurf: function (state) {
+    console.log('Getting state for : ')
+    return state.surf
+  },
+  getData: function (state) {
+    console.log('Getting data for : ')
+    return state.data
+  },
+  getServiceRecievers: function (state) {
+    console.log('Getting data for : ')
+    return state.data.ServiceRecievers
+  },
+  getProperties: function (state) {
+    console.log('Getting Properties for : ')
+    return state.data.Properties
+  },
   getServiceReciever: function (state) {
     console.log('Getting ServiceRecievers for : ')
     var id = state.temp.ID
@@ -86,9 +74,6 @@ const getters = {
     return res
   }
 }
-
-// A Vuex instance is created by combining the state, mutations, actions,
-// and getters.
 
 export default new Vuex.Store({
   state,
