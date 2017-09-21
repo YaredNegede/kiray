@@ -29,11 +29,14 @@ export default {
 }
 </script>
 <style scoped>
-
+ .theme{
+	 background-color:#00AAAA;
+	 color:white
+ }
 </scope>
 <template>
 
-  <div class="panel panel-default" style="background-color:#00AAAA;color:white">
+  <div id ="addContract" class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Contract Detail</div> 
 		<div style="padding:30px">
 	

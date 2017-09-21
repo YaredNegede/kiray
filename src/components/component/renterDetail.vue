@@ -5,11 +5,10 @@ export default {
   name: 'renterDetail',
   beforeCreate: function () {
     console.log('===========================')
-    var tmp = this.$store.state.temp.ID
-    this.data = this.$store.state.data.ServiceRecievers.filter(function (ServiceReciever) {
-      return ServiceReciever.ID === tmp
-    })[0]
+    var dt = this.$store.getters.getServiceReciever[0]
+    this.data = (typeof dt === 'undefined' || dt === null) ? {'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''} : dt
     console.log(this.data)
+    console.log('============================')
   },
   props: { show: true },
   components: {},

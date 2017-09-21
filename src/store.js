@@ -60,19 +60,24 @@ const getters = {
   getServiceRecievers: function (state) { return state.data.ServiceRecievers },
   getProperties: function (state) { return state.data.Properties },
   getServiceReciever: function (state) {
-    console.log('Getting ServiceRecievers')
-    return state.data.ServiceRecievers.filter(function (ServiceReciever) { return ServiceReciever.ShopNumber === state.temp.ID })
+    console.log('Getting ServiceRecievers for : ')
+    var id = state.temp.ID
+    console.log(id)
+    return state.data.ServiceRecievers.filter(function (ServiceReciever) { return ServiceReciever.ID === id })
   },
   getProperty: function (state) {
     console.log('Getting Property')
+    console.log(state.temp.ID)
     return state.data.Properties.filter(function (property) { return property.ShopNumber === state.temp.ID })
   },
   getContracts: function (state) {
     console.log('Getting contract')
+    console.log(state.temp.ID)
     return state.data.Contracts
   },
   getContract: function (state) {
     console.log('Getting contracts')
+    console.log(state.temp.ID)
     return state.data.Contracts.filter(function (Contract) { return Contract.ID === state.temp.ID })
   },
   getTemp: function (state) {

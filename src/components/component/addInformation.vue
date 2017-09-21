@@ -1,27 +1,3 @@
-<template name="addInformation">
-		
-	<div>
-			<buildingDetail></buildingDetail>
-			
-			<shopDetail></shopDetail>
-			
-			<renterDetail></renterDetail>
-			
-			<div class="row">
-				<div class=" col-lg-3">
-
-				</div>
-
-				<div class=" col-lg-6">
-
-					<button class="btn btn-primary pull-right" @click="save" style="background-color:#00AAAA">Save</button>
-
-				</div>
-			</div>	
-
-		</div>
-
-</template>
 
 <script>
 
@@ -51,3 +27,27 @@ export default {
 </script>
 <style scoped>
 </scope>
+<template name="addInformation">
+		
+	<div>
+			<buildingDetail></buildingDetail>
+			
+			<shopDetail></shopDetail>
+			
+			<renterDetail></renterDetail>
+			
+			<div class="row">
+				<div class=" col-lg-3">
+
+				</div>
+
+				<div class=" col-lg-6">
+
+					<button class="btn btn-primary pull-right" @click="save" style="background-color:#00AAAA">Save</button>
+
+				</div>
+			</div>	
+
+		</div>
+
+</template>

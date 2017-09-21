@@ -6,16 +6,9 @@ export default {
   props: { show: true },
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
-    console.log(this.$store.getters.getProperty)
-    var tmp = this.$store.getters.getTemp
-    console.log(tmp.ID)
-    if (!(typeof tmp.ID === 'undefined' || tmp.ID === null)) {
-      console.log('new ---')
-      this.data = this.$store.state.data.Properties.filter(function (Property) {
-        return Property.ShopNumber === tmp.ID
-      })[0]
-      console.log(this.data)
-    }
+    var dt = this.$store.getters.getProperty[0]
+    this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
+    console.log(this.data)
   },
   components: {},
   computed: {
@@ -30,7 +23,7 @@ export default {
     }
   },
   data: function () {
-    return { 'ShopNumber': '1', 'Floor': '2', 'Purpuse': '3' }
+    return { 'ShopNumber': 'undefined', 'Floor': 'undefined', 'Purpuse': 'undefined' }
   },
   methods: {
     registerProfile () {}
@@ -39,11 +32,15 @@ export default {
 </script>
 <style scoped>
 
+.them{
+  background-color:#00BBBB;
+  color:white
+}
 </scope>
 	
 <template>
-<div id= "shopDetail" class="panel panel-default" style="background-color:#00AAAA">
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Shop Detail</div> 
+<div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
+	<div class="panel-heading postJob"  style="background-color:#00AAAA;color:white">Shop Detail</div> 
 		<div style="padding:30px">
 
 					<div class="row">
