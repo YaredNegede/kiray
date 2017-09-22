@@ -20,14 +20,12 @@ const actions = {
   },
   sendRequest: function (requestData) {
     console.log('sending request')
-    axios.post('/').then(function (response) {
-      this.$store = response.user.authenticated
-      this.$store.user.authenticated = true
-    })
+    // axios.post('/').then(function (response) {
+    //   this.$store = response.user.authenticated
+    //   this.$store.user.authenticated = true
+    // })
     return true
-  },
-  rentTime: function () {},
-  unpaid: function () {}
+  }
 }
 
 const Turbo = {

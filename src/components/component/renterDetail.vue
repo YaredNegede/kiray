@@ -49,17 +49,7 @@ export default {
 <div class="panel panel-default" style="background-color:#00AAAA" id="renterDetail">
 	<div class="panel-heading" style="background-color:#00BBBB;color:white">Renter Detail</div> 
 		<div style="padding:30px">
-					<div class="row" v-show=show>
-						<div class="col-lg-3">
-							<label  style="color:white">Shop Number</label>
-						</div>
-						<div class="col-lg-6" style="background-color:#00AAAA">
-							<select type="text"  class="form-control " placeholder="Building"   style="background-color:#00AAAA;color:white">
-								<option ></option>								
-							</select>
-						</div>
-					</div>
-	
+		
 					<div class="row">
 						<div class="col-lg-3">
 							<label  style="color:white">Name</label>

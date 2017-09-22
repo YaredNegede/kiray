@@ -72,11 +72,7 @@ export default {
 			<tr>
 				<td>Status</td>
 				<td>
-					<select type="text"  class="form-control " placeholder="Building"  style="background-color:#00AAAA;color:white">
-						<option>New</option>
-						<option>Free</option>
-						<option>Rented</option>
-					</select>
+				<input v-model="data.Status" type="text" class="form-control" style="background-color:#00AAAA;color:white"/>
 				</td>
 			</tr>
 			<tr>

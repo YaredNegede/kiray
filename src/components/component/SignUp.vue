@@ -1,6 +1,7 @@
 
 <script>
 import Turbo from 'turbo'
+import buildingDetail from './buildingDetail.vue'
 
 export default {
   beforeCreate: function () {
@@ -9,7 +10,7 @@ export default {
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
     console.log(this.data)
   },
-  components: {Turbo},
+  components: {Turbo, buildingDetail},
   name: 'SingUp',
   data: function () {
     return {}
@@ -30,8 +31,11 @@ export default {
 </scope>
 
 <template>
+	<div>
 	
-	<div id="SingUp" class="panel panel-default"  style="background-color:#00AAAA">
+		<buildingDetail></buildingDetail>
+	
+			<div id="SingUp" class="panel panel-default"  style="background-color:#00AAAA">
 	
 		<div class="panel-heading" style="background-color:#00BBBB;color:white"> Sign Up </div> 
 
@@ -99,5 +103,7 @@ export default {
 		
 	</div>
 	</div>
-		
+	
+	</div>
+			
 </template>

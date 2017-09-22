@@ -26,9 +26,7 @@ export default {
   data: function () {
     return { 'ShopNumber': 'undefined', 'Floor': 'undefined', 'Purpuse': 'undefined' }
   },
-  methods: {
-    registerProfile () {}
-  }
+  methods: {}
 }
 </script>
 <style scoped>

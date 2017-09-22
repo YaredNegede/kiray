@@ -1,7 +1,6 @@
 
 <script>
 
-import buildingDetail from './buildingDetail.vue'
 import renterDetail from './renterDetail.vue'
 import shopDetail from './shopDetail.vue'
 import Turbo from 'turbo'
@@ -13,7 +12,7 @@ export default {
     console.log('addInformation')
     console.log(this.$store.getters.getData)
   },
-  components: {buildingDetail, renterDetail, shopDetail, Turbo},
+  components: {renterDetail, shopDetail, Turbo},
   data: function () {
     return {}
   },
@@ -33,7 +32,6 @@ export default {
 <template name="addInformation">
 		
 	<div>
-			<buildingDetail></buildingDetail>
 			
 			<shopDetail></shopDetail>
 			
