@@ -2,7 +2,9 @@
 <script>
 
 import renterDetail from './renterDetail.vue'
+import rentersDetail from './rentersDetail.vue'
 import shopDetail from './shopDetail.vue'
+import shopDetails from './shopDetails.vue'
 import Turbo from 'turbo'
 
 export default {
@@ -12,16 +14,11 @@ export default {
     console.log('addInformation')
     console.log(this.$store.getters.getData)
   },
-  components: {renterDetail, shopDetail, Turbo},
+  components: {renterDetail, rentersDetail, shopDetail, shopDetails, Turbo},
   data: function () {
     return {}
   },
-  methods: {
-    save () {
-      console.log('Save')
-      this.$router.push('/contractDetail')
-    }
-  }
+  methods: {}
 }
 </script>
 
@@ -29,25 +26,40 @@ export default {
 
 </scope>
 
-<template name="addInformation">
+<template>
 		
-	<div>
-			
-			<shopDetail></shopDetail>
-			
-			<renterDetail></renterDetail>
-			
-			<div class="row">
-				<div class=" col-lg-3">
+	<div class="row" id="addInformation">
+  
+              <div class="row">
+              
+                <div class=" col-lg-6">
+              
+                      <shopDetail></shopDetail>
 
-				</div>
+                </div>	
+                
+                <div class=" col-lg-6">
 
-				<div class=" col-lg-6">
+                     <renterDetail></renterDetail>
 
-					<button class="btn btn-primary pull-right" @click="save" style="background-color:#00AAAA">Save</button>
+                </div>
+              </div>
 
-				</div>
-			</div>	
+              <div class="row">
+                
+                <div class=" col-lg-6">
+                
+                   <shopDetails></shopDetails>
+                
+                </div>
+                
+                <div class=" col-lg-6">
+                    
+                   <rentersDetail></rentersDetail>           
+                        
+                </div>
+    
+           </div>
 
 		</div>
 

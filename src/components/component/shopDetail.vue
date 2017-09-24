@@ -7,26 +7,21 @@ export default {
   props: { show: true },
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
+    console.log(this.$store.getters.getTemp)
     var dt = this.$store.getters.getProperty[0]
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
     console.log(this.data)
   },
   components: {Turbo},
-  computed: {
-    shopNumber () {
-      return (typeof this.data.ShopNumber === 'undefined' || this.data.ShopNumber === null) ? '' : this.data.ShopNumber
-    },
-    floor () {
-      return (typeof this.data.Floor === 'undefined' || this.data.Floor === null) ? '' : this.data.Floor
-    },
-    purpuse () {
-      return (typeof this.data.Purpuse === 'undefined' || this.data.Purpuse === null) ? '' : this.data.Purpuse
-    }
-  },
   data: function () {
-    return { 'ShopNumber': 'undefined', 'Floor': 'undefined', 'Purpuse': 'undefined' }
+    return { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
   },
-  methods: {}
+  methods: {
+    add: function () {
+      console.log(this.data)
+      this.$store.state.data.Properties.push(this.data)
+    }
+  }
 }
 </script>
 <style scoped>
@@ -39,15 +34,15 @@ export default {
 	
 <template>
 <div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
-	<div class="panel-heading postJob"  style="background-color:#00AAAA;color:white">Shop Detail</div> 
+	<div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">Shop Detail</div> 
 		<div style="padding:30px">
 
 					<div class="row">
 						<div class="col-lg-3">
 							<label  style="color:white">Shop Number</label>
 						</div>
-						<div class="col-lg-6" style="background-color:#00AAAA">
-							<input v-model="shopNumber" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+						<div class="col-lg-9" style="background-color:#00AAAA">
+							<input v-model="data.ShopNumber" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 					
@@ -55,8 +50,8 @@ export default {
 						<div class="col-lg-3">
 							<label  style="color:white">Floor </label>
 						</div>
-						<div class="col-lg-6" style="background-color:#00AAAA">
-							<input v-model="floor" type="text"  class="form-control " placeholder="Your Name"   style="background-color:#00AAAA;color:white"/>
+						<div class="col-lg-9" style="background-color:#00AAAA">
+							<input v-model="data.Floor" type="text"  class="form-control " placeholder="Your Name"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -64,12 +59,22 @@ export default {
 						<div class=" col-lg-3">
 							<label  style="color:white">Purpuse</label>
 						</div>
-						<div class=" col-lg-6">
-							<input v-model="purpuse" type="text"  class="form-control" placeholder="Enter purpuse"   style="background-color:#00AAAA;color:white"/>
+						<div class=" col-lg-9">
+							<input v-model="data.Purpuse" type="text"  class="form-control" placeholder="Enter purpuse"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
+					<div class="row">
+							
+								<div class=" col-lg-12">
+
+									<button @click="add" class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
+
+								</div>
+							</div>	
 		
 				</div>
+
+
 	</div>
 </template>

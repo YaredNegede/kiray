@@ -12,13 +12,18 @@ const state = {
     'PropertyName': 'SNAP PLAZA',
     'Address': 'Addis Ababa',
     'Address2': 'Bole',
-    'Contracts': [{'ID': 'C1234', 'name': 'Kassahun', 'FatherName': 'Teferi', 'Magnitude': '1200', 'Unit': 'Square Meter', 'Status': 'New', 'Period': '3', 'StartTime': '2018-09-21', 'EndTime': '2017-09-21', 'Renter': 'DEC1231', 'Shop': '123'}, {'ID': 'C123', 'name': 'Yared', 'FatherName': 'Negede', 'Magnitude': '120', 'Unit': 'Square Meter', 'Status': 'Rented', 'Period': '3', 'StartTime': '2017-07-21', 'EndTime': '2017-07-21', 'Renter': 'DEC1231', 'Shop': '123'}],
+    'Contracts': [{'ID': 'C1234', 'name': 'Kassahun', 'FatherName': 'Teferi', 'Magnitude': '120', 'Unit': 'Square Meter', 'Status': 'Rented', 'Period': '3', 'StartTime': '2018-09-21', 'EndTime': '2017-09-21', 'Renter': 'DEC1231', 'Shop': '123'}, {'ID': 'C123', 'name': 'Yared', 'FatherName': 'Negede', 'Magnitude': '120', 'Unit': 'Square Meter', 'Status': 'Rented', 'Period': '3', 'StartTime': '2017-07-21', 'EndTime': '2017-07-21', 'Renter': 'DEC1231', 'Shop': '123'}],
     'Properties': [{'ShopNumber': '123', 'Floor': '1', 'Purpuse': 'Men Close'}],
     'ServiceRecievers': [{'Name': 'Yared', 'FatherName': 'Negede', 'ID': 'DEC1231', 'IDType': 'Passport', 'PhoneNumber': '0912435466'}, {'Name': 'Kassahun', 'FatherName': 'Teferi', 'ID': 'DEC2342', 'IDType': 'Passport', 'PhoneNumber': '0912435466'}]
   }
 }
 
-const mutations = {}
+const mutations = {
+  updateProperty: function (data) {},
+  updateContracts: function (data) {},
+  updateProperties: function (data) {},
+  updateServiceRecievers: function (data) {}
+}
 
 const actions = {}
 
@@ -48,8 +53,8 @@ const getters = {
     return state.data.Properties
   },
   getServiceReciever: function (state) {
-    console.log('Getting ServiceRecievers for : ')
     var id = state.temp.ID
+    console.log('Getting ServiceReciever for : ' + id)
     console.log(id)
     return state.data.ServiceRecievers.filter(function (ServiceReciever) { return ServiceReciever.ID === id })
   },
@@ -73,12 +78,12 @@ const getters = {
     var res = (typeof state.temp === 'undefined' || state.temp === null) ? {'ID': ''} : state.temp
     return res
   },
-  getUnpaid: function () {
+  getUnpaid: function (state) {
     console.log('Getting Unpaid')
     var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
     return ret
   },
-  getOneMonthRemaining: function () {
+  getOneMonthRemaining: function (state) {
     console.log('getting stat')
     var ret = state.data.Contracts.filter(
      function (Contract) {
@@ -87,7 +92,7 @@ const getters = {
     )
     return ret
   },
-  unpaidSize: function () {
+  unpaidSize: function (state) {
     console.log('getting stat')
     var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
     return ret.length
@@ -101,7 +106,7 @@ const getters = {
     )
     return ret.length
   },
-  getStat: function () {
+  getStat: function (state) {
     console.log('getting stat')
     var retunpaid = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
     var retoneMonthRemaining = state.data.Contracts.filter(

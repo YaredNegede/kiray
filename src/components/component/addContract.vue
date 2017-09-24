@@ -16,7 +16,8 @@ export default {
   },
   beforeCreate: function () {
     console.log('~~~~~~~Contract detail~~~~~~~~~')
-    var dt = this.$store.getters.getContracts[0]
+    console.log(this.$store.getters.getTemp)
+    var dt = this.$store.getters.getContract[0]
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Renter': '', 'Shop': ''} : dt
     console.log(this.data)
     console.log('============================')
@@ -92,7 +93,7 @@ export default {
 
 				<div class=" col-lg-6">
 
-					<button class="btn btn-primary pull-right" @click="add" style="background-color:#00AAAA">Save</button>
+					<button class="btn btn-primary pull-right" @click="add" style="background-color:#00AAAA">+</button>
 
 				</div>
 			</div>

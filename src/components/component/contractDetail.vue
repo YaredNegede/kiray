@@ -4,7 +4,9 @@ import Turbo from 'turbo'
 
 export default {
   beforeCreate: function () {
-    console.log('========contractDetail========')
+    console.log('========Contract Detail========')
+    console.log(this.$store.getters.getTemp)
+    console.log('===============================')
   },
   name: 'contractDetail',
   props: { show: true },
@@ -14,7 +16,7 @@ export default {
   },
   methods: {
     viewRentee (event) {
-      this.$store.getters.getTemp.ID = event.srcElement.innerText
+      this.$store.state.temp.ID = event.srcElement.innerText
       this.$router.push('/renterDetail')
     },
     viewShop (event) {
@@ -37,7 +39,7 @@ export default {
   <div class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Contract Detail</div> 
 		<div style="padding:30px">
-			<a style="color:white" href="#/rentersDetail">Rente Information<span class="badge"></span></a>
+			<a style="color:white" href="#/payementDetail">Rente Information<span class="badge"></span></a>
 	<hr>
 		<table class="table" style="color:white"> 
 			<th>Name</th><th>Father Name</th><th>Magnitude</th><th>Unit</th><th>Status</th><th>Period</th><th>Start time</th><th>End time</th>

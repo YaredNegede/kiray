@@ -21,13 +21,12 @@ export default {
     login () {
       console.log('=======Login=========')
       if (this.valid()) {
-        if (Turbo.do.login()) {
-          var usr = this.$store.getters.getUser.authenticated
-          console.log(usr)
-          this.$router.push(this.$store.getters.getSurf.rediretTo)
-        } else {
-          console.log('login error')
-        }
+        var usr = this.$store.getters.getUser.authenticated
+        this.$store.state.user = true
+        console.log(usr)
+        this.$router.push(this.$store.getters.getSurf.rediretTo)
+      } else {
+        console.log('login error')
       }
     },
     valid () {

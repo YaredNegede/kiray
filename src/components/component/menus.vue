@@ -14,7 +14,7 @@ export default {
   methods: {
     logout: function () {
       console.log(this.$store.getters.getUser.authenticated)
-      this.$store.getters.getUser.authenticated = false
+      this.$store.state.user = false
       this.$router.push('/home')
       console.log(this.$store.getters.getUser.authenticated)
     }
@@ -31,8 +31,8 @@ export default {
    <div class="collapse navbar-collapse" id="example-navbar-collapse" name="menus">
    <ul class="nav navbar-nav">
 	   <li><router-link to="/home"  style="color:white">Home</router-link></li>
-	   <li><router-link to="/signUp" style="color:white" v-show="!data.authenticated">Sign-Up</router-link></li>
-	   <li><a href="#"  style="color:white" @click="logout" v-show="data.authenticated">Logout</a>
+	   <li><router-link to="/signUp"  style="color:white" v-show="data.authenticated">Sign-Up</router-link></li>
+	   <li><a href="#"  style="color:white" @click="logout" v-show="!data.authenticated">Logout</a>
     </ul>
     </div>
 	</div>

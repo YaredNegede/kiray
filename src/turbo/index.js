@@ -12,6 +12,9 @@ const actions = {
   },
   signUp: function () {
     console.log('signup')
+    this.sendRequest(store).when(function () {
+      console.log('registered')
+    })
     this.sendRequest(store)
   },
   register: function () {
