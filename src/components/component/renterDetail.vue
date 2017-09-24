@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     add: function () {
+      console.log(Turbo.store.commit('updateProperty'))
       this.$store.state.data.ServiceRecievers.push(this.data)
     }
   }

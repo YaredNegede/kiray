@@ -8,7 +8,7 @@ import Turbo from 'turbo'
 export default {
   beforeCreate: function () {
    this.$router.push(this.$store.getters.getSurf.currentPath)
-   console.log('App')
+   console.log('============App===============')
    console.log(Turbo.do.test())
   },
   name: 'app',
