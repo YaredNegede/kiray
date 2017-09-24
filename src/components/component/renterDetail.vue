@@ -19,7 +19,8 @@ export default {
   },
   methods: {
     add: function () {
-      console.log(Turbo.store.commit('updateProperty'))
+      console.log(Turbo.store.commit('updateServiceRecievers', this.data))
+      Turbo.store.commit('updateServiceRecievers', this.data)
       this.$store.state.data.ServiceRecievers.push(this.data)
     }
   }

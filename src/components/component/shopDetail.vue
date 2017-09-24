@@ -19,7 +19,7 @@ export default {
   methods: {
     add: function () {
       console.log(this.data)
-      console.log(Turbo.store.commit('updateProperty'))
+      Turbo.store.commit('updateProperties', this.data)
       this.$store.state.data.Properties.push(this.data)
     }
   }
@@ -34,7 +34,7 @@ export default {
 </scope>
 	
 <template>
-<div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
+		<div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
 	<div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">Shop Detail</div> 
 		<div style="padding:30px">
 

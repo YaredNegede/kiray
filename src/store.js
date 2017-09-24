@@ -19,20 +19,30 @@ const state = {
 }
 
 const mutations = {
-  updateProperty: function (state) {
+  updateProperty: function (state, data) {
     console.log('Update Property')
+    console.log(data)
+    console.log(state.data.Properties)
   },
-  updateProperties: function (state) {
+  updateProperties: function (state, data) {
     console.log('Update Properties')
+    console.log(data)
+    console.log(state.data.Properties)
   },
-  updateServiceRecievers: function (state) {
+  updateServiceRecievers: function (state, data) {
     console.log('Update ServiceRecievers')
+    console.log(data)
+    console.log(state.data.Properties)
   },
-  updateContracts: function (state) {
+  updateContracts: function (state, data) {
     console.log('Update Contracts')
+    console.log(data)
+    console.log(state.data.Properties)
   },
-  updateContract: function (state) {
-    console.log('Update Contract')
+  updateContract: function (state, data) {
+    console.log('Update Contracts')
+    console.log(data)
+    console.log(state.data.Properties)
   }
 }
 

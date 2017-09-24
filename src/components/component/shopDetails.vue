@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     add: function () {
-      console.log(this.data)
       this.$store.state.data.Properties.push(this.data)
     }
   }
@@ -33,7 +32,7 @@ export default {
 </scope>
 	
 <template>
-<div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
+  <div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
 	<div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">Shops</div> 
 		<div style="padding:30px">
 
@@ -41,12 +40,9 @@ export default {
 						<div class=" col-lg-12">
 							<table class="table">
 							<th>ShopNumber</th> <th>Floor</th> <th>Purpuse</th>
-                                <tr v-for="shop in data">
-                                    <td>{{shop.ShopNumber}}</td>
-                                    <td>{{shop.Floor}}</td>
-                                    <td>{{shop.Purpuse}}</td>
-                                    <td><a href="#"> X </a>
-                                </tr>
+                  <tr v-for="shop in data">
+                      <td>{{shop.ShopNumber}}</td> <td>{{shop.Floor}}</td><td>{{shop.Purpuse}}</td><td><a href="#"> X </a>
+                  </tr>
 							</table>
 					</div>	
 			 	</div>
