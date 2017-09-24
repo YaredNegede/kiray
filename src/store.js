@@ -19,10 +19,21 @@ const state = {
 }
 
 const mutations = {
-  updateProperty: function (data) {},
-  updateContracts: function (data) {},
-  updateProperties: function (data) {},
-  updateServiceRecievers: function (data) {}
+  updateProperty: function (state) {
+    console.log('Update Property')
+  },
+  updateProperties: function (state) {
+    console.log('Update Properties')
+  },
+  updateServiceRecievers: function (state) {
+    console.log('Update ServiceRecievers')
+  },
+  updateContracts: function (state) {
+    console.log('Update Contracts')
+  },
+  updateContract: function (state) {
+    console.log('Update Contract')
+  }
 }
 
 const actions = {}
