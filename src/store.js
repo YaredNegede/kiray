@@ -22,7 +22,7 @@ const mutations = {
   updateProperty: function (state, data) {
     console.log('Update Property')
     console.log(data)
-    console.log(state.data.Properties)
+    state.data.Properties.push(data)
   },
   updateProperties: function (state, data) {
     console.log('Update Properties')
@@ -32,12 +32,12 @@ const mutations = {
   updateServiceRecievers: function (state, data) {
     console.log('Update ServiceRecievers')
     console.log(data)
-    console.log(state.data.Properties)
+    state.data.Properties.push(data)
   },
   updateContracts: function (state, data) {
     console.log('Update Contracts')
     console.log(data)
-    console.log(state.data.Properties)
+    state.data.Contracts.push(data)
   },
   updateContract: function (state, data) {
     console.log('Update Contracts')

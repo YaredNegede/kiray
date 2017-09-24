@@ -21,7 +21,7 @@ export default {
 
 </scope>
 
-<template name="rentersDetail">
+<template id = "rentersDetail">
 
 	<div class="panel panel-default" style="background-color:#00AAAA;color:white">
 	

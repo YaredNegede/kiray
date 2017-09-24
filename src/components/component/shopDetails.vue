@@ -16,11 +16,7 @@ export default {
   data: function () {
     return { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
   },
-  methods: {
-    add: function () {
-      this.$store.state.data.Properties.push(this.data)
-    }
-  }
+  methods: {}
 }
 </script>
 <style scoped>
