@@ -6,11 +6,15 @@ const actions = {
   test: function () {
     console.log('turbo actions fine')
   },
-  login: function () {
+  login: function (userData) {
     console.log('login')
-    return this.sendRequest(store)
+    var ret = this.sendRequest(userData)
+    store.commit('login', ret)
+    console.log(store.getters.getUser.authenticated)
+    console.log('login compelted')
+    return ret
   },
-  signUp: function () {
+  signUp: function (userData) {
     console.log('signup')
     this.sendRequest(store).when(function () {
       console.log('registered')

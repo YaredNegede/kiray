@@ -20,7 +20,6 @@ export default {
     add: function () {
       console.log(this.data)
       Turbo.store.commit('updateProperties', this.data)
-      this.$store.state.data.Properties.push(this.data)
     }
   }
 }

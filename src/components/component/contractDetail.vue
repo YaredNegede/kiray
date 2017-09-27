@@ -27,6 +27,11 @@ export default {
       console.log(event.srcElement.id)
       this.$store.state.temp.ID = event.srcElement.id
       this.$router.push('/viewContract')
+    },
+    removeContract (event) {
+      console.log(event.srcElement.id)
+      var id = event.srcElement.id
+      Turbo.store.commit('removeContract', id)
     }
   }
 }
@@ -40,12 +45,12 @@ export default {
   <div class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Contract Detail</div> 
 		<div style="padding:30px">
-			<a style="color:white" href="#/payementDetail">Rente Information<span class="badge"></a>
-      <a style="color:white" href="#/contractDetail">Create New Contract<span class="badge"></a>
+			<a style="color:white" href="#/payementDetail">Rente Information</a>
+      <a style="color:white" href="#/addContract">Create New Contract</a>
 	<hr>
 		<table class="table" style="color:white"> 
 			<th>Name</th><th>Father Name</th><th>Magnitude</th><th>Unit</th><th>Status</th><th>Period</th><th>Start time</th><th>End time</th>
-			<th>Rentee</th>	<th>Shop</th>	<th>Contract Number</th>
+			<th>Rentee</th>	<th>Shop</th>	
 			<tr v-for="contract in contracts">
 				<td>{{contract.name}}</td>
 				<td>{{contract.FatherName}}</td>
@@ -55,9 +60,10 @@ export default {
 				<td>{{contract.Period}}</td>
 				<td>{{contract.StartTime}}</td>
 				<td>{{contract.EndTime}}</td>
-				<td><a href="#/renterDetail" @click='viewRentee'>{{contract.Renter}}</a></td>
+				<td><a href="#/renterDetail" @click='viewRentee'>{{contract.Rentee}}</a></td>
 				<td><a href="#/shopDetail" @click="viewShop">{{contract.Shop}}</a></td>
 				<td><a href="#/addContract" @click="viewContract" v-bind:id="contract.ID">Edit</a></td>
+        <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="contract.ID">Remove</a></td>
 			</tr>
 		</table> 
 			

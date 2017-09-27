@@ -2,18 +2,16 @@
 <script>
 
 import renterDetail from './renterDetail.vue'
-import rentersDetail from './rentersDetail.vue'
 import shopDetail from './shopDetail.vue'
-import shopDetails from './shopDetails.vue'
 import Turbo from 'turbo'
 
 export default {
   name: 'addInformation',
   props: { show: true },
   beforeCreate: function () {
-    console.log('addInformation')
+    console.log('Add Information')
   },
-  components: {renterDetail, rentersDetail, shopDetail, shopDetails, Turbo},
+  components: {renterDetail, shopDetail, Turbo},
   data: function () {
     return {}
   },
@@ -31,8 +29,11 @@ export default {
     }
   },
   computed: {
-    shops: function () { return this.$store.getters.getProperties },
-    renters: function () { return this.$store.getters.getServiceRecievers }
+    shops () {
+      console.log('~~~~~~~~~~Shops~~~~~~~~~~~~~~~')
+      return this.$store.getters.getProperties
+    },
+    renters () { return this.$store.getters.getServiceRecievers }
   }
 }
 </script>
@@ -95,6 +96,7 @@ export default {
                     </table> 
                   </div>
                 </div>
-           </div>
+              </div>
 		</div>
+
 </template>

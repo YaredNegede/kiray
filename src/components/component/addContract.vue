@@ -12,6 +12,15 @@ export default {
       return this.$store.state.data.Contracts.filter(function (Contract) {
         return Contract.ID === tmp
       })[0]
+    },
+    contracts: function () {
+      return this.$store.getters.getContracts
+    },
+    rentee: function () {
+      return this.$store.getters.getServiceRecievers
+    },
+    shops: function () {
+      return this.$store.getters.getProperties
     }
   },
   beforeCreate: function () {
@@ -28,7 +37,34 @@ export default {
   methods: {
     add () {
       console.log('creating contracts')
-      Turbo.register
+      console.log('---------------------')
+      var Magnitude = document.getElementById('Magnitude').value
+      var Unit = document.getElementById('Unit').value
+      var Status = document.getElementById('Status').value
+      var Period = document.getElementById('Period').value
+      var StartTime = document.getElementById('StartTime').value
+      var EndTime = document.getElementById('EndTime').value
+      var ShopNumber = document.getElementById('ShopNumber').value
+      var Rentee = document.getElementById('Rentee').value
+
+      var contract = {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Rentee': '', 'ShopNumber': ''}
+
+      this.$store.state.temp.ID = Rentee
+      var renteeObj = this.$store.getters.getServiceReciever[0]
+
+      console.log(renteeObj)
+      contract.name = renteeObj.Name
+      contract.FatherName = renteeObj.FatherName
+      contract.Magnitude = Magnitude
+      contract.Unit = Unit
+      contract.Status = Status
+      contract.Period = Period
+      contract.StartTime = StartTime
+      contract.EndTime = EndTime
+      contract.Shop = ShopNumber
+      contract.Rentee = Rentee
+      console.log(contract)
+      Turbo.store.commit('addContract', contract)
       this.$router.push('/contractDetail')
     }
   }
@@ -43,19 +79,24 @@ export default {
 <template>
 
   <div id ="addContract" class="panel panel-default" style="background-color:#00AAAA;color:white">
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Contract Detail</div> 
+	<div class="panel-heading" style="background-color:#00BBBB;color:white">Contract Detail</div> 
+	
 		<div style="padding:30px">
 	
 		<table class="table" style="color:white"> 
 	
 			<tr><td>Shop Number</td>
 				<td>
-						<input v-model="data.Shop" type="text" class="form-control"   style="background-color:#00AAAA;color:white"/>
+					<select class="form-control" style="background-color:#00AAAA;color:white" id="ShopNumber">
+						<option v-for="shop in shops"  style="background-color:#00AAAA;color:white">{{shop.ShopNumber}}</option>
+					</select>
 				</td>
 			</tr>
 			<tr><td>Renter</td>
 				<td>
-					<input v-model="data.Renter" type="text" class="form-control"   style="background-color:#00AAAA;color:white"/>
+					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
+						<option v-for="rentee in rentee"  style="background-color:#00AAAA;color:white">{{rentee.ID}}</option>
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -63,30 +104,39 @@ export default {
 					Magnitude
 			</td>
 					<td>
-						<input v-model="data.Magnitude" type="text" class="form-control"   style="background-color:#00AAAA;color:white"/>
+						<input v-model="data.Magnitude" type="number" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
 					</td>
 				</td>
 			</tr>
 			<tr>
 				<td>Unit</td>
-				<td><input v-model="data.Unit" type="text" class="form-control" style="background-color:#00AAAA;color:white"/></td></td></tr>
+				<td>
+					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Unit">
+						<option  style="background-color:#00AAAA;color:white">Square Meter</option>
+						<option  style="background-color:#00AAAA;color:white">Time</option>
+					</select>
+				</td>
+				</tr>
 			<tr>
 				<td>Status</td>
 				<td>
-				<input v-model="data.Status" type="text" class="form-control" style="background-color:#00AAAA;color:white"/>
+					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Status">
+						<option   style="background-color:#00AAAA;color:white">Rented</option>
+						<option   style="background-color:#00AAAA;color:white">Available</option>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>Period</td>
-				<td><input  v-model="data.Period" type="text" class="form-control" style="background-color:#00AAAA;color:white"/></td></td></tr>
+				<td><input  v-model="data.Period" type="number" class="form-control" style="background-color:#00AAAA;color:white"  id="Period"/></td></td></tr>
 			<tr>
 				<td>Start time</td>
-				<td><input v-model="data.StartTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"/></td></td></tr>
+				<td><input v-model="data.StartTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"  id="StartTime"/></td></td></tr>
 			<tr>
 				<td>End time</td>
-				<td><input v-model="data.EndTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"/></td></td></tr>
+				<td><input v-model="data.EndTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"  id="EndTime"/></td></td></tr>
 		</table> 
-		<div class="row">
+	  	<div class="row">
 				<div class=" col-lg-6">
 
 				</div>
@@ -97,8 +147,7 @@ export default {
 
 				</div>
 			</div>
-	</div>
+	  </div>
    </div>
-
 
 </template>

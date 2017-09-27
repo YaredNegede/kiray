@@ -20,10 +20,12 @@ export default {
   methods: {
     login () {
       console.log('=======Login=========')
+      var userData = {}
       if (this.valid()) {
-        var usr = this.$store.getters.getUser.authenticated
-        this.$store.state.user = true
-        console.log(usr)
+        console.log(this.$store.state.user)
+        var ret = Turbo.do.login(userData)
+        console.log(this.$store.state.user)
+        console.log(ret)
         this.$router.push(this.$store.getters.getSurf.rediretTo)
       } else {
         console.log('login error')

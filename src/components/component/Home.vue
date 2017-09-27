@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     addInfo () {
-      console.log(this.$store)
+      console.log('add information')
       if (this.$store.getters.getUser.authenticated) {
         this.show = false
         this.$router.push('/addInformation')
@@ -40,6 +40,7 @@ export default {
       }
     },
     viewInfo () {
+      console.log('veiw information')
       if (this.loggedin) {
         this.show = false
         this.$router.push('/contractDetail')
