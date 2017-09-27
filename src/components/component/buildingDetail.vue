@@ -18,11 +18,13 @@ export default {
     return {}
   },
   methods: {
-    register () {
+    add () {
       if (this.$store.getters.getUser.authenticated) {
-        this.$router.push('/contractDetail')
+        this.$router.push('/addInformation')
+        this.$store.getters.getSurf.rediretTo = '/contractDetail'
       } else {
         this.$router.push('home/login')
+        this.$store.getters.getSurf.rediretTo = '/contractDetail'
       }
     },
     validate () {
@@ -67,6 +69,18 @@ export default {
 							<input v-model="data.Address2" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
+					
+							<div class="row">
+								<div class=" col-lg-3"/>
+								<div class=" col-lg-6">
+
+									<button @click="add" class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
+
+								</div>
+							</div>	
+							</div>
+
+			
 				</div>
 	</div>
 

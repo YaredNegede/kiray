@@ -5,7 +5,7 @@ export default {
   beforeCreate: function () {},
   name: 'home',
   data: function () {
-    return {loggedin: false, show: true}
+    return {show: true}
   },
   components: {Turbo},
   computed: {
@@ -41,7 +41,7 @@ export default {
     },
     viewInfo () {
       console.log('veiw information')
-      if (this.loggedin) {
+      if (this.$store.getters.getUser.authenticated) {
         this.show = false
         this.$router.push('/contractDetail')
       } else {

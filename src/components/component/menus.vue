@@ -14,7 +14,7 @@ export default {
   methods: {
     logout: function () {
       console.log(this.$store.getters.getUser.authenticated)
-      this.$store.state.user = false
+      this.$store.state.user.authenticated = false
       this.$router.push('/home')
       console.log(this.$store.getters.getUser.authenticated)
     }
@@ -37,7 +37,7 @@ export default {
    <ul class="nav navbar-nav">
 	   <li><router-link to="/home"  style="color:white">Home</router-link></li>
 	   <li><router-link to="/signUp"  style="color:white" v-show="!login">Sign-Up</router-link></li>
-	   <li><a href="#"  style="color:white" @click="logout" v-show="login">Logout</a>
+	   <li><a href="#"  style="color:white" @click="logout" v-show="!login">Logout</a>
     </ul>
     </div>
 	</div>
