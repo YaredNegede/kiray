@@ -19,16 +19,18 @@ export default {
   },
   methods: {
     add () {
-      if (this.$store.getters.getUser.authenticated) {
-        this.$router.push('/addInformation')
-        this.$store.getters.getSurf.rediretTo = '/contractDetail'
+      if (this.validate()) {
+        if (this.$store.getters.getUser.authenticated) {
+          this.$store.getters.getSurf.rediretTo = '/signUp'
+        } else {
+          this.$router.push('home/login')
+        }
       } else {
-        this.$router.push('home/login')
-        this.$store.getters.getSurf.rediretTo = '/contractDetail'
+        alert('Input error')
       }
     },
     validate () {
-      return this.email && this.name && this.tel && this.password && this.password2
+      return ((this.data.PropertyName !== '') && (this.data.Address !== '' && this.data.Address2 !== ''))
     }
   }
 }

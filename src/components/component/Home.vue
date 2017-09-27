@@ -35,7 +35,7 @@ export default {
         this.show = false
         this.$router.push('/addInformation')
       } else {
-        this.$store.getters.getSurf.rediretTo = '/addInformation'
+        this.$store.state.surf.rediretTo = '/addInformation'
         this.$router.push('/home/login')
       }
     },

@@ -24,7 +24,6 @@ export default {
       if (this.valid()) {
         console.log(this.$store.state.user)
         var ret = Turbo.do.login(userData)
-        console.log(this.$store.state.user)
         console.log(ret)
         this.$router.push(this.$store.getters.getSurf.rediretTo)
       } else {
