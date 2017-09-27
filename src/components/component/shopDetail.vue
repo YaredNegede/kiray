@@ -18,8 +18,17 @@ export default {
   },
   methods: {
     add: function () {
-      console.log(this.data)
-      Turbo.store.commit('updateProperties', this.data)
+      if (this.validate()) {
+        console.log(this.data)
+        Turbo.store.commit('updateProperties', this.data)
+        this.data = { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
+      } else {
+        alert('invalid input')
+      }
+    },
+    validate: function () {
+      console.log(this.data.Name !== '')
+      return ((this.data.ShopNumber !== '') && (this.data.Floor !== '') && (this.data.Purpuse !== ''))
     }
   }
 }

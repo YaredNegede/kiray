@@ -19,7 +19,16 @@ export default {
   },
   methods: {
     add: function () {
-      Turbo.store.commit('updateServiceRecievers', this.data)
+      if (this.validate()) {
+        Turbo.store.commit('updateServiceRecievers', this.data)
+        this.data = {}
+      } else {
+        alert('Invalid input')
+      }
+    },
+    validate: function () {
+      console.log(this.data.Name !== '')
+      return ((this.data.Name !== '') && (this.data.FatherName !== '') && (this.data.ID !== '') && (this.data.IDType !== '') && (this.data.PhoneNumber !== ''))
     }
   }
 }
