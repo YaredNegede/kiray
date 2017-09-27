@@ -24,7 +24,8 @@ export default {
       this.$router.push('/shopDetail')
     },
     viewContract (event) {
-      this.$store.state.temp.ID = event.srcElement.innerText
+      console.log(event.srcElement.id)
+      this.$store.state.temp.ID = event.srcElement.id
       this.$router.push('/viewContract')
     }
   }
@@ -39,7 +40,8 @@ export default {
   <div class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Contract Detail</div> 
 		<div style="padding:30px">
-			<a style="color:white" href="#/payementDetail">Rente Information<span class="badge"></span></a>
+			<a style="color:white" href="#/payementDetail">Rente Information<span class="badge"></a>
+      <a style="color:white" href="#/contractDetail">Create New Contract<span class="badge"></a>
 	<hr>
 		<table class="table" style="color:white"> 
 			<th>Name</th><th>Father Name</th><th>Magnitude</th><th>Unit</th><th>Status</th><th>Period</th><th>Start time</th><th>End time</th>
@@ -55,7 +57,7 @@ export default {
 				<td>{{contract.EndTime}}</td>
 				<td><a href="#/renterDetail" @click='viewRentee'>{{contract.Renter}}</a></td>
 				<td><a href="#/shopDetail" @click="viewShop">{{contract.Shop}}</a></td>
-				<td><a href="#/addContract" @click="viewContract">{{contract.ID}}</a></td>
+				<td><a href="#/addContract" @click="viewContract" v-bind:id="contract.ID">Edit</a></td>
 			</tr>
 		</table> 
 			

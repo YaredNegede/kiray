@@ -55,15 +55,35 @@ export default {
 							<input v-model="data.Floor" type="text"  class="form-control " placeholder="Your Name"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
+					
+					<div class="row">
+						<div class="col-lg-3">
+							<label  style="color:white">Area </label>
+						</div>
+						<div class="col-lg-9" style="background-color:#00AAAA">
+							<input v-model="data.area" type="text"  class="form-control " placeholder="area of shop"   style="background-color:#00AAAA;color:white"/>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class=" col-lg-3">
+							<label  style="color:white">Note</label>
+						</div>
+						<div class=" col-lg-9">
+							<input v-model="data.Note" type="text"  class="form-control" placeholder="Area of shop"   style="background-color:#00AAAA;color:white"/>
+						</div>
+					</div>
+
 
 					<div class="row">
 						<div class=" col-lg-3">
 							<label  style="color:white">Purpuse</label>
 						</div>
 						<div class=" col-lg-9">
-							<input v-model="data.Purpuse" type="text"  class="form-control" placeholder="Enter purpuse"   style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Purpuse" type="text"  class="form-control" placeholder="Area of shop"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
+
 
 					<div class="row">
 							
@@ -75,7 +95,6 @@ export default {
 							</div>	
 		
 				</div>
-
 
 	</div>
 </template>

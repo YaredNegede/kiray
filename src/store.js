@@ -13,7 +13,7 @@ const state = {
     'Address': 'Addis Ababa',
     'Address2': 'Bole',
     'Contracts': [{'ID': 'C1234', 'name': 'Kassahun', 'FatherName': 'Teferi', 'Magnitude': '120', 'Unit': 'Square Meter', 'Status': 'Rented', 'Period': '3', 'StartTime': '2018-09-21', 'EndTime': '2017-09-21', 'Renter': 'DEC1231', 'Shop': '123'}, {'ID': 'C123', 'name': 'Yared', 'FatherName': 'Negede', 'Magnitude': '120', 'Unit': 'Square Meter', 'Status': 'Rented', 'Period': '3', 'StartTime': '2017-07-21', 'EndTime': '2017-07-21', 'Renter': 'DEC1231', 'Shop': '123'}],
-    'Properties': [{'ShopNumber': '123', 'Floor': '1', 'Purpuse': 'Men Close'}],
+    'Properties': [{'ShopNumber': '123', 'Floor': '1', 'Purpuse': 'Men Close', 'area': '120'}, {'ShopNumber': 'SHOP123', 'Floor': '2', 'Purpuse': 'Game Zone', 'area': '1200'}],
     'ServiceRecievers': [{'Name': 'Yared', 'FatherName': 'Negede', 'ID': 'DEC1231', 'IDType': 'Passport', 'PhoneNumber': '0912435466'}, {'Name': 'Kassahun', 'FatherName': 'Teferi', 'ID': 'DEC2342', 'IDType': 'Passport', 'PhoneNumber': '0912435466'}]
   }
 }
@@ -27,12 +27,13 @@ const mutations = {
   updateProperties: function (state, data) {
     console.log('Update Properties')
     console.log(data)
-    console.log(state.data.Properties)
+    state.data.Properties.push(data)
+    console.log('===========')
   },
   updateServiceRecievers: function (state, data) {
     console.log('Update ServiceRecievers')
     console.log(data)
-    state.data.Properties.push(data)
+    state.data.ServiceRecievers.push(data)
   },
   updateContracts: function (state, data) {
     console.log('Update Contracts')
@@ -43,6 +44,24 @@ const mutations = {
     console.log('Update Contracts')
     console.log(data)
     console.log(state.data.Properties)
+  },
+  removeProperty: function (state, id) {
+    console.log('remove Contracts')
+    console.log(id)
+    for (var i in state.data.Properties) {
+      if (state.data.Properties[i].ShopNumber === id) {
+        state.data.Properties.splice(i, 1)
+      }
+    }
+  },
+  removeRentee: function (state, id) {
+    console.log('remove rentee')
+    console.log(id)
+    for (var i in state.data.ServiceRecievers) {
+      if (state.data.ServiceRecievers[i].ID === id) {
+        state.data.ServiceRecievers.splice(i, 1)
+      }
+    }
   }
 }
 
