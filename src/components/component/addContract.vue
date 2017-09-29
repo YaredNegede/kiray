@@ -36,43 +36,42 @@ export default {
   },
   methods: {
     add () {
-      if (this.validate()) {
-        console.log('creating contracts')
-        console.log('---------------------')
-        var Magnitude = document.getElementById('Magnitude').value
-        var Unit = document.getElementById('Unit').value
-        var Status = document.getElementById('Status').value
-        var Period = document.getElementById('Period').value
-        var StartTime = document.getElementById('StartTime').value
-        var EndTime = document.getElementById('EndTime').value
-        var ShopNumber = document.getElementById('ShopNumber').value
-        var Rentee = document.getElementById('Rentee').value
+      console.log('creating contracts')
+      console.log('---------------------')
+      var Magnitude = document.getElementById('Magnitude').value
+      var Unit = document.getElementById('Unit').value
+      var Status = document.getElementById('Status').value
+      var Period = document.getElementById('Period').value
+      var StartTime = document.getElementById('StartTime').value
+      var EndTime = document.getElementById('EndTime').value
+      var ShopNumber = document.getElementById('ShopNumber').value
+      var Rentee = document.getElementById('Rentee').value
 
-        var contract = {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Rentee': '', 'ShopNumber': ''}
-
-        this.$store.state.temp.ID = Rentee
-        var renteeObj = this.$store.getters.getServiceReciever[0]
-
-        console.log(renteeObj)
-        contract.name = renteeObj.Name
-        contract.FatherName = renteeObj.FatherName
-        contract.Magnitude = Magnitude
-        contract.Unit = Unit
-        contract.Status = Status
-        contract.Period = Period
-        contract.StartTime = StartTime
-        contract.EndTime = EndTime
-        contract.Shop = ShopNumber
-        contract.Rentee = Rentee
+      var contract = {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Rentee': '', 'ShopNumber': ''}
+      this.$store.state.temp.ID = Rentee
+      var renteeObj = this.$store.getters.getServiceReciever[0]
+      console.log(renteeObj)
+      contract.name = renteeObj.Name
+      contract.FatherName = renteeObj.FatherName
+      contract.Magnitude = Magnitude
+      contract.Unit = Unit
+      contract.Status = Status
+      contract.Period = Period
+      contract.StartTime = StartTime
+      contract.EndTime = EndTime
+      contract.Shop = ShopNumber
+      contract.Rentee = Rentee
+      if (this.validate(contract)) {
         console.log(contract)
         Turbo.store.commit('addContract', contract)
         this.$router.push('/contractDetail')
       } else {
         alert('input error')
+        console.log(contract.Shop + '\t' + contract.Rentee + '\t' + contract.StartTime + '\t' + contract.EndTime + '\t' + contract.Magnitude)
       }
     },
-    validate () {
-      return ((this.data.Shop !== '') && (this.data.Rentee !== '' && this.data.StartTime !== '') && (this.data.EndTime !== '' && this.data.Magnitude !== ''))
+    validate (contract) {
+      return ((contract.Shop !== '') && (contract.Rentee !== '' && contract.StartTime !== '') && (contract.EndTime !== '' && contract.Magnitude !== ''))
     }
   }
 }

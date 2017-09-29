@@ -174,6 +174,7 @@ const getters = {
     var retunpaid = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
     var retoneMonthRemaining = state.data.Contracts.filter(
     function (Contract) {
+      console.log(new Date())
       return (parseInt(Contract.EndTime.split('-')[1]) - parseInt(Contract.StartTime.split('-')[1])) === 0
     }
     )
