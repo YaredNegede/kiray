@@ -35,9 +35,11 @@ export default {
 <div id="menus">
    <div class="collapse navbar-collapse" id="example-navbar-collapse" name="menus">
    <ul class="nav navbar-nav">
-	   <li><router-link to="/home"  style="color:white">Home</router-link></li>
-	   <li><router-link to="/signUp"  style="color:white" v-show="!login">Sign-Up</router-link></li>
-	   <li><a href="#"  style="color:white" @click="logout" v-show="!login">Logout</a>
+	   <li><router-link to="/home"  style="color:white"><b>Home</b></router-link></li>
+	   <li><router-link to="/signUp"  style="color:white" v-show="!login"><b>Sign-Up</b></router-link></li>
+	   <li><a href="#"  style="color:white" @click="logout" v-show="!login"><b>Logout</b></a>
+     <li><router-link to="/addInformation"  style="color:white" v-show="!login"><b>Add Information</b></router-link></li>
+     <li><router-link to="/contractDetail"  style="color:white" v-show="!login"><b>View Information</b></router-link></li>
     </ul>
     </div>
 	</div>

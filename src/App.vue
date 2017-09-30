@@ -44,7 +44,8 @@ export default {
 <template >
 
    <div id="app" class="container contenerMyStyle " >
-	  <menus></menus>
+
+       <menus></menus>
 	   
 	   <div  class="row bodyStyle">
 		  

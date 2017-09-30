@@ -7,7 +7,7 @@ const state = {
   'user': {'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
   'componentState': [],
   'temp': {'ID': ''},
-  'surf': {'currentPath': 'home', 'previousPath': '', 'rediretTo': ''},
+  'surf': {'currentPath': 'home', 'previousPath': '', 'rediretTo': '/addInformation'},
   'data': {
     'PropertyName': 'SNAP PLAZA',
     'Address': 'Addis Ababa',

@@ -2,7 +2,9 @@
 import Turbo from 'turbo'
 
 export default {
-  beforeCreate: function () {},
+  beforeCreate: function () {
+    this.$router.push('home/login')
+  },
   name: 'home',
   data: function () {
     return {show: true}
@@ -87,7 +89,7 @@ export default {
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-6">
-              					<router-view class="row">
+              				<router-view class="row">
 
 				            	</router-view>
             </div>
@@ -98,22 +100,7 @@ export default {
 	
   		 <div class="col-md-1"></div>
   
-  	<div class="row home" v-show = "show">
-
-			<div class="col-lg-5">
-
-				<input type="button" class="btn btn-primary btn-lg" value="Add Information" v-on:click="addInfo"/>
-
-			</div>
-			
-			<div class="col-lg-4">
-
-				<input type="button" class="btn btn-primary btn-lg" value="View Information" v-on:click="viewInfo"/>
-
-			</div>
-			
-		</div>
-			  
+  	  
         </div>
 			
 		</div>
