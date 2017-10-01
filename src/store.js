@@ -4,17 +4,72 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  'user': {'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
+  'user': {'Lang': 'AM', 'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
   'componentState': [],
   'temp': {'ID': ''},
   'surf': {'currentPath': 'home', 'previousPath': '', 'rediretTo': '/addInformation'},
+  'Language': {
+    'AM': [
+      {'PropertyName': ''},
+      {'Address': ''},
+      {'Address2': ''},
+      {'ShopNumber': ''},
+      {'Floor': ''},
+      {'Purpuse': ''},
+      {'Zone': ''},
+      {'Name': ''},
+      {'FatherName': ''},
+      {'ID': ''},
+      {'IDType': ''},
+      {'Manager': ''},
+      {'PhoneNumber': ''},
+      {'ID': ''},
+      {'name': ''},
+      {'FatherName': ''},
+      {'Magnitude': ''},
+      {'Unit': ''},
+      {'Status': ''},
+      {'Period': ''},
+      {'StartTime': ''},
+      {'EndTime': ''},
+      {'Renter': ''},
+      {'Shop': ''}
+    ],
+    'EN': [
+      {'PropertyName': ''},
+      {'Address': ''},
+      {'Address2': ''},
+      {'ShopNumber': ''},
+      {'Floor': ''},
+      {'Purpuse': ''},
+      {'Zone': ''},
+      {'Name': ''},
+      {'FatherName': ''},
+      {'ID': ''},
+      {'IDType': ''},
+      {'Manager': ''},
+      {'PhoneNumber': ''},
+      {'ID': ''},
+      {'name': ''},
+      {'FatherName': ''},
+      {'Magnitude': ''},
+      {'Unit': ''},
+      {'Status': ''},
+      {'Period': ''},
+      {'StartTime': ''},
+      {'EndTime': ''},
+      {'Renter': ''},
+      {'Shop': ''}
+    ]
+  },
   'data': {
-    'PropertyName': 'SNAP PLAZA',
-    'Address': 'Addis Ababa',
-    'Address2': 'Bole',
+    'PropertyName': '',
+    'Address': '',
+    'Address2': '',
     'Contracts': [],
     'Properties': [],
-    'ServiceRecievers': []
+    'ServiceRecievers': [],
+    'Payements': []
   }
 }
 

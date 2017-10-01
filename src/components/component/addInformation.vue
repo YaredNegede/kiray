@@ -67,7 +67,10 @@ export default {
                       <div class="row" style="color:white">
                           <div class=" col-lg-12">
                             <table class="table">
-                            <th>ShopNumber</th> <th>Floor</th> <th>Purpuse</th><th>Area</th>
+                            <th>Shop Number</th>
+                            <th>Floor</th>
+                            <th>Purpuse</th>
+                            <th>Area</th>
                                 <tr v-for="shop in shops">
                                     <td>{{shop.ShopNumber}}</td> <td>{{shop.Floor}}</td><td>{{shop.Purpuse}}</td><td>{{shop.area}}</td><td><a href="#" @click.stop.prevent="removeProperty" v-bind:id="shop.ShopNumber"> X </a>
                                 </tr>

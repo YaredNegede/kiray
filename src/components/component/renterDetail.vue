@@ -39,12 +39,12 @@ export default {
 
 <template>
 <div class="panel panel-default" style="background-color:#00AAAA" id="renterDetail">
-	<div class="panel-heading" style="background-color:#00BBBB;color:white">Renter Detail</div> 
+	<div class="panel-heading" style="background-color:#00BBBB;color:white">ተከራይ መመዝገቢያ</div> 
 		<div style="padding:30px">
 		
 					<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Name</label>
+							<label  style="color:white">ስም</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
 							<input v-model="data.Name" type="text"  class="form-control " placeholder="Your Name" style="background-color:#00AAAA;color:white"/>
@@ -53,7 +53,7 @@ export default {
 					
 					<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Father Name</label>
+							<label  style="color:white">የአባት ስም</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
 							<input  v-model="data.FatherName" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
@@ -62,7 +62,7 @@ export default {
 
 					<div class="row">
 						<div class=" col-lg-3">
-							<label  style="color:white">ID number</label>
+							<label  style="color:white">መታወቂያ ቁጥር</label>
 						</div>
 						<div class=" col-lg-9">
 							<input v-model="data.ID"  type="text"  class="form-control" placeholder="ID number"   style="background-color:#00AAAA;color:white"/>
@@ -71,7 +71,7 @@ export default {
 
 					<div class="row">
 						<div class=" col-lg-3">
-							<label  style="color:white">ID type</label>
+							<label  style="color:white">መታወቂያ አይነት</label>
 						</div>
 						<div class=" col-lg-9">
 							<input  v-model="data.IDType" type="text"  class="form-control" placeholder="Enter id type"   style="background-color:#00AAAA;color:white"/>
@@ -81,7 +81,7 @@ export default {
 					<div class="row">
 	
 						<div class=" col-lg-3">
-							<label  style="color:white">Phone Number</label>
+							<label  style="color:white">ስልክ ቁጥር</label>
 						</div>
 						<div class=" col-lg-9">
 							<input v-model="data.PhoneNumber" type="tel"  class="form-control" placeholder="+215 091271312"   style="background-color:#00AAAA;color:white"/>

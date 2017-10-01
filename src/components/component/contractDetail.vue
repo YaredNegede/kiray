@@ -45,7 +45,6 @@ export default {
   <div class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Contract Detail</div> 
 		<div style="padding:30px">
-			<a style="color:white" href="#/payementDetail">Rente Information</a>
       <a style="color:white" href="#/addContract">Create New Contract</a>
 	<hr>
 		<table class="table" style="color:white"> 

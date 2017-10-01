@@ -1,0 +1,68 @@
+{
+    "user": {
+        "authenticated": false,
+        "name": "",
+        "email": "",
+        "tel": "",
+        "password": "",
+        "password2": "",
+        "userType": [
+            "Renter",
+            "Rentee"
+        ]
+    },
+    "componentState": [],
+    "temp": {
+        "ID": ""
+    },
+    "surf": {
+        "currentPath": "home",
+        "previousPath": "",
+        "rediretTo": ""
+    },
+    "data": {
+        "PropertyName": "SNAP PLAZA",
+        "Address": "Addis Ababa",
+        "Address2": "Bole",
+        "Contracts": [
+            {
+                "ID": "C123",
+                "name": "Yared",
+                "FatherName": "Negede",
+                "Magnitude": "120",
+                "Unit": "Square Meter",
+                "Status": "New",
+                "Period": "3",
+                "StartTime": "12/23/2016",
+                "EndTime": "12/23/2017",
+                "Renter": "DEC1231",
+                "Shop": "123"
+            }
+        ],
+        "Properties": [
+            {
+                "ShopNumber": "123",
+                "Floor": "1",
+                "Purpuse": "Men Close",
+                "Zone": "Clothing"
+            }
+        ],
+        "ServiceRecievers": [
+            {
+                "Name": "Yared",
+                "FatherName": "Negede",
+                "ID": "DEC1231",
+                "IDType": "Passport",
+                "PhoneNumber": "0912435466"
+            },
+            {
+                "Name": "Kassahun",
+                "FatherName": "Teferi",
+                "ID": "DEC2342",
+                "IDType": "Passport",
+                "PhoneNumber": "0912435466"
+            }
+        ],
+        "Payements": []
+    }
+}

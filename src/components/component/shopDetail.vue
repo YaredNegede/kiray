@@ -43,12 +43,12 @@ export default {
 	
 <template>
 		<div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
-	<div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">Shop Detail</div> 
+	<div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">ሱቅ መመዝገቢያ</div> 
 		<div style="padding:30px">
 
 					<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Shop Number</label>
+							<label  style="color:white">የሱቅ ቁጥር</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
 							<input v-model="data.ShopNumber" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
@@ -57,7 +57,7 @@ export default {
 					
 					<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Floor </label>
+							<label  style="color:white">ፍሎር</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
 							<input v-model="data.Floor" type="text"  class="form-control " placeholder="Your Name"   style="background-color:#00AAAA;color:white"/>
@@ -66,7 +66,7 @@ export default {
 					
 					<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Area </label>
+							<label  style="color:white">ስፋት</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
 							<input v-model="data.area" type="text"  class="form-control " placeholder="area of shop"   style="background-color:#00AAAA;color:white"/>
@@ -75,7 +75,7 @@ export default {
 
 					<div class="row">
 						<div class=" col-lg-3">
-							<label  style="color:white">Note</label>
+							<label  style="color:white">አስተያየት</label>
 						</div>
 						<div class=" col-lg-9">
 							<input v-model="data.Note" type="text"  class="form-control" placeholder="Area of shop"   style="background-color:#00AAAA;color:white"/>
@@ -85,7 +85,7 @@ export default {
 
 					<div class="row">
 						<div class=" col-lg-3">
-							<label  style="color:white">Purpuse</label>
+							<label  style="color:white">የስራ ዘርፍ</label>
 						</div>
 						<div class=" col-lg-9">
 							<input v-model="data.Purpuse" type="text"  class="form-control" placeholder="Area of shop"   style="background-color:#00AAAA;color:white"/>
