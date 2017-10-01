@@ -47,7 +47,7 @@ export default {
 							<label  style="color:white">ስም</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
-							<input v-model="data.Name" type="text"  class="form-control " placeholder="Your Name" style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Name" type="text"  class="form-control " placeholder="ስም" style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 					
@@ -56,7 +56,7 @@ export default {
 							<label  style="color:white">የአባት ስም</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
-							<input  v-model="data.FatherName" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input  v-model="data.FatherName" type="text"  class="form-control " placeholder="የአባት ስም"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -65,7 +65,7 @@ export default {
 							<label  style="color:white">መታወቂያ ቁጥር</label>
 						</div>
 						<div class=" col-lg-9">
-							<input v-model="data.ID"  type="text"  class="form-control" placeholder="ID number"   style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.ID"  type="text"  class="form-control" placeholder="መታወቂያ ቁጥር"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -74,7 +74,7 @@ export default {
 							<label  style="color:white">መታወቂያ አይነት</label>
 						</div>
 						<div class=" col-lg-9">
-							<input  v-model="data.IDType" type="text"  class="form-control" placeholder="Enter id type"   style="background-color:#00AAAA;color:white"/>
+							<input  v-model="data.IDType" type="text"  class="form-control" placeholder="መታወቂያ አይነት"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 			

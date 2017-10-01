@@ -32,23 +32,30 @@ export default {
 	<div style="padding:30px">
 		
 		<from>
-	  	<label  forname="InvoiceNumber" style="color:white">Invoice Number</label>
+	  	<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
 			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="Magnitude"/>
 
-				<label  forname="PayedAmount" style="color:white">Payed Amount</label>
+				<label  forname="PayedAmount" style="color:white">የከፈሉት ገንዘብ</label>
 			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="PayedAmount"/>
 
-				<label  forname="PayableDeuDate" style="color:white">Payable Deu Date</label>
+				<label  forname="PayableDeuDate" style="color:white">የከፈሉበት ቀን</label>
 			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="PayableDeuDate"/>
 
-				<label  forname="RemainingPayement" style="color:white">Remaining Payement</label>
+				<label  forname="RemainingPayement" style="color:white">ቀጣይ ክፍያ </label>
 			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="RemainingPayement"/>
+
+				<label  forname="NextPayementDate" style="color:white">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="NextPayementDate"/>
+
+				<label  forname="monthsPaid" style="color:white">የከፈሉት ወራት</label>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="monthsPaid"/>
+
 
 		</form>
 		
 		</div>
 
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Late</div> 
+	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰ</div> 
 	<div style="padding:30px">
 
 	<table class="table" style="color:white" v-for="tekeray in data.late"> 
@@ -72,7 +79,7 @@ export default {
 
 	</div>
 
-    <div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Unpaid Rent</div> 
+    <div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ያልከፈሉ ተከራይ </div> 
 		<div style="padding:30px">
 
 					<table class="table" style="color:white" v-for="tekeray in data.unpaid"> 

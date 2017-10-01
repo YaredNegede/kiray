@@ -41,34 +41,34 @@ export default {
 <template>
 
 	<div class="panel panel-default"  style="background-color:#00AAAA;color:white">
-	<div class="panel-heading " style="background-color:#00BBBB;color:white">Building Information</div> 
+	<div class="panel-heading " style="background-color:#00BBBB;color:white">የሕንጻው </div> 
 		<div style="padding:30px">
 
 								
 						<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Building Name</label>
+							<label  style="color:white">የሕንጻው ስም</label>
 						</div>
 						<div class="col-lg-6"  style="background-color:#00AAAA;color:white">
-							<input v-model="data.PropertyName" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.PropertyName" type="text"  class="form-control " placeholder="የሕንጻው ስም"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Address</label>
+							<label  style="color:white">አድሬስ</label>
 						</div>
 						<div class="col-lg-6"  style="background-color:#00AAAA;color:white">
-							<input v-model="data.Address" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Address" type="text"  class="form-control " placeholder="አድሬስ"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 			
 					<div class="row">
 						<div class="col-lg-3">
-							<label  style="color:white">Address 2</label>
+							<label  style="color:white">አድሬስ 2</label>
 						</div>
 						<div class="col-lg-6" style="background-color:#00AAAA">
-							<input v-model="data.Address2" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Address2" type="text"  class="form-control " placeholder="አድሬስ 2"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 					

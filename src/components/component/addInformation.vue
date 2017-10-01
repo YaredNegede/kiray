@@ -67,10 +67,10 @@ export default {
                       <div class="row" style="color:white">
                           <div class=" col-lg-12">
                             <table class="table">
-                            <th>Shop Number</th>
-                            <th>Floor</th>
-                            <th>Purpuse</th>
-                            <th>Area</th>
+                            <th>የሱቅ ቁጥር</th>
+                            <th>ፍሎር</th>
+                            <th>የስራ ዘርፍ</th>
+                            <th>ስፋት</th>
                                 <tr v-for="shop in shops">
                                     <td>{{shop.ShopNumber}}</td> <td>{{shop.Floor}}</td><td>{{shop.Purpuse}}</td><td>{{shop.area}}</td><td><a href="#" @click.stop.prevent="removeProperty" v-bind:id="shop.ShopNumber"> X </a>
                                 </tr>
@@ -82,11 +82,11 @@ export default {
                  	<div>
                         <table class="table" style="color:white"> 
                         <tr>
-                          <th>Name</th>
-                          <th>Father Name</th>
-                          <th>ID</th>
-                          <th>Identification type</th>
-                          <th>PhoneNumber</th>
+                          <th>ስም</th>
+                          <th>የአባት ስም</th>
+                          <th>መታወቂያ ቁጥር</th>
+                          <th>መታወቂያ አይነት</th>
+                          <th>ስልክ ቁጥር</th>
                         </tr>
                         <tr v-for="renter in renters">
                           <td>{{renter.Name}}</td>

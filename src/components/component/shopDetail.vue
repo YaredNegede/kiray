@@ -51,7 +51,7 @@ export default {
 							<label  style="color:white">የሱቅ ቁጥር</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
-							<input v-model="data.ShopNumber" type="text"  class="form-control " placeholder="Your Name"  style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.ShopNumber" type="text"  class="form-control " placeholder="የሱቅ ቁጥር"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 					
@@ -60,7 +60,7 @@ export default {
 							<label  style="color:white">ፍሎር</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
-							<input v-model="data.Floor" type="text"  class="form-control " placeholder="Your Name"   style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Floor" type="text"  class="form-control " placeholder="ፍሎር"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 					
@@ -69,7 +69,7 @@ export default {
 							<label  style="color:white">ስፋት</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
-							<input v-model="data.area" type="text"  class="form-control " placeholder="area of shop"   style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.area" type="text"  class="form-control " placeholder="ስፋት"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -78,7 +78,7 @@ export default {
 							<label  style="color:white">አስተያየት</label>
 						</div>
 						<div class=" col-lg-9">
-							<input v-model="data.Note" type="text"  class="form-control" placeholder="Area of shop"   style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Note" type="text"  class="form-control" placeholder="አስተያየት"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -88,7 +88,7 @@ export default {
 							<label  style="color:white">የስራ ዘርፍ</label>
 						</div>
 						<div class=" col-lg-9">
-							<input v-model="data.Purpuse" type="text"  class="form-control" placeholder="Area of shop"   style="background-color:#00AAAA;color:white"/>
+							<input v-model="data.Purpuse" type="text"  class="form-control" placeholder="የስራ ዘርፍ"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 

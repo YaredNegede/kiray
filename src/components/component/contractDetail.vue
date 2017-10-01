@@ -43,13 +43,13 @@ export default {
 <template>
 
   <div class="panel panel-default" style="background-color:#00AAAA;color:white">
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Contract Detail</div> 
+	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ኮንትራት</div> 
 		<div style="padding:30px">
-      <a style="color:white" href="#/addContract">Create New Contract</a>
+      <a style="color:white" href="#/addContract">አዲስ ኮንትራት መዝግብ</a>
 	<hr>
 		<table class="table" style="color:white"> 
-			<th>Name</th><th>Father Name</th><th>Magnitude</th><th>Unit</th><th>Status</th><th>Period</th><th>Start time</th><th>End time</th>
-			<th>Rentee</th>	<th>Shop</th>	
+			<th>ስም</th><th>የአባት ስም</th><th>ካሬ</th><th>መለኪያ</th><th>ሁኔታ</th><th>የከፈሉት ወራት</th><th>ኪራያቸው የሚጀምርበት ቀን</th><th>ኪራያቸው የሚያልቅበት ቀን</th>
+			<th>የተከራይ ስም</th>	<th>የሱቅ ቁጥር</th>	
 			<tr v-for="contract in contracts">
 				<td>{{contract.name}}</td>
 				<td>{{contract.FatherName}}</td>
