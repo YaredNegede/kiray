@@ -1,0 +1,24 @@
+{
+ "kind": "identitytoolkit#GetAccountInfoResponse",
+ "users": [
+  {
+   "localId": "OnZHnrskUKVI48WChaJE18aDLIZ2",
+   "email": "yaredngd@gmail.com",
+   "emailVerified": false,
+   "providerUserInfo": [
+    {
+     "providerId": "password",
+     "federatedId": "yaredngd@gmail.com",
+     "email": "yaredngd@gmail.com",
+     "rawId": "yaredngd@gmail.com"
+    }
+   ],
+   "passwordHash": "UkVEQUNURUQ=",
+   "passwordUpdatedAt": 1.507017809E12,
+   "validSince": "1507017809",
+   "disabled": false,
+   "lastLoginAt": "1507056093000",
+   "createdAt": "1507017809000"
+  }
+ ]
+}

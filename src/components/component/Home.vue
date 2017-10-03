@@ -56,55 +56,63 @@ export default {
 </script>
 
 <style scoped>
+
 	.home{
 		padding: 100px;
 		color:white;
+	}  
+	h1{
+		color:white
 	}
 	h2{
 		color:white
 	}
+
 	p{
 		color:white
 	}
+
 	input{
 		background-color:#00AAAA
 	}
+
 </style>
-<template >
-     <div id="home">
-		 <div class="col-md-1"></div>
-		<div class="col-md-10">
-          <div class="jumbotron" style="background-color:#00AAAA;">
-            <h2 ><b>Companies are managing their building at realtime</b></h2>
-			<h2 ><b>Getting real time update on their property</b></h2>
+ 
+  <template >
+    
+      <div id="home">
+        <div class="col-md-1"></div>
             
-			<p>
-              Are you looking for Managing your building? click "Add Information"
-            </p>
-			
-			<p style="color:white">
-              Are you looking whats up with your client? Click "View Information"
-      </p>
-			  <p>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-              				<router-view class="row">
+                  <div class="jumbotron" style="background-color:#00AAAA;">
+                  
+                  <div class="row">
+                     <div class="col-md-2"></div>
+                      <div class="col-md-6">
+                        <h1><b>ባላሱር ሕንጻ</b></h1>
+                      
+                      </div>
+                  </div>
+                    
+                    
+                  <p>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-6">
+                          <router-view class="row">
 
-				            	</router-view>
+                          </router-view>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+
+          </p>
+      
+          <div class="col-md-1"></div>
+      
+          
             </div>
-            <div class="col-md-1"></div>
+          
         </div>
-
-			</p>
-	
-  		 <div class="col-md-1"></div>
-  
-  	  
-        </div>
-			
-		</div>
-		 
    	  </div>
 
-</template>
+  </template>

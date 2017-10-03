@@ -143,7 +143,9 @@ const mutations = {
   }
 }
 
-const actions = {}
+const actions = {
+  Login: function () {}
+}
 
 const getters = {
   getUser: function (state) {

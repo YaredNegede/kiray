@@ -1,0 +1,72 @@
+<script>
+import Turbo from 'turbo'
+import fb from 'firebase'
+
+export default {
+  beforeCreate: function () {
+    console.log(fb)
+    var config = {
+      apiKey: 'AIzaSyD9tKI5EMX5GRnEkGRPOVFnrVyOtkYXaU4',
+      authDomain: 'kiray-jablue.firebaseapp.com',
+      databaseURL: 'https://kiray-jablue.firebaseio.com',
+      projectId: 'kiray-jablue',
+      storageBucket: 'kiray-jablue.appspot.com',
+      messagingSenderId: '574057661841'
+    }
+    var app = fb.initializeApp(config)
+    var db = app.database()
+    var dataset = db.ref('kiray-jablue')
+    this.firebase = dataset
+  },
+  computed: {
+    username () {
+      return (typeof this.data.Name === 'undefined' || this.data.Name === null) ? '' : this.data.Name
+    },
+    password () {
+      return (typeof this.data.FatherName === 'undefined' || this.data.FatherName === null) ? '' : this.data.FatherName
+    }
+  },
+  firebase: {},
+  data: function () {
+    return {
+      user: this.$store.getters.getUser
+    }
+  },
+  components: {Turbo, fb},
+  methods: {
+    login () {
+      console.log('=======Login=========')
+      var userData = {}
+      if (this.valid(userData)) {
+        // var ret = Turbo.do.login(userData)
+        // console.log(ret)
+        console.log(fb)
+        console.log(userData)
+        fb.auth().signInWithEmailAndPassword(userData.username, userData.password).catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code
+          var errorMessage = error.message
+          // [START_EXCLUDE]
+          if (errorCode === 'auth/invalid-custom-token') {
+            console.log(errorCode)
+            console.log(errorMessage)
+          } else {
+            console.error(error)
+          }
+          // [END_EXCLUDE]
+          return true
+        })
+        this.$router.push(this.$store.getters.getSurf.rediretTo)
+      } else {
+        console.log('login error')
+      }
+    },
+    valid (userData) {
+      userData.username = document.getElementById('username')
+      userData.password = document.getElementById('password')
+      console.log('validate')
+      return true
+    }
+  }
+}
+</script>
