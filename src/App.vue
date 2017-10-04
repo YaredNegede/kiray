@@ -4,12 +4,14 @@
 	import footerDiv from './components/component/footerDiv.vue'
 	import Turbo from 'turbo'
 	import firebaseApp from './firebaseApp'
+	import router from './router'
 	
 	export default {
 		beforeCreate: function() {
 			this.$router.push(this.$store.getters.getSurf.currentPath)
 			console.log('============App===============')
 			console.log(Turbo.do.test())
+			this.$router.push('login')
 		},
 		name: 'app',
 		components: {
@@ -17,7 +19,8 @@
 			footerDiv,
 			menus,
 			Turbo,
-			firebaseApp
+			firebaseApp,
+			router
 		},
 	}
 </script>
@@ -63,7 +66,7 @@
 						<router-view class="row">
 	
 						</router-view>
-	
+
 					</div>
 	
 				</div>

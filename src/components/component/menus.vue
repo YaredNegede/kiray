@@ -1,10 +1,11 @@
 
 <script>
 import Turbo from 'turbo'
+import firebaseApp from 'firebaseApp'
 
 export default {
   name: 'menus',
-  components: {Turbo},
+  components: {Turbo, firebaseApp},
   beforeCreate: function () {
     console.log('=============Menu==============')
     console.log(this.$store.getters.getUser)
@@ -13,9 +14,10 @@ export default {
   },
   methods: {
     logout: function () {
+      firebaseApp.do.signout()
       console.log(this.$store.getters.getUser.authenticated)
       this.$store.state.user.authenticated = false
-      this.$router.push('/home')
+      // this.$router.push('/home')
       console.log(this.$store.getters.getUser.authenticated)
     }
   },
@@ -35,12 +37,12 @@ export default {
 <div id="menus">
    <div class="collapse navbar-collapse" id="example-navbar-collapse" name="menus">
    <ul class="nav navbar-nav">
-	   <li><router-link to="/home"  style="color:white"><b>ወደ መጀመሪያ</b></router-link></li>
-     <li><router-link to="/addInformation"  style="color:white" v-show="!login"><b>ዳታ ማስገቢያ</b></router-link></li>
-     <li><router-link to="/contractDetail"  style="color:white" v-show="!login"><b>ኮንትራት</b></router-link></li>
-     <li><router-link to="/payementDetail"  style="color:white" v-show="!login"><b>ክፍያ</b></router-link></li>
-	   <li><router-link to="/signUp"  style="color:white" v-show="!login"><b>ተመዝገብ</b></router-link></li>
-	   <li><a href="#"  style="color:white" @click="logout" v-show="!login"><b>ውጣ</b></a>
+	   <li><router-link to="/home"  style="color:white"><h3><b>ወደ መጀመሪያ</b></h3></router-link></li>
+     <li><router-link to="/addInformation"  style="color:white" v-show="!login"><h3><b>ዳታ ማስገቢያ</b></h3></router-link></li>
+     <li><router-link to="/contractDetail"  style="color:white" v-show="!login"><h3><b>ኮንትራት</b></h3></router-link></li>
+     <li><router-link to="/payementDetail"  style="color:white" v-show="!login"><h3><b>ክፍያ</b></h3></router-link></li>
+	   <li><router-link to="/signUp"  style="color:white" v-show="!login"><h3><b>ተመዝገብ</b></h3></router-link></li>
+	   <li><a href="#"  style="color:white" @click="logout" v-show="!login"><h3><b>ውጣ</b></h3></a>
     </ul>
     </div>
 	</div>

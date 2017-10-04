@@ -1,4 +1,9 @@
+import Vue from 'vue'
 import fb from 'firebase'
+import router from 'router'
+import VueFire from 'vuefire'
+
+Vue.use(VueFire)
 
 var config = {
   apiKey: 'AIzaSyD9tKI5EMX5GRnEkGRPOVFnrVyOtkYXaU4',
@@ -15,25 +20,16 @@ const actions = {
     console.log('=======Login=========')
     console.log(userData.username)
     console.log(userData.password)
-    app.auth().signInWithEmailAndPassword(userData.username, userData.password).then(function (response) {
-      return true
-    }).catch(
-        function (error) {
-          // router.push('/')
-          // Handle Errors here.
-          var errorCode = error.code
-          var errorMessage = error.message
-          // [START_EXCLUDE]
-          if (errorCode === 'auth/invalid-custom-token') {
-            console.log(errorCode)
-            console.log(errorMessage)
-          } else {
-            alert(error.message)
-          }
-          // [END_EXCLUDE]
-          return false
-        })
-    return false
+    return app.auth().signInWithEmailAndPassword(userData.username, userData.password)
+  },
+  signout: function () {
+    return app.auth().signOut().then(function () {
+      console.log('sign out')
+      router.push('/home')
+    }, function (error) {
+      console.log(error)
+      alert('sign out error')
+    })
   },
   databse: function () {
     return app.database()

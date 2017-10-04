@@ -10,7 +10,7 @@ import shopDetail from '../components/component/shopDetail'
 import shopDetails from '../components/component/shopDetails'
 import rentersDetail from '../components/component/rentersDetail'
 import addContract from '../components/component/addContract'
-import loggedin from '../components/component/loggedin'
+import login from '../components/component/login'
 import payementDetail from '../components/component/payementDetail'
 
 Vue.use(Router)
@@ -25,7 +25,7 @@ const routes = [
     path: '/home',
     name: 'home',
     component: home,
-    children: [{ path: 'login', component: loggedin }]
+    children: [{ path: 'login', component: login }]
   },
   {
     path: '/payementDetail',
@@ -73,9 +73,9 @@ const routes = [
     component: addContract
   },
   {
-    path: '/loggedin',
-    name: 'loggedin',
-    component: loggedin
+    path: '/login',
+    name: 'login',
+    component: login
   }
 ]
 

@@ -1,9 +1,9 @@
 
 <script>
 import Turbo from 'turbo'
-import store from 'store'
 
 export default {
+  name: 'payementDetail',
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
     var dt = this.$store.getters.getStat
@@ -14,8 +14,7 @@ export default {
     this.data = (typeof dt === 'undefined' || dt === null) ? statData : dt
     console.log(this.data)
   },
-  name: 'payementDetail',
-  components: {Turbo, store},
+  components: {Turbo},
   data: function () {
     return {}
   }
@@ -26,12 +25,12 @@ export default {
 </scope>
 
 <template >
-
+<div  id="payementDetail">
 	<div class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Payement</div> 
 	<div style="padding:30px">
 		
-		<from>
+		<form>
 	  	<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
 			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="Magnitude"/>
 
@@ -105,5 +104,5 @@ export default {
 				</div>
 
 	</div>
-
+<div>
 </template>

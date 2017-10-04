@@ -2,10 +2,10 @@
 import Turbo from 'turbo'
 
 export default {
-  beforeCreate: function () {
-    this.$router.push('home/login')
-  },
   name: 'home',
+  beforeCreate: function () {
+    this.$router.push('login')
+  },
   data: function () {
     return {show: true}
   },
