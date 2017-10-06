@@ -1,11 +1,11 @@
 
 <script>
-import Turbo from 'turbo'
+import store from 'store'
 
 export default {
   name: 'addContract',
   props: { show: true },
-  components: {Turbo},
+  components: {store},
   computed: {
     contract: function () {
       var tmp = this.$store.getters.getTemp.ID
@@ -25,6 +25,10 @@ export default {
   },
   beforeCreate: function () {
     console.log('~~~~~~~Contract detail~~~~~~~~~')
+    console.log(this.$store.getters.getUser)
+    if (!this.$store.getters.getUser.authenticated) {
+      this.$router.push('login')
+    }
     console.log(this.$store.getters.getTemp)
     var dt = this.$store.getters.getContract[0]
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Renter': '', 'Shop': ''} : dt
@@ -63,7 +67,7 @@ export default {
       contract.Rentee = Rentee
       if (this.validate(contract)) {
         console.log(contract)
-        Turbo.store.commit('addContract', contract)
+        this.$store.commit('addContract', contract)
         this.$router.push('/contractDetail')
       } else {
         alert('input error')

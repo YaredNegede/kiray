@@ -14,9 +14,9 @@ export default {
   },
   methods: {
     logout: function () {
-      firebaseApp.do.signout()
       console.log(this.$store.getters.getUser.authenticated)
       this.$store.state.user.authenticated = false
+      Turbo.store.commit('logOut')
       // this.$router.push('/home')
       console.log(this.$store.getters.getUser.authenticated)
     }

@@ -1,17 +1,20 @@
 
 <script>
-import Turbo from 'turbo'
 
 export default {
   beforeCreate: function () {
     console.log('=======Building Detail=========')
+    console.log(this.$store.getters.getUser)
+    if (!this.$store.getters.getUser.authenticated) {
+      this.$router.push('login')
+    }
     console.log(this.$store.getters.getTemp)
     var dt = this.$store.getters.getProperty[0]
     this.data = (typeof dt === 'undefined' || dt === null) ? { 'PropertyName': '', 'Address': '', 'Address2': '', 'Contracts': [], 'Properties': [], 'ServiceRecievers': [] } : dt
     console.log(this.data)
     console.log('============================')
   },
-  components: {Turbo},
+  components: {},
   name: 'buildingDetail',
   props: { show: true },
   data: function () {

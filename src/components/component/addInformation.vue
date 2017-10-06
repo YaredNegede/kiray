@@ -3,15 +3,18 @@
 
 import renterDetail from './renterDetail.vue'
 import shopDetail from './shopDetail.vue'
-import Turbo from 'turbo'
 
 export default {
   name: 'addInformation',
   props: { show: true },
   beforeCreate: function () {
     console.log('Add Information')
+    console.log(this.$store.getters.getUser)
+    if (!this.$store.getters.getUser.authenticated) {
+      this.$router.push('login')
+    }
   },
-  components: {renterDetail, shopDetail, Turbo},
+  components: {renterDetail, shopDetail},
   data: function () {
     return {}
   },
@@ -20,12 +23,12 @@ export default {
       console.log(event.srcElement.id)
       console.log(this.$store)
       var id = event.srcElement.id
-      Turbo.store.commit('removeProperty', id)
+      this.$store.commit('removeProperty', id)
     },
     removeRentee (event) {
       console.log(event.srcElement.id)
       var id = event.srcElement.id
-      Turbo.store.commit('removeRentee', id)
+      this.$store.commit('removeRentee', id)
     }
   },
   computed: {

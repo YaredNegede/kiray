@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import fb from 'firebase'
-import router from 'router'
 import VueFire from 'vuefire'
 
 Vue.use(VueFire)
@@ -22,14 +21,8 @@ const actions = {
     console.log(userData.password)
     return app.auth().signInWithEmailAndPassword(userData.username, userData.password)
   },
-  signout: function () {
-    return app.auth().signOut().then(function () {
-      console.log('sign out')
-      router.push('/home')
-    }, function (error) {
-      console.log(error)
-      alert('sign out error')
-    })
+  signOut: function () {
+    return app.auth().signOut()
   },
   databse: function () {
     return app.database()

@@ -1,7 +1,5 @@
 <script>
 import Turbo from 'turbo'
-import firebaseApp from 'firebaseApp'
-import router from '../../router'
 
 export default {
   name: 'login',
@@ -21,31 +19,14 @@ export default {
       user: this.$store.getters.getUser
     }
   },
-  components: {Turbo, firebaseApp, router},
+  components: {Turbo},
   methods: {
     login () {
       console.log('~~~~~~~~~~~~~~~~~~~~~~~login~~~~~~~~~~~~~~~~~~~~~~~~~~`')
       var userData = {}
-      var loginRouter = this.$router
       userData.username = document.getElementById('username').value
       userData.password = document.getElementById('password').value
-      var ret = firebaseApp.do.login(userData)
-      ret.then(function (response) {
-        console.log(response.email)
-        loginRouter.push('/contractDetail')
-      }).catch(
-            function (error) {
-              console.log(this.$router)
-              loginRouter.push('/login')
-              var errorCode = error.code
-              var errorMessage = error.message
-              if (errorCode === 'auth/invalid-custom-token') {
-                console.log(errorCode)
-                console.log(errorMessage)
-              } else {
-                alert(error.message)
-              }
-            })
+      Turbo.store.commit('login', userData)
     }
   }
 }

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import firebaseApp from 'firebaseApp'
+import router from './router'
 
 Vue.use(Vuex)
 
@@ -131,12 +133,51 @@ const mutations = {
       }
     }
   },
-  login: function (state, auth) {
+  login: function (state, userData) {
     console.log('mutations login')
     console.log(state.user.authenticated)
-    state.user.authenticated = auth
+    var ret = firebaseApp.do.login(userData)
+    ret.then(function (response) {
+      console.log(response.email)
+      state.user.authenticated = true
+      router.push('/contractDetail')
+    }).catch(
+          function (error) {
+            console.log(this.$router)
+            router.push('/login')
+            var errorCode = error.code
+            var errorMessage = error.message
+            if (errorCode === 'auth/invalid-custom-token') {
+              console.log(errorCode)
+              console.log(errorMessage)
+            } else {
+              alert(error.message)
+            }
+          })
     console.log(state.user.authenticated)
     console.log('mutations login completed')
+  },
+  logOut: function (state) {
+    console.log('mutations logout')
+    console.log(firebaseApp)
+    var rets = firebaseApp.do.signOut()
+    rets.then(function () {
+      state.user.authenticated = false
+      router.push('/')
+    }).catch(
+      function (error) {
+        var errorCode = error.code
+        var errorMessage = error.message
+        if (errorCode === 'auth/invalid-custom-token') {
+          console.log(errorCode)
+          console.log(errorMessage)
+        } else {
+          alert(error.message)
+        }
+      })
+    state.user.authenticated = false
+    console.log(state.user.authenticated)
+    console.log('mutations logout completed')
   },
   signUp: function () {
     console.log('signup')

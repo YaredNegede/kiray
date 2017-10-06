@@ -6,6 +6,10 @@ export default {
   name: 'payementDetail',
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
+    console.log(this.$store.getters.getUser)
+    if (!this.$store.getters.getUser.authenticated) {
+      this.$router.push('login')
+    }
     var dt = this.$store.getters.getStat
     var statData = {
       'late': [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''}],

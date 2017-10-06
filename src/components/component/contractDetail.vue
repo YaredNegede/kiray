@@ -5,7 +5,10 @@ import Turbo from 'turbo'
 export default {
   beforeCreate: function () {
     console.log('========Contract Detail========')
-    console.log(this.$store.getters.getTemp)
+    console.log(this.$store.getters.getUser)
+    if (!this.$store.getters.getUser.authenticated) {
+      this.$router.push('login')
+    }
     console.log('===============================')
   },
   name: 'contractDetail',

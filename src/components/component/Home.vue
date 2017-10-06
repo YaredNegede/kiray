@@ -4,7 +4,7 @@ import Turbo from 'turbo'
 export default {
   name: 'home',
   beforeCreate: function () {
-    this.$router.push('login')
+    this.$router.push('/login')
   },
   data: function () {
     return {show: true}
