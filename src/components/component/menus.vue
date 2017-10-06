@@ -1,11 +1,9 @@
 
 <script>
-import Turbo from 'turbo'
-import firebaseApp from 'firebaseApp'
 
 export default {
   name: 'menus',
-  components: {Turbo, firebaseApp},
+  components: {},
   beforeCreate: function () {
     console.log('=============Menu==============')
     console.log(this.$store.getters.getUser)
@@ -16,8 +14,7 @@ export default {
     logout: function () {
       console.log(this.$store.getters.getUser.authenticated)
       this.$store.state.user.authenticated = false
-      Turbo.store.commit('logOut')
-      // this.$router.push('/home')
+      this.$store.commit('logOut')
       console.log(this.$store.getters.getUser.authenticated)
     }
   },

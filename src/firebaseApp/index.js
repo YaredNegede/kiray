@@ -24,7 +24,7 @@ const actions = {
   signOut: function () {
     return app.auth().signOut()
   },
-  databse: function () {
+  database: function () {
     return app.database()
   }
 }

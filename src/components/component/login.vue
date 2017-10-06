@@ -1,5 +1,4 @@
 <script>
-import Turbo from 'turbo'
 
 export default {
   name: 'login',
@@ -19,14 +18,14 @@ export default {
       user: this.$store.getters.getUser
     }
   },
-  components: {Turbo},
+  components: {},
   methods: {
     login () {
       console.log('~~~~~~~~~~~~~~~~~~~~~~~login~~~~~~~~~~~~~~~~~~~~~~~~~~`')
       var userData = {}
       userData.username = document.getElementById('username').value
       userData.password = document.getElementById('password').value
-      Turbo.store.commit('login', userData)
+      this.$store.commit('login', userData)
     }
   }
 }

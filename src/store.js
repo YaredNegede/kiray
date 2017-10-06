@@ -83,18 +83,44 @@ const mutations = {
   },
   updateProperties: function (state, data) {
     console.log('Update Properties')
-    console.log(data)
-    state.data.Properties.push(data)
+    var keys = firebaseApp.do.database().ref().child('Properties').push().key
+
+    var updates = {}
+    updates[keys] = data
+
+    firebaseApp.do.database().ref('Properties').update(updates).then(function () {
+      state.data.Properties.push(data)
+    }).catch(function (error) {
+      console.log(error)
+    })
     console.log('===========')
   },
   updateServiceRecievers: function (state, data) {
     console.log('Update ServiceRecievers')
     console.log(data)
-    state.data.ServiceRecievers.push(data)
+    var keys = firebaseApp.do.database().ref().child('ServiceRecievers').push().key
+
+    var updates = {}
+    updates[keys] = data
+
+    firebaseApp.do.database().ref('ServiceRecievers').update(updates).then(function () {
+      state.data.ServiceRecievers.push(data)
+    }).catch(function (error) {
+      console.log(error)
+    })
   },
   updateContracts: function (state, data) {
     console.log('Update Contracts')
-    console.log(data)
+    var keys = firebaseApp.do.database().ref().child('Contracts').push().key
+    var updates = {}
+    updates[keys] = data
+
+    firebaseApp.do.database().ref('Contracts').update(updates).then(function () {
+      state.data.ServiceRecievers.push(data)
+    }).catch(function (error) {
+      console.log(error)
+    })
+
     state.data.Contracts.push(data)
   },
   updateContract: function (state, data) {
@@ -122,6 +148,17 @@ const mutations = {
   },
   addContract: function (state, Contract) {
     console.log('Add Contract')
+    var keys = firebaseApp.do.database().ref().child('Contracts').push().key
+
+    var updates = {}
+    updates[keys] = Contract
+
+    firebaseApp.do.database().ref('ServiceRecievers').update(updates).then(function () {
+      state.data.ServiceRecievers.push(updates)
+    }).catch(function (error) {
+      console.log(error)
+    })
+
     state.data.Contracts.push(Contract)
   },
   removeContract: function (state, id) {
@@ -139,6 +176,9 @@ const mutations = {
     var ret = firebaseApp.do.login(userData)
     ret.then(function (response) {
       console.log(response.email)
+      firebaseApp.do.database().ref().once('value').then(function (snapshot) {
+        state.data = snapshot.val()
+      })
       state.user.authenticated = true
       router.push('/contractDetail')
     }).catch(
@@ -163,7 +203,7 @@ const mutations = {
     var rets = firebaseApp.do.signOut()
     rets.then(function () {
       state.user.authenticated = false
-      router.push('/')
+      router.push('home')
     }).catch(
       function (error) {
         var errorCode = error.code

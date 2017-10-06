@@ -1,6 +1,5 @@
 
 <script>
-import Turbo from 'turbo'
 
 export default {
   name: 'shopDetail',
@@ -12,7 +11,7 @@ export default {
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
     console.log(this.data)
   },
-  components: {Turbo},
+  components: {},
   data: function () {
     return { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
   },
@@ -20,7 +19,7 @@ export default {
     add: function () {
       if (this.validate()) {
         console.log(this.data)
-        Turbo.store.commit('updateProperties', this.data)
+        this.$store.commit('updateProperties', this.data)
         this.data = { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
       } else {
         alert('invalid input')

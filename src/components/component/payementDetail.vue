@@ -53,9 +53,18 @@ export default {
 				<label  forname="monthsPaid" style="color:white">የከፈሉት ወራት</label>
 			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="monthsPaid"/>
 
-
 		</form>
-		
+			<div class="row">
+				<div class=" col-lg-3">
+
+				</div>
+
+				<div class=" col-lg-12">
+
+					<button  class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
+
+				</div>
+			</div>	
 		</div>
 
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰ</div> 
