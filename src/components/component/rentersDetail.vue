@@ -6,6 +6,7 @@ import store from 'store'
 export default {
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     var dt = this.$store.state.data.ServiceRecievers
     this.data = (typeof dt === 'undefined' || dt === null) ? [] : dt
     console.log(this.data)

@@ -5,6 +5,7 @@ import Turbo from 'turbo'
 export default {
   beforeCreate: function () {
     console.log('=============Sign up==============')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     var dt = this.$store.getters.getUser
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
     console.log(this.data)

@@ -5,6 +5,9 @@ export default {
   beforeCreate: function () {
     console.log('-------------login form loaded------------------')
   },
+  create: function () {
+    console.log('-------------login form loaded------------------')
+  },
   computed: {
     username () {
       return (typeof this.data.Name === 'undefined' || this.data.Name === null) ? '' : this.data.Name
@@ -35,9 +38,9 @@ export default {
 </scope>
 
 
-<template>
+<template name="login">
 
-<div  class="row" id="login">
+<div >
 	
   <div class="col-lg-2"></div>
 	<div class="col-lg-4">
@@ -59,5 +62,6 @@ export default {
 		</div>
 
 	</div>	
+
 
 </template>

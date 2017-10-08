@@ -2,25 +2,30 @@
 	import home from './components/component/home.vue'
 	import menus from './components/component/menus.vue'
 	import footerDiv from './components/component/footerDiv.vue'
-	import Turbo from 'turbo'
+	import store from 'store'
+	import router from 'router'
 	import firebaseApp from './firebaseApp'
-	import router from './router'
 	
 	export default {
 		beforeCreate: function() {
 			this.$router.push(this.$store.getters.getSurf.currentPath)
 			console.log('============App===============')
-			console.log(Turbo.do.test())
-			this.$router.push('login')
+			var savedState = JSON.parse(window.localStorage.getItem('state'))
+			if(savedState) {
+        	  console.log(savedState)
+			  this.$store.commit('updateUserState', true)
+			  this.$store.commit('updateUserData', savedState)
+              this.$store.replaceState(this.$store.state, savedState.data)
+			  this.$router.push('login')
+			}
 		},
 		name: 'app',
 		components: {
 			home,
 			footerDiv,
 			menus,
-			Turbo,
-			firebaseApp,
-			router
+			store,
+			firebaseApp
 		},
 	}
 </script>
@@ -52,7 +57,7 @@
 </style>
 
 <template>
-	<div id="app" class="container contenerMyStyle ">
+	<div id="app" class="container contenerMyStyle card">
 	
 		<menus></menus>
 	

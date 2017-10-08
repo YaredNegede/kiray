@@ -6,9 +6,15 @@ export default {
   props: { show: true },
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getTemp)
-    var dt = this.$store.getters.getProperty[0]
-    this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
+    var dt = this.$store.getters.getProperty
+    console.log(dt)
+    if (dt) {
+      this.data = dt
+    } else {
+      this.data = {'ShopNumber': '', 'Floor': '', 'Purpuse': ''}
+    }
     console.log(this.data)
   },
   components: {},

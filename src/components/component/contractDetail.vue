@@ -1,11 +1,10 @@
 
 <script>
-import Turbo from 'turbo'
 
 export default {
   beforeCreate: function () {
     console.log('========Contract Detail========')
-    console.log(this.$store.getters.getUser)
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')
     }
@@ -13,9 +12,13 @@ export default {
   },
   name: 'contractDetail',
   props: { show: true },
-  components: {Turbo},
+  components: {},
   computed: {
-    contracts: function () { return this.$store.getters.getData.Contracts }
+    contracts: function () {
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+      console.log(this.$store.getters.getContracts)
+      return this.$store.getters.getContracts
+    }
   },
   methods: {
     viewRentee (event) {
@@ -32,9 +35,9 @@ export default {
       this.$router.push('/viewContract')
     },
     removeContract (event) {
-      console.log(event.srcElement.id)
+      console.log('remove contract ' + event.srcElement.id)
       var id = event.srcElement.id
-      Turbo.store.commit('removeContract', id)
+      this.$store.commit('removeContract', id)
     }
   }
 }
@@ -62,9 +65,9 @@ export default {
 				<td>{{contract.Period}}</td>
 				<td>{{contract.StartTime}}</td>
 				<td>{{contract.EndTime}}</td>
-				<td><a href="#/renterDetail" @click='viewRentee'>{{contract.Rentee}}</a></td>
-				<td><a href="#/shopDetail" @click="viewShop">{{contract.Shop}}</a></td>
-				<td><a href="#/addContract" @click="viewContract" v-bind:id="contract.ID">Edit</a></td>
+				<td><a href="#" @click.stop.prevent='viewRentee'>{{contract.Rentee}}</a></td>
+				<td><a href="#" @click.stop.prevent="viewShop">{{contract.Shop}}</a></td>
+				<td><a href="#" @click.stop.prevent="viewContract" v-bind:id="contract.ID">Edit</a></td>
         <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="contract.ID">Remove</a></td>
 			</tr>
 		</table> 

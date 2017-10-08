@@ -25,12 +25,14 @@ export default {
   },
   beforeCreate: function () {
     console.log('~~~~~~~Contract detail~~~~~~~~~')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getUser)
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')
     }
     console.log(this.$store.getters.getTemp)
-    var dt = this.$store.getters.getContract[0]
+    var dt = this.$store.getters.getContract
+    console.log(dt)
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Renter': '', 'Shop': ''} : dt
     console.log(this.data)
     console.log('============================')
@@ -53,7 +55,7 @@ export default {
 
       var contract = {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Rentee': '', 'ShopNumber': ''}
       this.$store.state.temp.ID = Rentee
-      var renteeObj = this.$store.getters.getServiceReciever[0]
+      var renteeObj = this.$store.getters.getServiceReciever
       console.log(renteeObj)
       contract.name = renteeObj.Name
       contract.FatherName = renteeObj.FatherName
@@ -95,14 +97,14 @@ export default {
 	
 		<table class="table" style="color:white"> 
 	
-			<tr><td>Shop Number</td>
+			<tr><td>የሱቅ ቁጥር</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white" id="ShopNumber">
 						<option v-for="shop in shops"  style="background-color:#00AAAA;color:white">{{shop.ShopNumber}}</option>
 					</select>
 				</td>
 			</tr>
-			<tr><td>Renter</td>
+			<tr><td>የተከራይ ስም</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
 						<option v-for="rentee in rentee"  style="background-color:#00AAAA;color:white">{{rentee.ID}}</option>
@@ -111,7 +113,7 @@ export default {
 			</tr>
 			<tr>
 			<td>
-					Magnitude
+						ካሬ
 			</td>
 					<td>
 						<input v-model="data.Magnitude" type="number" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
@@ -119,7 +121,7 @@ export default {
 				</td>
 			</tr>
 			<tr>
-				<td>Unit</td>
+				<td>መለኪያ</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Unit">
 						<option  style="background-color:#00AAAA;color:white">Square Meter</option>
@@ -128,7 +130,7 @@ export default {
 				</td>
 				</tr>
 			<tr>
-				<td>Status</td>
+				<td>ሁኔታ</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Status">
 						<option   style="background-color:#00AAAA;color:white">Rented</option>
@@ -137,13 +139,13 @@ export default {
 				</td>
 			</tr>
 			<tr>
-				<td>Period</td>
+				<td>	የከፈሉት ወራት</td>
 				<td><input  v-model="data.Period" type="number" class="form-control" style="background-color:#00AAAA;color:white"  id="Period"/></td></td></tr>
 			<tr>
-				<td>Start time</td>
+				<td>ኪራያቸው የሚጀምርበት ቀን</td>
 				<td><input v-model="data.StartTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"  id="StartTime"/></td></td></tr>
 			<tr>
-				<td>End time</td>
+				<td>ኪራያቸው የሚያልቅበት ቀን</td>
 				<td><input v-model="data.EndTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"  id="EndTime"/></td></td></tr>
 		</table> 
 	  	<div class="row">

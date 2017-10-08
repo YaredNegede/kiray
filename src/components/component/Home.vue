@@ -1,15 +1,15 @@
 <script>
-import Turbo from 'turbo'
 
 export default {
   name: 'home',
   beforeCreate: function () {
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     this.$router.push('/login')
   },
   data: function () {
     return {show: true}
   },
-  components: {Turbo},
+  components: {},
   computed: {
     name () {
       return (typeof this.data.Name === 'undefined' || this.data.Name === null) ? '' : this.data.Name

@@ -9,6 +9,7 @@ export default {
   props: { show: true },
   beforeCreate: function () {
     console.log('Add Information')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getUser)
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')
@@ -36,7 +37,10 @@ export default {
       console.log('~~~~~~~~~~Shops~~~~~~~~~~~~~~~')
       return this.$store.getters.getProperties
     },
-    renters () { return this.$store.getters.getServiceRecievers }
+    renters () {
+      console.log('~~~~~~~~~~Renter~~~~~~~~~~~~~~~')
+      return this.$store.getters.getServiceRecievers
+    }
   }
 }
 </script>

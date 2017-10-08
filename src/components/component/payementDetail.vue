@@ -6,6 +6,7 @@ export default {
   name: 'payementDetail',
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getUser)
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')

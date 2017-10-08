@@ -1,26 +1,26 @@
 
 <script>
-import Turbo from 'turbo'
 
 export default {
   name: 'renterDetail',
   beforeCreate: function () {
     console.log('=======Renter Detail=======')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getTemp)
-    var dt = this.$store.getters.getServiceReciever[0]
+    var dt = this.$store.getters.getServiceReciever
     this.data = (typeof dt === 'undefined' || dt === null) ? {'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''} : dt
     console.log(this.data)
     console.log('============================')
   },
   props: { show: true },
-  components: {Turbo},
+  components: {},
   data: function () {
     return {}
   },
   methods: {
     add: function () {
       if (this.validate()) {
-        Turbo.store.commit('updateServiceRecievers', this.data)
+        this.$store.commit('updateServiceRecievers', this.data)
         this.data = {}
       } else {
         alert('Invalid input')
@@ -102,8 +102,6 @@ export default {
 			</div>	
 
 			</div>
-						
-			
 
 	</div>
 </template>

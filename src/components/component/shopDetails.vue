@@ -7,6 +7,7 @@ export default {
   props: { show: true },
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getTemp)
     var dt = this.$store.state.data.Properties
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt

@@ -5,12 +5,12 @@ export default {
   beforeCreate: function () {
     console.log('=======Building Detail=========')
     console.log(this.$store.getters.getUser)
+    this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')
     }
     console.log(this.$store.getters.getTemp)
-    var dt = this.$store.getters.getProperty[0]
-    this.data = (typeof dt === 'undefined' || dt === null) ? { 'PropertyName': '', 'Address': '', 'Address2': '', 'Contracts': [], 'Properties': [], 'ServiceRecievers': [] } : dt
+    this.data = { 'PropertyName': '', 'Address': '', 'Address2': '', 'Contracts': [], 'Properties': [], 'ServiceRecievers': [] }
     console.log(this.data)
     console.log('============================')
   },

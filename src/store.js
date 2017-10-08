@@ -89,7 +89,7 @@ const mutations = {
     updates[keys] = data
 
     firebaseApp.do.database().ref('Properties').update(updates).then(function () {
-      state.data.Properties.push(data)
+      state.data.Properties[keys] = data
     }).catch(function (error) {
       console.log(error)
     })
@@ -104,7 +104,7 @@ const mutations = {
     updates[keys] = data
 
     firebaseApp.do.database().ref('ServiceRecievers').update(updates).then(function () {
-      state.data.ServiceRecievers.push(data)
+      state.data.ServiceRecievers[keys] = data
     }).catch(function (error) {
       console.log(error)
     })
@@ -116,7 +116,7 @@ const mutations = {
     updates[keys] = data
 
     firebaseApp.do.database().ref('Contracts').update(updates).then(function () {
-      state.data.ServiceRecievers.push(data)
+      state.data.ServiceRecievers[keys] = data
     }).catch(function (error) {
       console.log(error)
     })
@@ -128,21 +128,45 @@ const mutations = {
     console.log(data)
     console.log(state.data.Properties)
   },
-  removeProperty: function (state, id) {
+  removeProperty: function (state, ShopNumber) {
     console.log('remove Contracts')
-    console.log(id)
-    for (var i in state.data.Properties) {
-      if (state.data.Properties[i].ShopNumber === id) {
-        state.data.Properties.splice(i, 1)
+    var data = {}
+    for (var key in state.data.Properties) {
+      if (state.data.Properties[key].ShopNumber === ShopNumber) {
+        data['Properties/' + key] = null
+        firebaseApp.do.database().ref().update(data).then(function () {
+          delete state.data.Properties[key]
+        }).catch(function (error) {
+          alert(error.message)
+        })
       }
     }
   },
   removeRentee: function (state, id) {
     console.log('remove rentee')
-    console.log(id)
-    for (var i in state.data.ServiceRecievers) {
-      if (state.data.ServiceRecievers[i].ID === id) {
-        state.data.ServiceRecievers.splice(i, 1)
+    var data = {}
+    for (var key in state.data.ServiceRecievers) {
+      if (state.data.ServiceRecievers[key].ID === id) {
+        data['ServiceRecievers/' + key] = null
+        firebaseApp.do.database().ref().update(data).then(function () {
+          delete state.data.ServiceRecievers[key]
+        }).catch(function (error) {
+          alert(error.message)
+        })
+      }
+    }
+  },
+  removeContract: function (state, id) {
+    console.log('remove Contracts')
+    var data = {}
+    for (var key in state.data.Contracts) {
+      if (state.data.Contracts[key].ID === id) {
+        data['Contracts/' + key] = null
+        firebaseApp.do.database().ref().update(data).then(function () {
+          delete state.data.Contracts[key]
+        }).catch(function (error) {
+          alert(error.message)
+        })
       }
     }
   },
@@ -153,31 +177,22 @@ const mutations = {
     var updates = {}
     updates[keys] = Contract
 
-    firebaseApp.do.database().ref('ServiceRecievers').update(updates).then(function () {
-      state.data.ServiceRecievers.push(updates)
+    firebaseApp.do.database().ref('Contracts').update(updates).then(function () {
+      state.data.ServiceRecievers[keys] = updates
     }).catch(function (error) {
       console.log(error)
     })
-
-    state.data.Contracts.push(Contract)
-  },
-  removeContract: function (state, id) {
-    console.log('remove Contracts')
-    console.log(id)
-    for (var i in state.data.Contracts) {
-      if (state.data.Contracts[i].ID === id) {
-        state.data.Contracts.splice(i, 1)
-      }
-    }
   },
   login: function (state, userData) {
     console.log('mutations login')
-    console.log(state.user.authenticated)
     var ret = firebaseApp.do.login(userData)
     ret.then(function (response) {
-      console.log(response.email)
       firebaseApp.do.database().ref().once('value').then(function (snapshot) {
-        state.data = snapshot.val()
+        console.log('mutations login completed')
+        window.localStorage.removeItem('state')
+        var savedState = JSON.stringify(snapshot.val())
+        console.log(savedState)
+        window.localStorage.setItem('state', savedState)
       })
       state.user.authenticated = true
       router.push('/contractDetail')
@@ -194,16 +209,13 @@ const mutations = {
               alert(error.message)
             }
           })
-    console.log(state.user.authenticated)
-    console.log('mutations login completed')
   },
   logOut: function (state) {
-    console.log('mutations logout')
-    console.log(firebaseApp)
     var rets = firebaseApp.do.signOut()
     rets.then(function () {
       state.user.authenticated = false
-      router.push('home')
+      window.localStorage.clear()
+      router.push('login')
     }).catch(
       function (error) {
         var errorCode = error.code
@@ -216,11 +228,18 @@ const mutations = {
         }
       })
     state.user.authenticated = false
-    console.log(state.user.authenticated)
-    console.log('mutations logout completed')
   },
   signUp: function () {
     console.log('signup')
+  },
+  updateUserState: function (state, st) {
+    state.user.authenticated = st
+  },
+  updateUserData: function (state, data) {
+    state.data = data
+  },
+  updateSurf: function (state, surf) {
+    state.surf.currentPath = surf
   }
 }
 
@@ -256,23 +275,40 @@ const getters = {
   getServiceReciever: function (state) {
     var id = state.temp.ID
     console.log('Getting ServiceReciever for : ' + id)
-    console.log(id)
-    return state.data.ServiceRecievers.filter(function (ServiceReciever) { return ServiceReciever.ID === id })
+    if (id) {
+      for (var key in state.data.ServiceRecievers) {
+        if (state.data.ServiceRecievers[key].ID === id) {
+          return state.data.ServiceRecievers[key]
+        }
+      }
+    }
   },
   getProperty: function (state) {
     console.log('Getting Property')
-    console.log(state.temp.ID)
-    return state.data.Properties.filter(function (property) { return property.ShopNumber === state.temp.ID })
+    var id = state.temp.ID
+    if (state.temp.ID) {
+      for (var key in state.data.Properties) {
+        if (state.data.Properties[key].ShopNumber === id) {
+          return state.data.Properties[key]
+        }
+      }
+    }
   },
   getContracts: function (state) {
-    console.log('Getting contract')
-    console.log(state.temp.ID)
+    console.log('Getting contracts')
+    console.log(state.data.Contracts)
     return state.data.Contracts
   },
   getContract: function (state) {
     console.log('Getting contracts')
-    console.log(state.temp.ID)
-    return state.data.Contracts.filter(function (Contract) { return Contract.ID === state.temp.ID })
+    var id = state.temp.ID
+    if (state.temp.ID) {
+      for (var key in state.data.Contracts) {
+        if (state.data.Contracts[key].ID === id) {
+          return state.data.Contracts[key]
+        }
+      }
+    }
   },
   getTemp: function (state) {
     console.log('Getting Temp')
@@ -281,74 +317,45 @@ const getters = {
   },
   getUnpaid: function (state) {
     console.log('Getting Unpaid')
-    var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
-    return ret
+    if (state.data.Contracts) {
+      var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
+      return ret
+    }
   },
   getOneMonthRemaining: function (state) {
     console.log('getting stat')
-    var ret = state.data.Contracts.filter(
-     function (Contract) {
-       return (parseInt(Contract.EndTime.split('-')[1]) - parseInt(Contract.StartTime.split('-')[1])) === 1
-     }
-    )
-    return ret
+    if (state.data.Contracts) {
+      var ret = state.data.Contracts.filter(
+       function (ret) {
+         return (parseInt(ret.EndTime.split('-')[1]) - parseInt(ret.StartTime.split('-')[1])) === 1
+       }
+      )
+      return ret
+    }
   },
   unpaidSize: function (state) {
     console.log('getting stat')
-    var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
-    return ret.length
+    if (state.data.Contracts) {
+      var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
+      return ret.length
+    }
   },
   oneMonthRemainingSize: function () {
     console.log('getting stat')
-    var ret = state.data.Contracts.filter(
-    function (Contract) {
-      return (parseInt(Contract.EndTime.split('-')[1]) - parseInt(Contract.StartTime.split('-')[1])) === 1
+    if (state.data.Contracts) {
+      var ret = state.data.Contracts.filter(
+      function (ret) {
+        return (parseInt(ret.EndTime.split('-')[1]) - parseInt(ret.StartTime.split('-')[1])) === 1
+      }
+      )
+      return ret.length
     }
-    )
-    return ret.length
   },
   getStat: function (state) {
     console.log('getting stat')
-    var retunpaid = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
-    var retoneMonthRemaining = state.data.Contracts.filter(
-    function (Contract) {
-      console.log(new Date())
-      return (parseInt(Contract.EndTime.split('-')[1]) - parseInt(Contract.StartTime.split('-')[1])) === 0
-    }
-    )
-    console.log('getting data stat')
-    var unpaidrenterIds = []
-    for (var k = 0; k < retunpaid.length; k++) {
-      unpaidrenterIds.push(retunpaid[k].Renter)
-    }
-    var retoneMonthRemainingId = []
-    for (var kk = 0; kk < retoneMonthRemaining.length; kk++) {
-      retoneMonthRemainingId.push(retoneMonthRemaining[kk].Renter)
-    }
-    var renters = state.data.ServiceRecievers
     var statData = {
       'late': [],
       'unpaid': []
-    }
-    console.log('unpaid')
-    console.log(unpaidrenterIds)
-    for (var uid in unpaidrenterIds) {
-      console.log(uid)
-      for (var renter in renters) {
-        if (renter[renter] === uid) {
-          statData.unpaid.push(renters[renter])
-        }
-      }
-    }
-    console.log('late')
-    console.log(retoneMonthRemainingId)
-    for (var lid in retoneMonthRemainingId) {
-      console.log(lid)
-      for (var rent in renters) {
-        if (renter[rent] === lid) {
-          statData.late.push(renters[rent])
-        }
-      }
     }
     return statData
   }

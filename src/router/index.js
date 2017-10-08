@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from '../App'
-import signUp from '../components/component/signUp'
+import SignUp from '../components/component/SignUp'
 import addInformation from '../components/component/addInformation'
 import contractDetail from '../components/component/contractDetail'
 import home from '../components/component/home'
@@ -38,9 +38,9 @@ const routes = [
     component: contractDetail
   },
   {
-    path: '/signUp',
-    name: 'signUp',
-    component: signUp
+    path: '/SignUp',
+    name: 'SignUp',
+    component: SignUp
   },
   {
     path: '/addInformation',
