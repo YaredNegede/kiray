@@ -1,6 +1,5 @@
 
 <script>
-import Turbo from 'turbo'
 
 export default {
   name: 'payementDetail',
@@ -19,9 +18,35 @@ export default {
     this.data = (typeof dt === 'undefined' || dt === null) ? statData : dt
     console.log(this.data)
   },
-  components: {Turbo},
+  components: {},
   data: function () {
     return {}
+  },
+  methods: {
+    addPayement: function () {
+      var Magnitude = document.getElementById('Magnitude').value
+      var PayedAmount = document.getElementById('PayedAmount').value
+      var PayableDeuDate = document.getElementById('PayableDeuDate').value
+      var RemainingPayement = document.getElementById('RemainingPayement').value
+      var NextPayementDate = document.getElementById('NextPayementDate').value
+      var monthsPaid = document.getElementById('monthsPaid').value
+      var ShopNumber = document.getElementById('ShopNumber').value
+      var Rentee = document.getElementById('Rentee').value
+      var payement = {}
+      payement.Magnitude = Magnitude
+      payement.PayedAmount = PayedAmount
+      payement.PayableDeuDate = PayableDeuDate
+      payement.RemainingPayement = RemainingPayement
+      payement.NextPayementDate = NextPayementDate
+      payement.monthsPaid = monthsPaid
+      payement.ShopNumber = ShopNumber
+      payement.Rentee = Rentee
+      this.$store.commit('addPayement', payement)
+    }
+  },
+  computed: {
+    payement: function () {},
+    id: function () {}
   }
 }
 </script>
@@ -37,22 +62,28 @@ export default {
 		
 		<form>
 	  	<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="Magnitude"/>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
 
 				<label  forname="PayedAmount" style="color:white">የከፈሉት ገንዘብ</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="PayedAmount"/>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmount"/>
 
 				<label  forname="PayableDeuDate" style="color:white">የከፈሉበት ቀን</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="PayableDeuDate"/>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
 
 				<label  forname="RemainingPayement" style="color:white">ቀጣይ ክፍያ </label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="RemainingPayement"/>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="RemainingPayement"/>
 
 				<label  forname="NextPayementDate" style="color:white">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="NextPayementDate"/>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
 
 				<label  forname="monthsPaid" style="color:white">የከፈሉት ወራት</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  name="monthsPaid"/>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="monthsPaid"/>
+
+			<label  forname="ShopNumber" style="color:white">የሱቅ ቁጥር</label>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="ShopNumber"/>
+
+			<label  forname="Rentee" style="color:white">ተከራይ </label>
+			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Rentee"/>
 
 		</form>
 			<div class="row">
@@ -62,13 +93,13 @@ export default {
 
 				<div class=" col-lg-12">
 
-					<button  class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
+					<button @click.stop.prevent="addPayement" v-bind:id="id" class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
 
 				</div>
 			</div>	
 		</div>
 
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰ</div> 
+	<div class="panel-heading " style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰ</div> 
 	<div style="padding:30px">
 
 	<table class="table" style="color:white" v-for="tekeray in data.late"> 
@@ -92,7 +123,7 @@ export default {
 
 	</div>
 
-    <div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ያልከፈሉ ተከራይ </div> 
+    <div class="panel-heading " style="background-color:#00BBBB;color:white">ያልከፈሉ ተከራይ </div> 
 		<div style="padding:30px">
 
 					<table class="table" style="color:white" v-for="tekeray in data.unpaid"> 

@@ -76,19 +76,43 @@ const state = {
 }
 
 const mutations = {
+  addPayement: function (state, data) {
+    console.log('mutations Update Property')
+    console.log(data)
+    var db = firebaseApp.do.database().ref().child('Payements')
+    var keys = db.push().key
+    var updates = {}
+    updates[keys] = data
+
+    db.update(updates).then(function () {
+      state.data.Properties[keys] = data
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
   updateProperty: function (state, data) {
     console.log('mutations Update Property')
     console.log(data)
-    state.data.Properties.push(data)
+    var db = firebaseApp.do.database().ref().child('Properties')
+    var keys = db.push().key
+    var updates = {}
+    updates[keys] = data
+
+    db.update(updates).then(function () {
+      state.data.Properties[keys] = data
+    }).catch(function (error) {
+      console.log(error)
+    })
   },
   updateProperties: function (state, data) {
     console.log('Update Properties')
-    var keys = firebaseApp.do.database().ref().child('Properties').push().key
+    var db = firebaseApp.do.database().ref().child('Properties')
+    var keys = db.push().key
 
     var updates = {}
     updates[keys] = data
 
-    firebaseApp.do.database().ref('Properties').update(updates).then(function () {
+    db.update(updates).then(function () {
       state.data.Properties[keys] = data
     }).catch(function (error) {
       console.log(error)
@@ -98,12 +122,13 @@ const mutations = {
   updateServiceRecievers: function (state, data) {
     console.log('Update ServiceRecievers')
     console.log(data)
-    var keys = firebaseApp.do.database().ref().child('ServiceRecievers').push().key
+    var db = firebaseApp.do.database().ref().child('ServiceRecievers')
+    var keys = db.push().key
 
     var updates = {}
     updates[keys] = data
 
-    firebaseApp.do.database().ref('ServiceRecievers').update(updates).then(function () {
+    db.update(updates).then(function () {
       state.data.ServiceRecievers[keys] = data
     }).catch(function (error) {
       console.log(error)
@@ -111,11 +136,12 @@ const mutations = {
   },
   updateContracts: function (state, data) {
     console.log('Update Contracts')
-    var keys = firebaseApp.do.database().ref().child('Contracts').push().key
+    var db = firebaseApp.do.database().ref().child('Contracts')
+    var keys = db.push().key
     var updates = {}
     updates[keys] = data
 
-    firebaseApp.do.database().ref('Contracts').update(updates).then(function () {
+    db.update(updates).then(function () {
       state.data.ServiceRecievers[keys] = data
     }).catch(function (error) {
       console.log(error)
