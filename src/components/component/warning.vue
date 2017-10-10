@@ -1,3 +1,18 @@
+<script>
+export default {
+  name: 'warning',
+  beforeCreate: function () {},
+  components: {},
+  data: function () {
+    return {late: [{'Name': '', 'FatherName': '', 'PhoneNumber': '', 'ShopNumber': ''}]}
+  },
+  methods: {},
+  computed: {}
+}
+</script>
+<style scoped>
+
+</scope>
 <template>
     <div id="warning">
     
@@ -7,19 +22,17 @@
     
     
     
-            <table class="table" style="color:white" v-for="tekeray in data.late">
+            <table class="table" style="color:white" v-for="tekeray in late">
     
                 <tr>
     
                     <th>Name</th>
     
                     <th>Father Name</hd>
-    
-                        <th>ID</th>
-    
-                        <th>Identification type</th>
-    
-                        <th>PhoneNumber</th>
+                     
+                    <th>PhoneNumber</th>
+
+                     <th>ShopNumber</th>
     
                 </tr>
     
@@ -27,21 +40,13 @@
     
                 <tr>
     
-                    <td>{{tekeray.Name}}</td>
-    
-                </tr>
+                <td>{{tekeray.Name}}</td>
     
                 <td>{{tekeray.FatherName}}</td>
     
-                </tr>
-    
-                <td>{{tekeray.ID}}</td>
-    
-                </tr>
-    
-                <td>{{tekeray.IDType}}</td>
-    
                 <td>{{tekeray.PhoneNumber}}</td>
+
+                <td>{{tekeray.ShopNumber}}</td>
     
                 </tr>
     

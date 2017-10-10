@@ -1,5 +1,7 @@
 
 <script>
+import paidDetail from './paidDetail.vue'
+import warning from './warning.vue'
 
 export default {
   name: 'payementDetail',
@@ -12,15 +14,16 @@ export default {
     }
     var dt = this.$store.getters.getStat
     var statData = {
-      'late': [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''}],
-      'unpaid': [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''}]
+      'late': [],
+      'unpaid': []
     }
     this.data = (typeof dt === 'undefined' || dt === null) ? statData : dt
     console.log(this.data)
   },
-  components: {},
+  components: {paidDetail, warning},
   data: function () {
-    return this.$store.getters.getPayements
+    // return this.$store.getters.getPayements
+    return {}
   },
   methods: {
     addPayement: function () {
@@ -157,4 +160,6 @@ export default {
 
 	</div>
 <div>
+<paidDetail></paidDetail>
+<warning></warning>
 </template>

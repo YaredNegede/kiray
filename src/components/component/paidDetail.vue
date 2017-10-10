@@ -1,3 +1,24 @@
+<script>
+export default {
+  name: 'paidDetail',
+  beforeCreate: function () {},
+  components: {},
+  data: function () {
+    return { unpaid: [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': '', 'ShopNumber': ''}] }
+  },
+  methods: {},
+  computed: {
+    payement: function () {},
+    id: function () {}
+  }
+}
+</script>
+
+<style scoped>
+
+</scope>
+
+
 <template>
     <div id="paidDetail">
     
@@ -7,7 +28,7 @@
     
         <div style="padding:30px">
     
-            <table class="table" style="color:white" v-for="tekeray in data.unpaid">
+            <table class="table" style="color:white" v-for="data in unpaid">
     
     
     
@@ -17,34 +38,24 @@
     
                     <th>Father Name</th>
     
-                    <th>Identification</th>
-    
-                    <th>Identification type</th>
-    
                     <th>PhoneNumber</th>
+
+                    <th>ShopNumber</th>
     
                 </tr>
     
     
     
                 <tr>
-    
-                    <td>{{tekeray.Name}}</td>
-    
-                </tr>
-    
-                <td>{{tekeray.FatherName}}</td>
-    
-                <td>{{tekeray.ID}}</td>
-    
-                </tr>
-    
-                <td>{{tekeray.IDType}}</td>
-    
-                </tr>
-    
-                <td>{{tekeray.PhoneNumber}}</td>
-    
+            
+                        <td>{{data.Name}}</td>
+            
+                        <td>{{data.FatherName}}</td>
+            
+                        <td>{{data.PhoneNumber}}</td>
+                        
+                        <td>{{data.ShopNumber}}</td>
+            
                 </tr>
     
     
