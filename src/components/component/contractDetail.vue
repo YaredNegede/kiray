@@ -22,11 +22,11 @@ export default {
   },
   methods: {
     viewRentee (event) {
-      this.$store.state.temp.ID = event.srcElement.innerText
+      this.$store.state.temp.ID = event.srcElement.id
       this.$router.push('/renterDetail')
     },
     viewShop (event) {
-      this.$store.state.temp.ID = event.srcElement.innerText
+      this.$store.state.temp.ID = event.srcElement.id
       this.$router.push('/shopDetail')
     },
     viewContract (event) {
@@ -38,7 +38,6 @@ export default {
       console.log('remove contract ' + event.srcElement.id)
       var id = event.srcElement.id
       this.$store.dispatch('removeContract', id)
-      // this.$store.commit('removeContract', id)
     }
   }
 }
@@ -66,8 +65,8 @@ export default {
 				<td>{{contract.Period}}</td>
 				<td>{{contract.StartTime}}</td>
 				<td>{{contract.EndTime}}</td>
-				<td><a href="#" @click.stop.prevent='viewRentee'>{{contract.Rentee}}</a></td>
-				<td><a href="#" @click.stop.prevent="viewShop">{{contract.Shop}}</a></td>
+				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Rentee">{{contract.Rentee}}</a></td>
+				<td><a href="#" @click.stop.prevent="viewShop" v-bind:id="contract.Shop">{{contract.Shop}}</a></td>
 				<td><a href="#" @click.stop.prevent="viewContract" v-bind:id="contract.ID">Edit</a></td>
         <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="contract.ID">Remove</a></td>
 			</tr>

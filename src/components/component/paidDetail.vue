@@ -13,38 +13,34 @@ export default {
   }
 }
 </script>
-
 <style scoped>
+ .theme{
+     
+ }
 
 </scope>
 
-
 <template>
+
     <div id="paidDetail">
     
-        <div class="panel-heading " style="background-color:#00BBBB;color:white">ያልከፈሉ ተከራይ </div>
-    
-    
+        <div class="panel-heading" style="background-color:#00BBBB; color:white">ያልከፈሉ ተከራይ </div>
     
         <div style="padding:30px">
     
             <table class="table" style="color:white" v-for="data in unpaid">
     
-    
-    
                 <tr>
-    
-                    <th>Name</th>
-    
-                    <th>Father Name</th>
-    
-                    <th>PhoneNumber</th>
+        
+                        <th>Name</th>
+        
+                        <th>Father Name</th>
+        
+                        <th>PhoneNumber</th>
 
-                    <th>ShopNumber</th>
+                        <th>ShopNumber</th>
     
                 </tr>
-    
-    
     
                 <tr>
             
@@ -58,17 +54,10 @@ export default {
             
                 </tr>
     
-    
-    
             </table>
-    
-    
     
         </div>
     
-    
-    
-    
-    
     </div>
+
 </template>

@@ -47,6 +47,7 @@ export default {
     renters () {
       console.log('~~~~~~~~~~Renter~~~~~~~~~~~~~~~')
       var dt = this.$store.getters.getServiceRecievers
+      console.log(dt)
       if (typeof dt === undefined || dt === null) {
         return {Name: '', FatherName: '', ID: '', IDType: '', PhoneNumber: ''}
       }

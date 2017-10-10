@@ -6,7 +6,7 @@ import router from './router'
 Vue.use(Vuex)
 
 const state = {
-  'user': {'Lang': 'AM', 'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
+  'user': {'Lang': 'AM', 'authenticated': true, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
   'componentState': [],
   'temp': {'ID': ''},
   'surf': {'currentPath': 'home', 'previousPath': '', 'rediretTo': '/addInformation'},
@@ -134,10 +134,10 @@ const mutations = {
         window.localStorage.removeItem('state')
         var savedState = JSON.stringify(snapshot.val())
         console.log(savedState)
-        window.localStorage.setItem('state', savedState)
+        window.sessionStorage.setItem('state', savedState)
+        state.user.authenticated = true
+        this.$router.push('/contractDetail')
       })
-      state.user.authenticated = true
-      this.$router.push('/contractDetail')
     }).catch(
           function (error) {
             console.log('error')
@@ -157,7 +157,7 @@ const mutations = {
     var rets = firebaseApp.do.signOut()
     rets.then(function () {
       state.user.authenticated = false
-      window.localStorage.clear()
+      window.sessionStorage.clear()
       router.push('login')
     }).catch(
       function (error) {
@@ -354,11 +354,13 @@ const getters = {
   },
   getProperties: function (state) {
     console.log('Getting Properties for : ')
+    console.log(state.data)
     return state.data.Properties
   },
   getServiceReciever: function (state) {
     var id = state.temp.ID
     console.log('Getting ServiceReciever for : ' + id)
+    console.log(state.data.ServiceRecievers)
     if (id) {
       for (var key in state.data.ServiceRecievers) {
         if (state.data.ServiceRecievers[key].ID === id) {
@@ -368,8 +370,9 @@ const getters = {
     }
   },
   getProperty: function (state) {
-    console.log('Getting Property')
+    console.log('Getting Property for ' + state.temp.ID)
     var id = state.temp.ID
+    console.log(state.data.Properties)
     if (state.temp.ID) {
       for (var key in state.data.Properties) {
         if (state.data.Properties[key].ShopNumber === id) {

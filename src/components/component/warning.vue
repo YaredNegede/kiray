@@ -26,27 +26,25 @@ export default {
     
                 <tr>
     
-                    <th>Name</th>
-    
-                    <th>Father Name</hd>
-                     
-                    <th>PhoneNumber</th>
+                        <th>Name</th>
+        
+                        <th>Father Name</hd>
+                        
+                        <th>PhoneNumber</th>
 
-                     <th>ShopNumber</th>
+                        <th>ShopNumber</th>
     
                 </tr>
     
-    
-    
                 <tr>
-    
-                <td>{{tekeray.Name}}</td>
-    
-                <td>{{tekeray.FatherName}}</td>
-    
-                <td>{{tekeray.PhoneNumber}}</td>
+            
+                        <td>{{tekeray.Name}}</td>
+            
+                        <td>{{tekeray.FatherName}}</td>
+            
+                        <td>{{tekeray.PhoneNumber}}</td>
 
-                <td>{{tekeray.ShopNumber}}</td>
+                        <td>{{tekeray.ShopNumber}}</td>
     
                 </tr>
     

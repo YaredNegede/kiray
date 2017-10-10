@@ -29,7 +29,6 @@ export default {
       userData.username = document.getElementById('username').value
       userData.password = document.getElementById('password').value
       this.$store.dispatch('login', userData)
-      // this.$store.commit('login', userData)
     }
   }
 }

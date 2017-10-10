@@ -160,6 +160,13 @@ export default {
 
 	</div>
 <div>
-<paidDetail></paidDetail>
-<warning></warning>
+<div class="row">
+<div class="col-lg-6">
+  <paidDetail></paidDetail>
+
+</div>
+<div class="col-lg-6">
+  <warning></warning>
+</div>
+</div>
 </template>

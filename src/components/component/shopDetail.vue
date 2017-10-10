@@ -19,7 +19,7 @@ export default {
   },
   components: {},
   data: function () {
-    return { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
+    return {}
   },
   methods: {
     add: function () {
@@ -27,7 +27,6 @@ export default {
         console.log(this.data)
         this.$store.dispatch('updateProperties', this.data)
         // this.$store.commit('updateProperties', this.data)
-        this.data = { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
       } else {
         alert('invalid input')
       }
