@@ -78,7 +78,6 @@ const state = {
 const mutations = {
   addPayement: function (state, data) {
     console.log('mutations Update Property')
-    console.log(data)
     var db = firebaseApp.do.database().ref().child('Payements')
     var keys = db.push().key
     var updates = {}
@@ -90,124 +89,41 @@ const mutations = {
       console.log(error)
     })
   },
-  updateProperty: function (state, data) {
+  updateProperty: function (state, keys, data) {
     console.log('mutations Update Property')
-    console.log(data)
-    var db = firebaseApp.do.database().ref().child('Properties')
-    var keys = db.push().key
-    var updates = {}
-    updates[keys] = data
-
-    db.update(updates).then(function () {
-      state.data.Properties[keys] = data
-    }).catch(function (error) {
-      console.log(error)
-    })
+    state.data.Properties[keys] = data
   },
-  updateProperties: function (state, data) {
+  updateProperties: function (state, userData) {
     console.log('Update Properties')
-    var db = firebaseApp.do.database().ref().child('Properties')
-    var keys = db.push().key
-
-    var updates = {}
-    updates[keys] = data
-
-    db.update(updates).then(function () {
-      state.data.Properties[keys] = data
-    }).catch(function (error) {
-      console.log(error)
-    })
-    console.log('===========')
+    state.data.Properties = userData
   },
-  updateServiceRecievers: function (state, data) {
+  updateServiceRecievers: function (state, keys, userData) {
     console.log('Update ServiceRecievers')
-    console.log(data)
-    var db = firebaseApp.do.database().ref().child('ServiceRecievers')
-    var keys = db.push().key
-
-    var updates = {}
-    updates[keys] = data
-
-    db.update(updates).then(function () {
-      state.data.ServiceRecievers[keys] = data
-    }).catch(function (error) {
-      console.log(error)
-    })
+    state.data.ServiceRecievers[keys] = userData
   },
-  updateContracts: function (state, data) {
+  updateContracts: function (state, keys, userData) {
     console.log('Update Contracts')
-    var db = firebaseApp.do.database().ref().child('Contracts')
-    var keys = db.push().key
-    var updates = {}
-    updates[keys] = data
-
-    db.update(updates).then(function () {
-      state.data.ServiceRecievers[keys] = data
-    }).catch(function (error) {
-      console.log(error)
-    })
-
-    state.data.Contracts.push(data)
+    state.data.ServiceRecievers[keys] = userData
   },
-  updateContract: function (state, data) {
+  updateContract: function (state, keys, userData) {
     console.log('Update Contracts')
-    console.log(data)
-    console.log(state.data.Properties)
+    state.data.Properties[keys] = userData
   },
-  removeProperty: function (state, ShopNumber) {
+  removeProperty: function (state, key) {
     console.log('remove Contracts')
-    var data = {}
-    for (var key in state.data.Properties) {
-      if (state.data.Properties[key].ShopNumber === ShopNumber) {
-        data['Properties/' + key] = null
-        firebaseApp.do.database().ref().update(data).then(function () {
-          delete state.data.Properties[key]
-        }).catch(function (error) {
-          alert(error.message)
-        })
-      }
-    }
+    delete state.data.Properties[key]
   },
-  removeRentee: function (state, id) {
+  removeRentee: function (state, key) {
     console.log('remove rentee')
-    var data = {}
-    for (var key in state.data.ServiceRecievers) {
-      if (state.data.ServiceRecievers[key].ID === id) {
-        data['ServiceRecievers/' + key] = null
-        firebaseApp.do.database().ref().update(data).then(function () {
-          delete state.data.ServiceRecievers[key]
-        }).catch(function (error) {
-          alert(error.message)
-        })
-      }
-    }
+    delete state.data.ServiceRecievers[key]
   },
-  removeContract: function (state, id) {
+  removeContract: function (state, key) {
     console.log('remove Contracts')
-    var data = {}
-    for (var key in state.data.Contracts) {
-      if (state.data.Contracts[key].ID === id) {
-        data['Contracts/' + key] = null
-        firebaseApp.do.database().ref().update(data).then(function () {
-          delete state.data.Contracts[key]
-        }).catch(function (error) {
-          alert(error.message)
-        })
-      }
-    }
+    delete state.data.Contracts[key]
   },
-  addContract: function (state, Contract) {
+  addContract: function (state, keys, userData) {
     console.log('Add Contract')
-    var keys = firebaseApp.do.database().ref().child('Contracts').push().key
-
-    var updates = {}
-    updates[keys] = Contract
-
-    firebaseApp.do.database().ref('Contracts').update(updates).then(function () {
-      state.data.ServiceRecievers[keys] = updates
-    }).catch(function (error) {
-      console.log(error)
-    })
+    state.data.ServiceRecievers[keys] = userData
   },
   login: function (state, userData) {
     console.log('mutations login')
@@ -221,16 +137,17 @@ const mutations = {
         window.localStorage.setItem('state', savedState)
       })
       state.user.authenticated = true
-      router.push('/contractDetail')
+      this.$router.push('/contractDetail')
     }).catch(
           function (error) {
-            console.log(this.$router)
-            router.push('/login')
+            console.log('error')
+            // this.$router.push('/login')
             var errorCode = error.code
             var errorMessage = error.message
             if (errorCode === 'auth/invalid-custom-token') {
               console.log(errorCode)
               console.log(errorMessage)
+              alert(error.message)
             } else {
               alert(error.message)
             }
@@ -270,7 +187,144 @@ const mutations = {
 }
 
 const actions = {
-  Login: function () {}
+  addPayement: function ({ commit }, userData) {
+    console.log('mutations Update Property')
+    var db = firebaseApp.do.database().ref().child('Payements')
+    var keys = db.push().key
+    var updates = {}
+    updates[keys] = userData
+
+    db.update(updates).then(function () {
+      state.data.Properties[keys] = userData
+      commit('addPayement', userData)
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
+  updateProperty: function ({ commit }, userData) {
+    console.log('mutations Update Property')
+    var db = firebaseApp.do.database().ref().child('Properties')
+    var keys = db.push().key
+    var updates = {}
+    updates[keys] = userData
+
+    db.update(updates).then(function () {
+      commit('updateProperty', keys, userData)
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
+  updateProperties: function ({ commit }, userData) {
+    var db = firebaseApp.do.database().ref().child('Properties')
+    var keys = db.push().key
+
+    var updates = {}
+    updates[keys] = userData
+
+    db.update(updates).then(function () {
+      commit('updateProperties', keys, userData)
+    }).catch(function (error) {
+      console.log(error)
+    })
+    console.log('===========')
+  },
+  updateServiceRecievers: function ({ commit }, userData) {
+    console.log(userData)
+    var db = firebaseApp.do.database().ref().child('ServiceRecievers')
+    var keys = db.push().key
+
+    var updates = {}
+    updates[keys] = userData
+
+    db.update(updates).then(function () {
+      commit('updateServiceRecievers', keys, userData)
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
+  updateContracts: function ({ commit }, userData) {
+    var db = firebaseApp.do.database().ref().child('Contracts')
+    var keys = db.push().key
+    var updates = {}
+    updates[keys] = userData
+
+    db.update(updates).then(function () {
+      commit('updateContracts', keys, userData)
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
+  updateContract: function ({ commit }, userData) {
+    var db = firebaseApp.do.database().ref().child('Contracts')
+    var keys = db.push().key
+    var updates = {}
+    updates[keys] = userData
+
+    db.update(updates).then(function () {
+      commit('updateContract', keys, userData)
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
+  removeProperty: function ({ commit }, ShopNumber) {
+    var data = {}
+    for (var key in state.data.Properties) {
+      if (state.data.Properties[key].ShopNumber === ShopNumber) {
+        data['Properties/' + key] = null
+        firebaseApp.do.database().ref().update(data).then(function () {
+          commit('removeProperty', ShopNumber)
+        }).catch(function (error) {
+          alert(error.message)
+        })
+      }
+    }
+  },
+  removeRentee: function ({ commit }, ID) {
+    var data = {}
+    for (var key in state.data.ServiceRecievers) {
+      if (state.data.ServiceRecievers[key].ID === ID) {
+        data['ServiceRecievers/' + key] = null
+        firebaseApp.do.database().ref().update(data).then(function () {
+          commit('removeRentee', ID)
+        }).catch(function (error) {
+          alert(error.message)
+        })
+      }
+    }
+  },
+  removeContract: function ({ commit }, ID) {
+    var data = {}
+    for (var key in state.data.Contracts) {
+      if (state.data.Contracts[key].ID === ID) {
+        data['Contracts/' + key] = null
+        firebaseApp.do.database().ref().update(data).then(function () {
+          commit('removeContract', ID)
+        }).catch(function (error) {
+          alert(error.message)
+        })
+      }
+    }
+  },
+  addContract: function ({ commit }, userData) {
+    var keys = firebaseApp.do.database().ref().child('Contracts').push().key
+    var updates = {}
+    updates[keys] = userData
+    firebaseApp.do.database().ref('Contracts').update(updates).then(function () {
+      commit('addContract', userData)
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
+  login: function ({ commit }, userData) {
+    commit('login', userData)
+    console.log('----------x---------')
+  },
+  logOut: function ({ commit }, userData) {},
+  signUp: function ({ commit }, userData) {},
+  updateUserState: function ({ commit }, userData) {
+  },
+  updateUserData: function ({ commit }, userData) {},
+  updateSurf: function ({ commit }, userData) {}
 }
 
 const getters = {
@@ -278,9 +332,13 @@ const getters = {
     console.log('Getting user for : ')
     return state.user
   },
+  getPayements: function (state) {
+    console.log('Getting state for : ')
+    return state.Payements
+  },
   getComponentState: function (state) {
     console.log('Getting state for : ')
-    return state.componentState
+    return state.data.componentState
   },
   getSurf: function (state) {
     console.log('Getting state for : ')

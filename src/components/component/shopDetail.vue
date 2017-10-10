@@ -25,7 +25,8 @@ export default {
     add: function () {
       if (this.validate()) {
         console.log(this.data)
-        this.$store.commit('updateProperties', this.data)
+        this.$store.dispatch('updateProperties', this.data)
+        // this.$store.commit('updateProperties', this.data)
         this.data = { 'ShopNumber': '', 'Floor': '', 'Purpuse': '' }
       } else {
         alert('invalid input')

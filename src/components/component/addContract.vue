@@ -69,7 +69,8 @@ export default {
       contract.Rentee = Rentee
       if (this.validate(contract)) {
         console.log(contract)
-        this.$store.commit('addContract', contract)
+        this.$store.dispatch('addContract', contract)
+        // this.$store.commit('addContract', contract)
         this.$router.push('/contractDetail')
       } else {
         alert('input error')

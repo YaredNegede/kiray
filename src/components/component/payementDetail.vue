@@ -20,7 +20,7 @@ export default {
   },
   components: {},
   data: function () {
-    return {}
+    return this.$store.getters.getPayements
   },
   methods: {
     addPayement: function () {
@@ -41,7 +41,8 @@ export default {
       payement.monthsPaid = monthsPaid
       payement.ShopNumber = ShopNumber
       payement.Rentee = Rentee
-      this.$store.commit('addPayement', payement)
+      this.$store.dispatch('addPayement', payement)
+      // this.$store.commit('addPayement', payement)
     }
   },
   computed: {
@@ -60,32 +61,57 @@ export default {
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Payement</div> 
 	<div style="padding:30px">
 		
-		<form>
-	  	<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
+			<div class="row">
+		  		 <div class="col-lg-6">
+								<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
+							</div><div class="col-lg-6">
+							<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
+           </div>
 
-				<label  forname="PayedAmount" style="color:white">የከፈሉት ገንዘብ</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmount"/>
+            <div class="col-lg-6">
+								<label  forname="PayedAmount" style="color:white">የከፈሉት ገንዘብ</label>
+								</div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmount"/>
+            </div>
 
-				<label  forname="PayableDeuDate" style="color:white">የከፈሉበት ቀን</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
+            <div class="col-lg-6">
+								<label  forname="PayableDeuDate" style="color:white">የከፈሉበት ቀን</label>
+								</div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
+            </div>
 
-				<label  forname="RemainingPayement" style="color:white">ቀጣይ ክፍያ </label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="RemainingPayement"/>
+            <div class="col-lg-6">
+							<label  forname="RemainingPayement" style="color:white">ቀጣይ ክፍያ </label>
+							 </div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="RemainingPayement"/>
+            </div>
 
-				<label  forname="NextPayementDate" style="color:white">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
+            <div class="col-lg-6">
+								<label  forname="NextPayementDate" style="color:white">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
+             </div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
+            </div>
 
-				<label  forname="monthsPaid" style="color:white">የከፈሉት ወራት</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="monthsPaid"/>
+            <div class="col-lg-6">
+								<label  forname="monthsPaid" style="color:white">የከፈሉት ወራት</label>
+             </div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="monthsPaid"/>
+            </div>
 
-			<label  forname="ShopNumber" style="color:white">የሱቅ ቁጥር</label>
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="ShopNumber"/>
+            <div class="col-lg-6">
+								<label  forname="ShopNumber" style="color:white">የሱቅ ቁጥር</label>
+								</div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="ShopNumber"/>
+            </div>
 
+            <div class="col-lg-6">
 			<label  forname="Rentee" style="color:white">ተከራይ </label>
+			</div><div class="col-lg-6">
 			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Rentee"/>
+            </div>
+			
+		</div>
 
-		</form>
 			<div class="row">
 				<div class=" col-lg-3">
 
@@ -99,54 +125,35 @@ export default {
 			</div>	
 		</div>
 
-	<div class="panel-heading " style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰ</div> 
-	<div style="padding:30px">
-
-	<table class="table" style="color:white" v-for="tekeray in data.late"> 
-			<tr>
-					<th>PhoneNumber</th>
-					<th>Name</th>
-					<th>Father Name</hd>
-					<th>Identification type</th>
-					<th>Identification type</th>
+        <div class="panel-heading " style="background-color:#00BBBB;color:white">ክፍያ</div> 
+	   <div style="padding:30px">
+	   
+	       <table class="table" style="color:white" v-for="tekeray in data.late"> 
+			    <tr>
+					<th>የገቢ ደረሰኝ ቁጥር</th>
+					<th>የከፈሉት ገንዘብ</th>
+					<th>የከፈሉበት ቀን</hd>
+					<th>ቀጣይ ክፍያ </th>
+					<th>ቀጣይ ክፍያ መከፈል ያለበት ቀን</th>
+					<th>የከፈሉት ወራት</th>
+					<th>የሱቅ ቁጥር</th>
+					<th>ተከራይ</th>
 				</tr>
 
 				<tr>
-					<td>{{tekeray.Name}}</td></tr>
-					<td>{{tekeray.FatherName}}</td></tr>
-					<td>{{tekeray.ID}}</td></tr>
-					<td>{{tekeray.IDType}}</td>
-					<td>{{tekeray.PhoneNumber}}</td>
+				  <td>Magnitude </td>
+					<td>NextPayementDate </td>
+					<td>PayableDeuDate </td>
+					<td>PayedAmount </td>
+					<td>RemainingPayement </td>
+					<td>Rentee </td>
+					<td>ShopNumber </td>
+					<td>monthsPaid</td>
 				</tr>
 
 		</table> 
 
-	</div>
-
-    <div class="panel-heading " style="background-color:#00BBBB;color:white">ያልከፈሉ ተከራይ </div> 
-		<div style="padding:30px">
-
-					<table class="table" style="color:white" v-for="tekeray in data.unpaid"> 
-							
-							<tr>
-									<th>Name</th>
-									<th>Father Name</th>
-									<th>Identification</th>
-									<th>Identification type</th>
-									<th>PhoneNumber</th>
-							</tr>
-
-							<tr>
-									<td>{{tekeray.Name}}</td></tr>
-									<td>{{tekeray.FatherName}}</td>
-									<td>{{tekeray.ID}}</td></tr>
-									<td>{{tekeray.IDType}}</td></tr>
-									<td>{{tekeray.PhoneNumber}}</td>
-							</tr>
-
-					</table> 
-			
-				</div>
+	  </div>
 
 	</div>
 <div>

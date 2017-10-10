@@ -16,9 +16,7 @@ var app = fb.initializeApp(config)
 
 const actions = {
   login: function (userData) {
-    console.log('=======Login=========')
-    console.log(userData.username)
-    console.log(userData.password)
+    console.log('=======firebase Login=========')
     return app.auth().signInWithEmailAndPassword(userData.username, userData.password)
   },
   signOut: function () {

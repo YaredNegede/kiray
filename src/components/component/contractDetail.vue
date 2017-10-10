@@ -37,7 +37,8 @@ export default {
     removeContract (event) {
       console.log('remove contract ' + event.srcElement.id)
       var id = event.srcElement.id
-      this.$store.commit('removeContract', id)
+      this.$store.dispatch('removeContract', id)
+      // this.$store.commit('removeContract', id)
     }
   }
 }

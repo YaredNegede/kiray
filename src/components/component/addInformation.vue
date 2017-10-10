@@ -24,22 +24,33 @@ export default {
       console.log(event.srcElement.id)
       console.log(this.$store)
       var id = event.srcElement.id
-      this.$store.commit('removeProperty', id)
+      this.$store.dispatch('removeProperty', id)
+      // this.$store.commit('removeProperty', id)
     },
     removeRentee (event) {
       console.log(event.srcElement.id)
       var id = event.srcElement.id
-      this.$store.commit('removeRentee', id)
+      this.$store.dispatch('removeRentee', id)
+      // this.$store.commit('removeRentee', id)
     }
   },
   computed: {
     shops () {
-      console.log('~~~~~~~~~~Shops~~~~~~~~~~~~~~~')
-      return this.$store.getters.getProperties
+      var dt = this.$store.getters.getProperties
+      if (typeof dt === undefined || dt === null) {
+        console.log('~~~~~~~~~~Shops~~~~~~~~~~~~~~~')
+        return {Name: '', FatherName: '', ID: '', IDType: '', PhoneNumber: ''}
+      } else {
+        return dt
+      }
     },
     renters () {
       console.log('~~~~~~~~~~Renter~~~~~~~~~~~~~~~')
-      return this.$store.getters.getServiceRecievers
+      var dt = this.$store.getters.getServiceRecievers
+      if (typeof dt === undefined || dt === null) {
+        return {Name: '', FatherName: '', ID: '', IDType: '', PhoneNumber: ''}
+      }
+      return dt
     }
   }
 }
@@ -79,7 +90,11 @@ export default {
                             <th>የስራ ዘርፍ</th>
                             <th>ስፋት</th>
                                 <tr v-for="shop in shops">
-                                    <td>{{shop.ShopNumber}}</td> <td>{{shop.Floor}}</td><td>{{shop.Purpuse}}</td><td>{{shop.area}}</td><td><a href="#" @click.stop.prevent="removeProperty" v-bind:id="shop.ShopNumber"> X </a>
+                                    <td>{{shop.ShopNumber}}</td>
+                                    <td>{{shop.Floor}}</td>
+                                    <td>{{shop.Purpuse}}</td>
+                                    <td>{{shop.area}}</td>
+                                    <td><a href="#" @click.stop.prevent="removeProperty" v-bind:id="shop.ShopNumber"> X </a>
                                 </tr>
                             </table>
                         </div>	

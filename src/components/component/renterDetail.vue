@@ -20,7 +20,8 @@ export default {
   methods: {
     add: function () {
       if (this.validate()) {
-        this.$store.commit('updateServiceRecievers', this.data)
+        this.$store.dispatch('updateServiceRecievers', this.data)
+        // this.$store.commit('updateServiceRecievers', this.data)
         this.data = {}
       } else {
         alert('Invalid input')
