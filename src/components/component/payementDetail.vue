@@ -49,7 +49,9 @@ export default {
     }
   },
   computed: {
-    payement: function () {},
+    payement: function () {
+      return this.$store.getters.getPayements
+    },
     id: function () {}
   }
 }
@@ -131,7 +133,7 @@ export default {
         <div class="panel-heading " style="background-color:#00BBBB;color:white">ክፍያ</div> 
 	   <div style="padding:30px">
 	   
-	       <table class="table" style="color:white" v-for="tekeray in data.late"> 
+	       <table class="table" style="color:white" v-for="tekeray in payement"> 
 			    <tr>
 					<th>የገቢ ደረሰኝ ቁጥር</th>
 					<th>የከፈሉት ገንዘብ</th>

@@ -4,11 +4,13 @@ export default {
   beforeCreate: function () {},
   components: {},
   data: function () {
-    return [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': '', 'ShopNumber': ''}]
+    return {}
   },
   methods: {},
   computed: {
-    payement: function () {},
+    paid: function () {
+      return [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': '', 'ShopNumber': ''}]
+    },
     id: function () {}
   }
 }
@@ -28,7 +30,7 @@ export default {
     
         <div style="padding:30px">
     
-            <table class="table" style="color:white" v-for="data in unpaid">
+            <table class="table" style="color:white" v-for="data in paid">
     
                 <tr>
         

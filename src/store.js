@@ -76,6 +76,14 @@ const state = {
 }
 
 const mutations = {
+  getContract: function (state, ID) {
+    for (var kk in this.$store.state.data.Contracts) {
+      if (this.$store.state.data.Contracts[kk].ID === ID) {
+        return this.$store.state.data.Contracts[kk]
+      }
+    }
+    return {}
+  },
   addPayement: function (state, data) {
     console.log('mutations Update Property')
     var db = firebaseApp.do.database().ref().child('Payements')
@@ -104,6 +112,7 @@ const mutations = {
   updateContracts: function (state, keys, userData) {
     console.log('Update Contracts')
     state.data.ServiceRecievers[keys] = userData
+    console.log(state.data.ServiceRecievers[keys])
   },
   updateContract: function (state, keys, userData) {
     console.log('Update Contracts')
@@ -163,6 +172,9 @@ const mutations = {
 }
 
 const actions = {
+  getContract: function ({ commit }, userData) {
+    commit('getContract', userData)
+  },
   addPayement: function ({ commit }, userData) {
     console.log('mutations Update Property')
     var db = firebaseApp.do.database().ref().child('Payements')
@@ -282,10 +294,13 @@ const actions = {
     }
   },
   addContract: function ({ commit }, userData) {
-    var keys = firebaseApp.do.database().ref().child('Contracts').push().key
+    var db = firebaseApp.do.database().ref().child('Contracts')
+    var keys = db.push().key
+    console.log('found key ' + keys)
     var updates = {}
     updates[keys] = userData
-    firebaseApp.do.database().ref('Contracts').update(updates).then(function () {
+    db.update(updates).then(function () {
+      console.log('adding to firebase')
       commit('addContract', userData)
     }).catch(function (error) {
       console.log(error)

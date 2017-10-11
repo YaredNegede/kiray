@@ -8,10 +8,8 @@ export default {
   components: {store},
   computed: {
     contract: function () {
-      var tmp = this.$store.getters.getTemp.ID
-      return this.$store.state.data.Contracts.filter(function (Contract) {
-        return Contract.ID === tmp
-      })[0]
+      var id = this.$store.getters.getTemp.ID
+      return this.$store.dispatch('getContract', id)
     },
     contracts: function () {
       return this.$store.getters.getContracts
@@ -43,7 +41,6 @@ export default {
   methods: {
     add () {
       console.log('creating contracts')
-      console.log('---------------------')
       var Magnitude = document.getElementById('Magnitude').value
       var Unit = document.getElementById('Unit').value
       var Status = document.getElementById('Status').value
@@ -70,14 +67,15 @@ export default {
       if (this.validate(contract)) {
         console.log(contract)
         this.$store.dispatch('addContract', contract)
-        // this.$store.commit('addContract', contract)
         this.$router.push('/contractDetail')
       } else {
         alert('input error')
         console.log(contract.Shop + '\t' + contract.Rentee + '\t' + contract.StartTime + '\t' + contract.EndTime + '\t' + contract.Magnitude)
       }
+      console.log('---------------------')
     },
     validate (contract) {
+      console.log('validating')
       return ((contract.Shop !== '') && (contract.Rentee !== '' && contract.StartTime !== '') && (contract.EndTime !== '' && contract.Magnitude !== ''))
     }
   }
