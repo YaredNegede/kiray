@@ -127,31 +127,7 @@ const mutations = {
   },
   login: function (state, userData) {
     console.log('mutations login')
-    var ret = firebaseApp.do.login(userData)
-    ret.then(function (response) {
-      firebaseApp.do.database().ref().once('value').then(function (snapshot) {
-        console.log('mutations login completed')
-        window.localStorage.removeItem('state')
-        var savedState = JSON.stringify(snapshot.val())
-        console.log(savedState)
-        window.sessionStorage.setItem('state', savedState)
-        state.user.authenticated = true
-        this.$router.push('/contractDetail')
-      })
-    }).catch(
-          function (error) {
-            console.log('error')
-            // this.$router.push('/login')
-            var errorCode = error.code
-            var errorMessage = error.message
-            if (errorCode === 'auth/invalid-custom-token') {
-              console.log(errorCode)
-              console.log(errorMessage)
-              alert(error.message)
-            } else {
-              alert(error.message)
-            }
-          })
+    state.user.authenticated = true
   },
   logOut: function (state) {
     var rets = firebaseApp.do.signOut()
@@ -316,8 +292,33 @@ const actions = {
     })
   },
   login: function ({ commit }, userData) {
-    commit('login', userData)
-    console.log('----------x---------')
+    console.log(userData)
+    var ret = firebaseApp.do.login(userData)
+    ret.then(function (response) {
+      firebaseApp.do.database().ref().once('value').then(function (snapshot) {
+        console.log('____________________LOGIN_______________________________')
+        window.localStorage.removeItem('state')
+        state.data = snapshot.val()
+        var savedState = JSON.stringify(snapshot.val())
+        console.log(savedState)
+        window.sessionStorage.setItem('state', savedState)
+        commit('login', userData)
+        router.push('/contractDetail')
+      })
+    }).catch(
+          function (error) {
+            console.log('error')
+            router.push('/login')
+            var errorCode = error.code
+            var errorMessage = error.message
+            if (errorCode === 'auth/invalid-custom-token') {
+              console.log(errorCode)
+              console.log(errorMessage)
+              alert(error.message)
+            } else {
+              alert(error.message)
+            }
+          })
   },
   logOut: function ({ commit }, userData) {},
   signUp: function ({ commit }, userData) {},

@@ -4,7 +4,7 @@ export default {
   beforeCreate: function () {},
   components: {},
   data: function () {
-    return { unpaid: [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': '', 'ShopNumber': ''}] }
+    return [{'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': '', 'ShopNumber': ''}]
   },
   methods: {},
   computed: {
