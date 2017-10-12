@@ -10,15 +10,6 @@ export default {
     contract: function () {
       var id = this.$store.getters.getTemp.ID
       return this.$store.dispatch('getContract', id)
-    },
-    contracts: function () {
-      return this.$store.getters.getContracts
-    },
-    rentee: function () {
-      return this.$store.getters.getServiceRecievers
-    },
-    shops: function () {
-      return this.$store.getters.getProperties
     }
   },
   beforeCreate: function () {
@@ -36,7 +27,7 @@ export default {
     console.log('============================')
   },
   data: function () {
-    return {}
+    return { contracts: this.$store.getters.getContracts, shops: this.$store.getters.getProperties, rentee: this.$store.getters.getServiceRecievers }
   },
   methods: {
     add () {

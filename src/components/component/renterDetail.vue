@@ -18,18 +18,34 @@ export default {
     return {}
   },
   methods: {
+    removeRentee (event) {
+      console.log(event.srcElement.id)
+      var id = event.srcElement.id
+      console.log(this.$store.getters.getProperties)
+      this.$store.dispatch('removeRentee', id)
+    },
     add: function () {
-      if (this.validate()) {
-        this.$store.dispatch('updateServiceRecievers', this.data)
-        // this.$store.commit('updateServiceRecievers', this.data)
+      var data = {}
+      data['Name'] = document.getElementById('Name').value
+      data['FatherName'] = document.getElementById('FatherName').value
+      data['ID'] = document.getElementById('ID').value
+      data['IDType'] = document.getElementById('IDType').value
+      data['PhoneNumber'] = document.getElementById('PhoneNumber').value
+
+      if (this.validate(data)) {
+        this.$store.dispatch('updateServiceRecievers', data)
         this.data = {}
       } else {
         alert('Invalid input')
       }
     },
-    validate: function () {
-      console.log(this.data.Name !== '')
-      return ((this.data.Name !== '') && (this.data.FatherName !== '') && (this.data.ID !== '') && (this.data.IDType !== '') && (this.data.PhoneNumber !== ''))
+    validate: function (data) {
+      return ((data.Name !== '') && (data.FatherName !== '') && (data.ID !== '') && (data.IDType !== '') && (data.PhoneNumber !== ''))
+    }
+  },
+  computed: {
+    ServiceRecievers: function () {
+      return this.$store.getters.getServiceRecievers
     }
   }
 }
@@ -39,6 +55,7 @@ export default {
 </scope>
 
 <template>
+<div id="renterDetail">
 <div class="panel panel-default" style="background-color:#00AAAA" id="renterDetail">
 	<div class="panel-heading" style="background-color:#00BBBB;color:white">ተከራይ መመዝገቢያ</div> 
 		<div style="padding:30px">
@@ -48,7 +65,7 @@ export default {
 							<label  style="color:white">ስም</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
-							<input v-model="data.Name" type="text"  class="form-control " placeholder="ስም" style="background-color:#00AAAA;color:white"/>
+							<input id = "Name" v-model="data.Name" type="text"  class="form-control " placeholder="ስም" style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 					
@@ -57,7 +74,7 @@ export default {
 							<label  style="color:white">የአባት ስም</label>
 						</div>
 						<div class="col-lg-9" style="background-color:#00AAAA">
-							<input  v-model="data.FatherName" type="text"  class="form-control " placeholder="የአባት ስም"  style="background-color:#00AAAA;color:white"/>
+							<input id = "FatherName"   v-model="data.FatherName" type="text"  class="form-control " placeholder="የአባት ስም"  style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -66,7 +83,7 @@ export default {
 							<label  style="color:white">መታወቂያ ቁጥር</label>
 						</div>
 						<div class=" col-lg-9">
-							<input v-model="data.ID"  type="text"  class="form-control" placeholder="መታወቂያ ቁጥር"   style="background-color:#00AAAA;color:white"/>
+							<input  id = "ID" v-model="data.ID"  type="text"  class="form-control" placeholder="መታወቂያ ቁጥር"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -75,7 +92,7 @@ export default {
 							<label  style="color:white">መታወቂያ አይነት</label>
 						</div>
 						<div class=" col-lg-9">
-							<input  v-model="data.IDType" type="text"  class="form-control" placeholder="መታወቂያ አይነት"   style="background-color:#00AAAA;color:white"/>
+							<input  id = "IDType"  v-model="data.IDType" type="text"  class="form-control" placeholder="መታወቂያ አይነት"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 			
@@ -85,7 +102,7 @@ export default {
 							<label  style="color:white">ስልክ ቁጥር</label>
 						</div>
 						<div class=" col-lg-9">
-							<input v-model="data.PhoneNumber" type="tel"  class="form-control" placeholder="+215 091271312"   style="background-color:#00AAAA;color:white"/>
+							<input id = "PhoneNumber" v-model="data.PhoneNumber" type="tel"  class="form-control" placeholder="+215 091271312"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 		
@@ -104,5 +121,37 @@ export default {
 
 			</div>
 
+
+
+
+
+
+
 	</div>
+
+<!--TABLE-->
+			<div class="row">
+				<div class=" col-lg-12">
+							<table class="table" style="color:white"> 
+							<tr>
+								<th>ስም</th>
+								<th>የአባት ስም</th>
+								<th>መታወቂያ ቁጥር</th>
+								<th>መታወቂያ አይነት</th>
+								<th>ስልክ ቁጥር</th>
+							</tr>
+							
+							<tr v-for="(renter, index) in ServiceRecievers">
+								<td>{{renter.Name}}</td>
+								<td>{{renter.FatherName}}</td>
+								<td>{{renter.ID}}</td>
+								<td>{{renter.IDType}}</td>
+								<td>{{renter.PhoneNumber}}</td>
+								<td><a v-bind:id="index" href="#" @click.stop.prevent="removeRentee"> X </a>
+						</tr>
+					</table> 
+				</div>
+			</div>
+
+</div>
 </template>

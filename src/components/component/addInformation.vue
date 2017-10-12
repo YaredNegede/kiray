@@ -1,8 +1,8 @@
 
 <script>
-
 import renterDetail from './renterDetail.vue'
 import shopDetail from './shopDetail.vue'
+import { EventBus } from '../../event-bus'
 
 export default {
   name: 'addInformation',
@@ -15,45 +15,11 @@ export default {
       this.$router.push('login')
     }
   },
-  components: {renterDetail, shopDetail},
+  components: {renterDetail, shopDetail, EventBus},
   data: function () {
-    return {}
+    return { Properties: this.$store.getters.getProperties, ServiceRecievers: this.$store.getters.getServiceRecievers }
   },
-  methods: {
-    removeProperty (event) {
-      console.log(event.srcElement.id)
-      console.log(this.$store)
-      var id = event.srcElement.id
-      this.$store.dispatch('removeProperty', id)
-      // this.$store.commit('removeProperty', id)
-    },
-    removeRentee (event) {
-      console.log(event.srcElement.id)
-      var id = event.srcElement.id
-      this.$store.dispatch('removeRentee', id)
-      // this.$store.commit('removeRentee', id)
-    }
-  },
-  computed: {
-    shops () {
-      var dt = this.$store.getters.getProperties
-      if (typeof dt === undefined || dt === null) {
-        console.log('~~~~~~~~~~Shops~~~~~~~~~~~~~~~')
-        return {Name: '', FatherName: '', ID: '', IDType: '', PhoneNumber: ''}
-      } else {
-        return dt
-      }
-    },
-    renters () {
-      console.log('~~~~~~~~~~Renter~~~~~~~~~~~~~~~')
-      var dt = this.$store.getters.getServiceRecievers
-      console.log(dt)
-      if (typeof dt === undefined || dt === null) {
-        return {Name: '', FatherName: '', ID: '', IDType: '', PhoneNumber: ''}
-      }
-      return dt
-    }
-  }
+  methods: {}
 }
 </script>
 
@@ -81,47 +47,6 @@ export default {
                 
               </div>
 
-              <div class="row" style="border: solid 1px white;margin:5px">
-                <div class=" col-lg-6">
-                      <div class="row" style="color:white">
-                          <div class=" col-lg-12">
-                            <table class="table">
-                            <th>የሱቅ ቁጥር</th>
-                            <th>ፍሎር</th>
-                            <th>የስራ ዘርፍ</th>
-                            <th>ስፋት</th>
-                                <tr v-for="shop in shops">
-                                    <td>{{shop.ShopNumber}}</td>
-                                    <td>{{shop.Floor}}</td>
-                                    <td>{{shop.Purpuse}}</td>
-                                    <td>{{shop.area}}</td>
-                                    <td><a href="#" @click.stop.prevent="removeProperty" v-bind:id="shop.ShopNumber"> X </a>
-                                </tr>
-                            </table>
-                        </div>	
-								</div>
-                </div>
-                <div class=" col-lg-6">
-                 	<div>
-                        <table class="table" style="color:white"> 
-                        <tr>
-                          <th>ስም</th>
-                          <th>የአባት ስም</th>
-                          <th>መታወቂያ ቁጥር</th>
-                          <th>መታወቂያ አይነት</th>
-                          <th>ስልክ ቁጥር</th>
-                        </tr>
-                        <tr v-for="renter in renters">
-                          <td>{{renter.Name}}</td>
-                          <td>{{renter.FatherName}}</td>
-                          <td>{{renter.ID}}</td>
-                          <td>{{renter.IDType}}</td>
-                          <td>{{renter.PhoneNumber}}</td>
-                          <td><a v-bind:id="renter.ID" href="#" @click.stop.prevent="removeRentee"> X </a>
-                      </tr>
-                    </table> 
-                  </div>
-                </div>
               </div>
 		</div>
 

@@ -45,11 +45,12 @@ export default {
       payement.ShopNumber = ShopNumber
       payement.Rentee = Rentee
       this.$store.dispatch('addPayement', payement)
-      // this.$store.commit('addPayement', payement)
     }
   },
   computed: {
     payement: function () {
+      console.log('getting payement.....')
+      console.log(this.$store.getters.getPayements)
       return this.$store.getters.getPayements
     },
     id: function () {}
@@ -63,7 +64,7 @@ export default {
 <template >
 <div  id="payementDetail">
 	<div class="panel panel-default" style="background-color:#00AAAA;color:white">
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">Payement</div> 
+	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ክፍያ</div> 
 	<div style="padding:30px">
 		
 			<div class="row">
@@ -130,10 +131,10 @@ export default {
 			</div>	
 		</div>
 
-        <div class="panel-heading " style="background-color:#00BBBB;color:white">ክፍያ</div> 
+     <div class="panel-heading " style="background-color:#00BBBB;color:white">ክፍያ</div> 
 	   <div style="padding:30px">
 	   
-	       <table class="table" style="color:white" v-for="tekeray in payement"> 
+	       <table class="table" style="color:white"> 
 			    <tr>
 					<th>የገቢ ደረሰኝ ቁጥር</th>
 					<th>የከፈሉት ገንዘብ</th>
@@ -145,21 +146,20 @@ export default {
 					<th>ተከራይ</th>
 				</tr>
 
-				<tr>
-				  <td>Magnitude </td>
-					<td>NextPayementDate </td>
-					<td>PayableDeuDate </td>
-					<td>PayedAmount </td>
-					<td>RemainingPayement </td>
-					<td>Rentee </td>
-					<td>ShopNumber </td>
-					<td>monthsPaid</td>
+				<tr v-for="tekeray in payement">
+				  <td>{{tekeray.Magnitude}} </td>
+					<td>{{tekeray.NextPayementDate}} </td>
+					<td>{{tekeray.PayableDeuDate}} </td>
+					<td>{{tekeray.PayedAmount}} </td>
+					<td>{{tekeray.RemainingPayement}} </td>
+					<td>{{tekeray.Rentee}} </td>
+					<td>{{tekeray.ShopNumber}} </td>
+					<td>{{tekeray.monthsPaid}}</td>
 				</tr>
 
 		</table> 
 
 	  </div>
-
 	</div>
 <div>
 <div class="row">

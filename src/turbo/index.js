@@ -1,10 +1,17 @@
 import store from 'store'
-import firebaseApp from 'firebaseApp'
 
 const actions = {
   test: function () {
     console.log('turbo actions fine')
-  }
+  },
+  publishEvent: function () {
+    if (this.subscribeEvent.length > 0) {
+      for (var fun in this.subscribeEvent) {
+        this.subscribeEvent[fun]()
+      }
+    }
+  },
+  subscribeEvent: []
 }
 
 const Turbo = {
@@ -18,6 +25,5 @@ const Turbo = {
 }
 
 export default new Turbo.Turbo({
-  actions,
-  firebaseApp
+  actions
 })

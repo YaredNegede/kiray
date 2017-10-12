@@ -102,12 +102,12 @@ const mutations = {
     state.data.Properties[keys] = data
   },
   updateProperties: function (state, userData) {
-    console.log('Update Properties')
-    state.data.Properties = userData
+    console.log('Update Properties mutuation')
+    state.data.Properties[userData[0]] = userData[1]
   },
-  updateServiceRecievers: function (state, keys, userData) {
+  updateServiceRecievers: function (state, userData) {
     console.log('Update ServiceRecievers')
-    state.data.ServiceRecievers[keys] = userData
+    state.data.ServiceRecievers[userData[0]] = userData[1]
   },
   updateContracts: function (state, keys, userData) {
     console.log('Update Contracts')
@@ -119,11 +119,12 @@ const mutations = {
     state.data.Properties[keys] = userData
   },
   removeProperty: function (state, key) {
-    console.log('remove Contracts')
+    console.log('remove removeProperty' + key)
     delete state.data.Properties[key]
+    console.log(state.data.Properties)
   },
   removeRentee: function (state, key) {
-    console.log('remove rentee')
+    console.log('remove rentee mutuation')
     delete state.data.ServiceRecievers[key]
   },
   removeContract: function (state, key) {
@@ -210,7 +211,10 @@ const actions = {
     updates[keys] = userData
 
     db.update(updates).then(function () {
-      commit('updateProperties', keys, userData)
+      console.log('``````````````````````````````````````````')
+      console.log(keys)
+      console.log(userData)
+      commit('updateProperties', [keys, userData])
     }).catch(function (error) {
       console.log(error)
     })
@@ -225,7 +229,7 @@ const actions = {
     updates[keys] = userData
 
     db.update(updates).then(function () {
-      commit('updateServiceRecievers', keys, userData)
+      commit('updateServiceRecievers', [keys, userData])
     }).catch(function (error) {
       console.log(error)
     })
@@ -254,31 +258,24 @@ const actions = {
       console.log(error)
     })
   },
-  removeProperty: function ({ commit }, ShopNumber) {
+  removeProperty: function ({ commit }, key) {
     var data = {}
-    for (var key in state.data.Properties) {
-      if (state.data.Properties[key].ShopNumber === ShopNumber) {
-        data['Properties/' + key] = null
-        firebaseApp.do.database().ref().update(data).then(function () {
-          commit('removeProperty', ShopNumber)
-        }).catch(function (error) {
-          alert(error.message)
-        })
-      }
-    }
+    data['Properties/' + key] = null
+    firebaseApp.do.database().ref().update(data).then(function () {
+      commit('removeProperty', key)
+    }).catch(function (error) {
+      alert(error.message)
+    })
   },
-  removeRentee: function ({ commit }, ID) {
+  removeRentee: function ({ commit }, key) {
+    console.log('action')
     var data = {}
-    for (var key in state.data.ServiceRecievers) {
-      if (state.data.ServiceRecievers[key].ID === ID) {
-        data['ServiceRecievers/' + key] = null
-        firebaseApp.do.database().ref().update(data).then(function () {
-          commit('removeRentee', ID)
-        }).catch(function (error) {
-          alert(error.message)
-        })
-      }
-    }
+    data['ServiceRecievers/' + key] = null
+    firebaseApp.do.database().ref().update(data).then(function () {
+      commit('removeRentee', key)
+    }).catch(function (error) {
+      alert(error.message)
+    })
   },
   removeContract: function ({ commit }, ID) {
     var data = {}
@@ -312,11 +309,9 @@ const actions = {
     ret.then(function (response) {
       firebaseApp.do.database().ref().once('value').then(function (snapshot) {
         console.log('____________________LOGIN_______________________________')
-        window.localStorage.removeItem('state')
         state.data = snapshot.val()
-        var savedState = JSON.stringify(snapshot.val())
-        console.log(savedState)
-        window.sessionStorage.setItem('state', savedState)
+        // var savedState = JSON.stringify(snapshot.val())
+        // window.sessionStorage.setItem('state', savedState)
         commit('login', userData)
         router.push('/contractDetail')
       })
@@ -350,7 +345,7 @@ const getters = {
   },
   getPayements: function (state) {
     console.log('Getting state for : ')
-    return state.Payements
+    return state.data.Payements
   },
   getComponentState: function (state) {
     console.log('Getting state for : ')
@@ -369,8 +364,7 @@ const getters = {
     return state.data.ServiceRecievers
   },
   getProperties: function (state) {
-    console.log('Getting Properties for : ')
-    console.log(state.data)
+    console.log('Getting All Properties')
     return state.data.Properties
   },
   getServiceReciever: function (state) {
