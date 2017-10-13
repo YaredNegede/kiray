@@ -1,5 +1,6 @@
 
 <script>
+import firebaseApp from 'firebaseApp'
 
 export default {
   beforeCreate: function () {
@@ -10,15 +11,19 @@ export default {
     }
     console.log('===============================')
   },
+  mounted: function () {},
   name: 'contractDetail',
   props: { show: true },
-  components: {},
+  components: {firebaseApp},
   computed: {
     contracts: function () {
       console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
       console.log(this.$store.getters.getContracts)
       return this.$store.getters.getContracts
     }
+  },
+  data: function () {
+    return this.$store.getters.getContracts
   },
   methods: {
     viewRentee (event) {

@@ -86,16 +86,7 @@ const mutations = {
   },
   addPayement: function (state, data) {
     console.log('mutations Update Property')
-    var db = firebaseApp.do.database().ref().child('Payements')
-    var keys = db.push().key
-    var updates = {}
-    updates[keys] = data
-
-    db.update(updates).then(function () {
-      state.data.Properties[keys] = data
-    }).catch(function (error) {
-      console.log(error)
-    })
+    state.data.Properties[data[0]] = data
   },
   updateProperty: function (state, keys, data) {
     console.log('mutations Update Property')
@@ -185,7 +176,7 @@ const actions = {
 
     db.update(updates).then(function () {
       state.data.Properties[keys] = userData
-      commit('addPayement', userData)
+      commit('addPayement', [keys, userData])
     }).catch(function (error) {
       console.log(error)
     })
