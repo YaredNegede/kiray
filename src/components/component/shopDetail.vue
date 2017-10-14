@@ -54,7 +54,6 @@ export default {
   },
   computed: {
     Properties: function () {
-      console.log('getting computed properties')
       return this.$store.getters.getProperties
     }
   }
@@ -144,6 +143,7 @@ export default {
       <th>የስራ ዘርፍ</th>
       <th>ስፋት</th>
       <tr v-for="(shop,index) in Properties">
+  
           <td>{{shop.ShopNumber}}</td>
           <td>{{shop.Floor}}</td>
           <td>{{shop.Purpuse}}</td>

@@ -6,25 +6,14 @@ export default {
   name: 'addContract',
   props: { show: true },
   components: {store},
-  computed: {
-    contract: function () {
-      var id = this.$store.getters.getTemp.ID
-      return this.$store.dispatch('getContract', id)
-    }
-  },
+  computed: {},
   beforeCreate: function () {
     console.log('~~~~~~~Contract detail~~~~~~~~~')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
-    console.log(this.$store.getters.getUser)
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')
     }
-    console.log(this.$store.getters.getTemp)
-    var dt = this.$store.getters.getContract
-    console.log(dt)
-    this.data = (typeof dt === 'undefined' || dt === null) ? {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Renter': '', 'Shop': ''} : dt
-    console.log(this.data)
-    console.log('============================')
+    this.data = this.$store.getters.getContract
   },
   data: function () {
     return { contracts: this.$store.getters.getContracts, shops: this.$store.getters.getProperties, rentee: this.$store.getters.getServiceRecievers }
@@ -56,9 +45,8 @@ export default {
       contract.Shop = ShopNumber
       contract.Rentee = Rentee
       if (this.validate(contract)) {
-        console.log(contract)
         this.$store.dispatch('addContract', contract)
-        this.$router.push('/contractDetail')
+        // this.$router.push('/contractDetail')
       } else {
         alert('input error')
         console.log(contract.Shop + '\t' + contract.Rentee + '\t' + contract.StartTime + '\t' + contract.EndTime + '\t' + contract.Magnitude)

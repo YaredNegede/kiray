@@ -9,8 +9,6 @@ export default {
     console.log(this.$store.getters.getTemp)
     var dt = this.$store.getters.getServiceReciever
     this.data = (typeof dt === 'undefined' || dt === null) ? {'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''} : dt
-    console.log(this.data)
-    console.log('============================')
   },
   props: { show: true },
   components: {},
@@ -18,11 +16,12 @@ export default {
     return {}
   },
   methods: {
-    removeRentee (event) {
+    removeRentee: function (event) {
       console.log(event.srcElement.id)
       var id = event.srcElement.id
       console.log(this.$store.getters.getProperties)
       this.$store.dispatch('removeRentee', id)
+      this.data.ServiceRecievers = this.$store.getters.getServiceRecievers
     },
     add: function () {
       var data = {}
@@ -31,7 +30,7 @@ export default {
       data['ID'] = document.getElementById('ID').value
       data['IDType'] = document.getElementById('IDType').value
       data['PhoneNumber'] = document.getElementById('PhoneNumber').value
-
+      console.log(data)
       if (this.validate(data)) {
         this.$store.dispatch('updateServiceRecievers', data)
         this.data = {}
@@ -148,10 +147,10 @@ export default {
 								<td>{{renter.IDType}}</td>
 								<td>{{renter.PhoneNumber}}</td>
 								<td><a v-bind:id="index" href="#" @click.stop.prevent="removeRentee"> X </a>
+
 						</tr>
 					</table> 
 				</div>
 			</div>
-
 </div>
 </template>

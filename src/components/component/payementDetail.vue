@@ -2,6 +2,7 @@
 <script>
 import paidDetail from './paidDetail.vue'
 import warning from './warning.vue'
+import firebaseApp from 'firebaseApp'
 
 export default {
   name: 'payementDetail',
@@ -18,12 +19,11 @@ export default {
       'unpaid': []
     }
     this.data = (typeof dt === 'undefined' || dt === null) ? statData : dt
-    console.log(this.data)
+    this.data.Payements = this.$store.getters.getPayements
   },
-  components: {paidDetail, warning},
+  components: {paidDetail, warning, firebaseApp},
   data: function () {
-    // return this.$store.getters.getPayements
-    return {}
+    return { Payements: [] }
   },
   methods: {
     addPayement: function () {
@@ -49,8 +49,6 @@ export default {
   },
   computed: {
     payement: function () {
-      console.log('getting payement.....')
-      console.log(this.$store.getters.getPayements)
       return this.$store.getters.getPayements
     },
     id: function () {}

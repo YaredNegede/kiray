@@ -85,11 +85,11 @@ const mutations = {
     return {}
   },
   addPayement: function (state, data) {
-    console.log('mutations Update Property')
-    state.data.Properties[data[0]] = data
+    console.log('mutations Update payement------')
+    state.data.Payements[data[0]] = data
   },
   updateProperty: function (state, keys, data) {
-    console.log('mutations Update Property')
+    console.log('mutations Update updateProperty')
     state.data.Properties[keys] = data
   },
   updateProperties: function (state, userData) {
@@ -168,28 +168,37 @@ const actions = {
     commit('getContract', userData)
   },
   addPayement: function ({ commit }, userData) {
-    console.log('mutations Update Property')
+    console.log('actions add addPayement')
     var db = firebaseApp.do.database().ref().child('Payements')
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
-
+    console.log('-----------------------1')
     db.update(updates).then(function () {
-      state.data.Properties[keys] = userData
-      commit('addPayement', [keys, userData])
+      db.once('value').then(function (snapshot) {
+        state.data.Payements = snapshot.val()
+        commit('addPayement', keys, userData)
+      }).catch(function (error) {
+        console.log(error)
+      })
     }).catch(function (error) {
       console.log(error)
     })
   },
   updateProperty: function ({ commit }, userData) {
-    console.log('mutations Update Property')
+    console.log('actions Update updateProperty')
     var db = firebaseApp.do.database().ref().child('Properties')
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
 
     db.update(updates).then(function () {
-      commit('updateProperty', keys, userData)
+      db.once('value').then(function (snapshot) {
+        state.data.Properties = snapshot.val()
+        commit('updateProperty', keys, userData)
+      }).catch(function (error) {
+        console.log(error)
+      })
     }).catch(function (error) {
       console.log(error)
     })
@@ -202,14 +211,10 @@ const actions = {
     updates[keys] = userData
 
     db.update(updates).then(function () {
-      console.log('``````````````````````````````````````````')
-      console.log(keys)
-      console.log(userData)
-      commit('updateProperties', [keys, userData])
+      state.data.Properties[keys] = userData
     }).catch(function (error) {
       console.log(error)
     })
-    console.log('===========')
   },
   updateServiceRecievers: function ({ commit }, userData) {
     console.log(userData)
@@ -220,7 +225,7 @@ const actions = {
     updates[keys] = userData
 
     db.update(updates).then(function () {
-      commit('updateServiceRecievers', [keys, userData])
+      state.data.Properties[keys] = userData
     }).catch(function (error) {
       console.log(error)
     })
@@ -232,7 +237,12 @@ const actions = {
     updates[keys] = userData
 
     db.update(updates).then(function () {
-      commit('updateContracts', keys, userData)
+      db.once('value').then(function (snapshot) {
+        state.data.Properties = snapshot.val()
+        commit('updateContracts', keys, userData)
+      }).catch(function (error) {
+        console.log(error)
+      })
     }).catch(function (error) {
       console.log(error)
     })
@@ -250,10 +260,16 @@ const actions = {
     })
   },
   removeProperty: function ({ commit }, key) {
+    var db = firebaseApp.do.database().ref()
     var data = {}
     data['Properties/' + key] = null
-    firebaseApp.do.database().ref().update(data).then(function () {
-      commit('removeProperty', key)
+    db.update(data).then(function () {
+      db.once('value').then(function (snapshot) {
+        state.data.Properties = snapshot.val()
+        commit('removeProperty', key)
+      }).catch(function (error) {
+        console.log(error)
+      })
     }).catch(function (error) {
       alert(error.message)
     })
@@ -336,6 +352,9 @@ const getters = {
   },
   getPayements: function (state) {
     console.log('Getting state for : ')
+    firebaseApp.do.database().ref().child('Payements').once('value').then(function (snapshot) {
+      state.data.Payements = snapshot.val()
+    })
     return state.data.Payements
   },
   getComponentState: function (state) {
@@ -351,11 +370,15 @@ const getters = {
     return state.data
   },
   getServiceRecievers: function (state) {
-    console.log('Getting data for : ')
+    firebaseApp.do.database().ref().child('ServiceRecievers').once('value').then(function (snapshot) {
+      state.data.ServiceRecievers = snapshot.val()
+    })
     return state.data.ServiceRecievers
   },
   getProperties: function (state) {
-    console.log('Getting All Properties')
+    firebaseApp.do.database().ref().child('Properties').once('value').then(function (snapshot) {
+      state.data.Properties = snapshot.val()
+    })
     return state.data.Properties
   },
   getServiceReciever: function (state) {

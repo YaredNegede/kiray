@@ -9,21 +9,17 @@ export default {
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')
     }
-    console.log('===============================')
   },
-  mounted: function () {},
   name: 'contractDetail',
   props: { show: true },
   components: {firebaseApp},
   computed: {
-    contracts: function () {
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-      console.log(this.$store.getters.getContracts)
+    contract: function () {
       return this.$store.getters.getContracts
     }
   },
   data: function () {
-    return this.$store.getters.getContracts
+    return {}
   },
   methods: {
     viewRentee (event) {
@@ -61,7 +57,7 @@ export default {
 		<table class="table" style="color:white"> 
 			<th>ስም</th><th>የአባት ስም</th><th>ካሬ</th><th>መለኪያ</th><th>ሁኔታ</th><th>የከፈሉት ወራት</th><th>ኪራያቸው የሚጀምርበት ቀን</th><th>ኪራያቸው የሚያልቅበት ቀን</th>
 			<th>የተከራይ ስም</th>	<th>የሱቅ ቁጥር</th>	
-			<tr v-for="contract in contracts">
+			<tr v-for="contract in contract">
 				<td>{{contract.name}}</td>
 				<td>{{contract.FatherName}}</td>
 				<td>{{contract.Magnitude}}</td>
