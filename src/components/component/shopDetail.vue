@@ -14,7 +14,6 @@ export default {
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getTemp)
     var dt = this.$store.getters.getProperty
-    console.log(dt)
     if (dt) {
       this.data = dt
     } else {

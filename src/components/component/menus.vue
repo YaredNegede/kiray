@@ -12,7 +12,7 @@ export default {
   methods: {
     logout: function () {
       this.$store.state.user.authenticated = false
-      this.$store.commit('logOut')
+      this.$store.dispatch('logOut')
     }
   },
   computed: {

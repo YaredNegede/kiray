@@ -14,7 +14,7 @@ export default {
   props: { show: true },
   components: {firebaseApp},
   computed: {
-    contract: function () {
+    contracts: function () {
       return this.$store.getters.getContracts
     }
   },
@@ -23,22 +23,19 @@ export default {
   },
   methods: {
     viewRentee (event) {
-      this.$store.state.temp.ID = event.srcElement.id
-      this.$router.push('/renterDetail')
+      console.log('renterDetail ' + event.srcElement.id)
+      this.$router.push({name: 'renterDetail', params: {renteeKey: event.srcElement.id}})
     },
     viewShop (event) {
-      this.$store.state.temp.ID = event.srcElement.id
-      this.$router.push('/shopDetail')
+      console.log('shopDetail  ' + event.srcElement.id)
+      this.$router.push({name: 'shopDetail', params: {ID: event.srcElement.id}})
     },
     viewContract (event) {
-      console.log(event.srcElement.id)
-      this.$store.state.temp.ID = event.srcElement.id
-      this.$router.push('/viewContract')
+      this.$router.push({name: 'viewContract', params: {ID: event.srcElement.id}})
     },
     removeContract (event) {
       console.log('remove contract ' + event.srcElement.id)
-      var id = event.srcElement.id
-      this.$store.dispatch('removeContract', id)
+      this.$store.dispatch('removeContract', event.srcElement.id)
     }
   }
 }
@@ -57,7 +54,7 @@ export default {
 		<table class="table" style="color:white"> 
 			<th>ስም</th><th>የአባት ስም</th><th>ካሬ</th><th>መለኪያ</th><th>ሁኔታ</th><th>የከፈሉት ወራት</th><th>ኪራያቸው የሚጀምርበት ቀን</th><th>ኪራያቸው የሚያልቅበት ቀን</th>
 			<th>የተከራይ ስም</th>	<th>የሱቅ ቁጥር</th>	
-			<tr v-for="contract in contract">
+			<tr v-for="(contract,index) in contracts">
 				<td>{{contract.name}}</td>
 				<td>{{contract.FatherName}}</td>
 				<td>{{contract.Magnitude}}</td>
@@ -69,7 +66,7 @@ export default {
 				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Rentee">{{contract.Rentee}}</a></td>
 				<td><a href="#" @click.stop.prevent="viewShop" v-bind:id="contract.Shop">{{contract.Shop}}</a></td>
 				<td><a href="#" @click.stop.prevent="viewContract" v-bind:id="contract.ID">Edit</a></td>
-        <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="contract.ID">Remove</a></td>
+        <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="index">Remove</a></td>
 			</tr>
 		</table> 
 			

@@ -1,22 +1,35 @@
 
 <script>
 import store from 'store'
+import contractDetail from './contractDetail'
 
 export default {
   name: 'addContract',
   props: { show: true },
-  components: {store},
-  computed: {},
+  components: {store, contractDetail},
   beforeCreate: function () {
     console.log('~~~~~~~Contract detail~~~~~~~~~')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     if (!this.$store.getters.getUser.authenticated) {
       this.$router.push('login')
     }
-    this.data = this.$store.getters.getContract
+    var dt = this.$store.getters.getContract
+    if (dt) {
+      this.data = dt
+    } else {
+      this.data = {'StartTime': '', 'EndTime': '', 'FatherName': '', 'ID': '', 'Magnitude': '', 'Period': '', 'Rentee': '', 'ShopNumber': '', 'Status': '', 'Unit': ''}
+    }
+  },
+  computed: {
+    shops: function () {
+      return this.$store.getters.getProperties
+    },
+    rentees: function () {
+      return this.$store.getters.getServiceRecievers
+    }
   },
   data: function () {
-    return { contracts: this.$store.getters.getContracts, shops: this.$store.getters.getProperties, rentee: this.$store.getters.getServiceRecievers }
+    return {}
   },
   methods: {
     add () {
@@ -27,13 +40,18 @@ export default {
       var Period = document.getElementById('Period').value
       var StartTime = document.getElementById('StartTime').value
       var EndTime = document.getElementById('EndTime').value
-      var ShopNumber = document.getElementById('ShopNumber').value
-      var Rentee = document.getElementById('Rentee').value
-
+      var shopItem = document.getElementById('ShopNumber')
+      var ShopNumber = shopItem.value
+      var renteeItem = document.getElementById('Rentee')
+      var Rentee = renteeItem.value
       var contract = {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Rentee': '', 'ShopNumber': ''}
       this.$store.state.temp.ID = Rentee
-      var renteeObj = this.$store.getters.getServiceReciever
-      console.log(renteeObj)
+      var Renteekey = renteeItem.options[renteeItem.selectedIndex].id
+      contract['Renteekey'] = Renteekey
+      var ShopNumbereekey = shopItem.options[shopItem.selectedIndex].id
+      contract['ShopNumbereekey'] = ShopNumbereekey
+      console.log(ShopNumbereekey + ' creating contracts' + Renteekey)
+      var renteeObj = this.$store.getters.getServiceRecievers[Renteekey]
       contract.name = renteeObj.Name
       contract.FatherName = renteeObj.FatherName
       contract.Magnitude = Magnitude
@@ -46,7 +64,7 @@ export default {
       contract.Rentee = Rentee
       if (this.validate(contract)) {
         this.$store.dispatch('addContract', contract)
-        // this.$router.push('/contractDetail')
+        this.$router.push('/contractDetail')
       } else {
         alert('input error')
         console.log(contract.Shop + '\t' + contract.Rentee + '\t' + contract.StartTime + '\t' + contract.EndTime + '\t' + contract.Magnitude)
@@ -69,7 +87,7 @@ export default {
 <template>
 
   <div id ="addContract" class="panel panel-default" style="background-color:#00AAAA;color:white">
-	<div class="panel-heading" style="background-color:#00BBBB;color:white">Contract Detail</div> 
+	<div class="panel-heading" style="background-color:#00BBBB;color:white">ኮንትራት</div> 
 	
 		<div style="padding:30px">
 	
@@ -78,14 +96,15 @@ export default {
 			<tr><td>የሱቅ ቁጥር</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white" id="ShopNumber">
-						<option v-for="shop in shops"  style="background-color:#00AAAA;color:white">{{shop.ShopNumber}}</option>
+						<option v-for="(shop,index) in shops"  style="background-color:#00AAAA;color:white"  v-bind:id=index>{{shop.ShopNumber}}</option>
 					</select>
 				</td>
 			</tr>
 			<tr><td>የተከራይ ስም</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
-						<option v-for="rentee in rentee"  style="background-color:#00AAAA;color:white">{{rentee.ID}}</option>
+						<option  style="background-color:#00AAAA;color:white"   
+									<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.ID}}</option>
 					</select>
 				</td>
 			</tr>
@@ -138,6 +157,8 @@ export default {
 				</div>
 			</div>
 	  </div>
-   </div>
 
+		<contractDetail></contractDetail>
+   </div>
+	 
 </template>

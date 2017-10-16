@@ -7,7 +7,7 @@ import firebaseApp from 'firebaseApp'
 export default {
   name: 'payementDetail',
   beforeCreate: function () {
-    console.log('=============Shop Detail==============')
+    console.log('=============Payement Detail==============')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getUser)
     if (!this.$store.getters.getUser.authenticated) {
@@ -45,6 +45,11 @@ export default {
       payement.ShopNumber = ShopNumber
       payement.Rentee = Rentee
       this.$store.dispatch('addPayement', payement)
+    },
+    removePayement: function (event) {
+      console.log(event.srcElement.id)
+      this.$store.dispatch('removePayement', event.srcElement.id)
+      this.data.Payements = this.$store.getters.getPayements
     }
   },
   computed: {
@@ -81,7 +86,7 @@ export default {
             <div class="col-lg-6">
 								<label  forname="PayableDeuDate" style="color:white">የከፈሉበት ቀን</label>
 								</div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
+								<input  type="date" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
             </div>
 
             <div class="col-lg-6">
@@ -93,7 +98,7 @@ export default {
             <div class="col-lg-6">
 								<label  forname="NextPayementDate" style="color:white">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
              </div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
+								<input  type="date" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
             </div>
 
             <div class="col-lg-6">
@@ -144,7 +149,7 @@ export default {
 					<th>ተከራይ</th>
 				</tr>
 
-				<tr v-for="tekeray in payement">
+				<tr v-for="(tekeray, index)  in payement">
 				  <td>{{tekeray.Magnitude}} </td>
 					<td>{{tekeray.NextPayementDate}} </td>
 					<td>{{tekeray.PayableDeuDate}} </td>
@@ -153,6 +158,7 @@ export default {
 					<td>{{tekeray.Rentee}} </td>
 					<td>{{tekeray.ShopNumber}} </td>
 					<td>{{tekeray.monthsPaid}}</td>
+          <td><a v-bind:id="index" href="#" @click.stop.prevent="removePayement"> X </a>
 				</tr>
 
 		</table> 

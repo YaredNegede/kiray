@@ -1,6 +1,5 @@
 
 <script>
-import Turbo from 'turbo'
 
 export default {
   beforeCreate: function () {
@@ -10,7 +9,7 @@ export default {
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
     console.log(this.data)
   },
-  components: {Turbo},
+  components: {},
   name: 'userDetail',
   data: function () {
     return {}

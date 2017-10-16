@@ -10,14 +10,8 @@
 		beforeCreate: function() {
 			this.$router.push(this.$store.getters.getSurf.currentPath)
 			console.log('============App===============')
-			var savedState = JSON.parse(window.localStorage.getItem('state'))
-			if(savedState) {
-        	  console.log(savedState)
-			  this.$store.commit('updateUserState', true)
-			  this.$store.commit('updateUserData', savedState)
-              this.$store.replaceState(this.$store.state, savedState.data)
-			  this.$router.push('login')
-			}
+			this.$store.commit('updateUserState', true)
+			this.$router.push('login')
 		},
 		name: 'app',
 		components: {

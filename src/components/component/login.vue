@@ -2,12 +2,6 @@
 
 export default {
   name: 'login',
-  beforeCreate: function () {
-    console.log('-------------login form loaded------------------')
-  },
-  create: function () {
-    console.log('-------------login form loaded------------------')
-  },
   computed: {
     username () {
       return (typeof this.data.Name === 'undefined' || this.data.Name === null) ? '' : this.data.Name

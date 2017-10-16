@@ -1,6 +1,5 @@
 
 <script>
-import Turbo from 'turbo'
 import store from 'store'
 
 export default {
@@ -12,7 +11,7 @@ export default {
     console.log(this.data)
   },
   name: 'rentersDetail',
-  components: {Turbo, store},
+  components: {store},
   data: function () {
     return {}
   }

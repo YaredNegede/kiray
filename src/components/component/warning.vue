@@ -1,8 +1,14 @@
 <script>
+import turbo from 'turbo'
+
 export default {
   name: 'warning',
-  beforeCreate: function () {},
-  components: {},
+  beforeCreate: function () {
+    console.log('Payement warninig')
+    turbo.do.payementStat()
+    console.log('Payement warninig')
+  },
+  components: {turbo},
   data: function () {
     return {late: [{'Name': '', 'FatherName': '', 'PhoneNumber': '', 'ShopNumber': ''}]}
   },
@@ -19,8 +25,6 @@ export default {
         <div class="panel-heading " style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰ</div>
     
         <div style="padding:30px">
-    
-    
     
             <table class="table" style="color:white" v-for="tekeray in late">
     

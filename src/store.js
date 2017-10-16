@@ -6,7 +6,7 @@ import router from './router'
 Vue.use(Vuex)
 
 const state = {
-  'user': {'Lang': 'AM', 'authenticated': true, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
+  'user': {'Lang': 'AM', 'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
   'componentState': [],
   'temp': {'ID': ''},
   'surf': {'currentPath': 'home', 'previousPath': '', 'rediretTo': '/addInformation'},
@@ -130,25 +130,6 @@ const mutations = {
     console.log('mutations login')
     state.user.authenticated = true
   },
-  logOut: function (state) {
-    var rets = firebaseApp.do.signOut()
-    rets.then(function () {
-      state.user.authenticated = false
-      window.sessionStorage.clear()
-      router.push('login')
-    }).catch(
-      function (error) {
-        var errorCode = error.code
-        var errorMessage = error.message
-        if (errorCode === 'auth/invalid-custom-token') {
-          console.log(errorCode)
-          console.log(errorMessage)
-        } else {
-          alert(error.message)
-        }
-      })
-    state.user.authenticated = false
-  },
   signUp: function () {
     console.log('signup')
   },
@@ -217,6 +198,7 @@ const actions = {
     })
   },
   updateServiceRecievers: function ({ commit }, userData) {
+    console.log(userData)
     console.log(userData)
     var db = firebaseApp.do.database().ref().child('ServiceRecievers')
     var keys = db.push().key
@@ -287,30 +269,44 @@ const actions = {
   removeContract: function ({ commit }, ID) {
     var data = {}
     for (var key in state.data.Contracts) {
-      if (state.data.Contracts[key].ID === ID) {
-        data['Contracts/' + key] = null
-        firebaseApp.do.database().ref().update(data).then(function () {
-          commit('removeContract', ID)
-        }).catch(function (error) {
-          alert(error.message)
-        })
-      }
+      data['Contracts/' + key] = null
+      firebaseApp.do.database().ref().update(data).then(function () {
+        commit('removeContract', ID)
+      }).catch(function (error) {
+        alert(error.message)
+      })
     }
+  },
+  removePayement: function ({ commit }, key) {
+    var data = {}
+    data['Payements/' + key] = null
+    firebaseApp.do.database().ref().update(data).then(function () {
+      delete state.data.Payements[key]
+      console.log(state.data.Payements)
+    }).catch(function (error) {
+      alert(error.message)
+    })
   },
   addContract: function ({ commit }, userData) {
     var db = firebaseApp.do.database().ref().child('Contracts')
     var keys = db.push().key
-    console.log('found key ' + keys)
     var updates = {}
     updates[keys] = userData
-    db.update(updates).then(function () {
-      console.log('adding to firebase')
-      commit('addContract', userData)
-    }).catch(function (error) {
-      console.log(error)
-    })
+    console.log('---------------------------------------------------------------------')
+    console.log(state.data.Contracts[userData.Renteekey] !== null && state.data.Contracts[userData.ShopNumbereekey] !== null)
+    if (state.data.Contracts[userData.Renteekey] !== null && state.data.Contracts[userData.ShopNumbereekey] !== null) {
+      throw new Error('Already exists')
+    } else {
+      db.update(updates).then(function () {
+        console.log('adding to firebase')
+        commit('addContract', userData)
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }
   },
   login: function ({ commit }, userData) {
+    console.log(userData)
     console.log(userData)
     var ret = firebaseApp.do.login(userData)
     ret.then(function (response) {
@@ -337,7 +333,25 @@ const actions = {
             }
           })
   },
-  logOut: function ({ commit }, userData) {},
+  logOut: function ({ commit }, userData) {
+    var rets = firebaseApp.do.signOut()
+    rets.then(function () {
+      state.user.authenticated = false
+      window.sessionStorage.clear()
+      router.push('login')
+    }).catch(
+      function (error) {
+        var errorCode = error.code
+        var errorMessage = error.message
+        if (errorCode === 'auth/invalid-custom-token') {
+          console.log(errorCode)
+          console.log(errorMessage)
+        } else {
+          alert(error.message)
+        }
+      })
+    state.user.authenticated = false
+  },
   signUp: function ({ commit }, userData) {},
   updateUserState: function ({ commit }, userData) {
   },
@@ -351,7 +365,6 @@ const getters = {
     return state.user
   },
   getPayements: function (state) {
-    console.log('Getting state for : ')
     firebaseApp.do.database().ref().child('Payements').once('value').then(function (snapshot) {
       state.data.Payements = snapshot.val()
     })
@@ -383,7 +396,7 @@ const getters = {
   },
   getServiceReciever: function (state) {
     var id = state.temp.ID
-    console.log('Getting ServiceReciever for : ' + id)
+    console.log('Getting ServiceReciever for : ')
     console.log(state.data.ServiceRecievers)
     if (id) {
       for (var key in state.data.ServiceRecievers) {

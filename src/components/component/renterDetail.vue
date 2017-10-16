@@ -6,7 +6,7 @@ export default {
   beforeCreate: function () {
     console.log('=======Renter Detail=======')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
-    console.log(this.$store.getters.getTemp)
+    console.log(this.$router)
     var dt = this.$store.getters.getServiceReciever
     this.data = (typeof dt === 'undefined' || dt === null) ? {'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''} : dt
   },
@@ -19,7 +19,6 @@ export default {
     removeRentee: function (event) {
       console.log(event.srcElement.id)
       var id = event.srcElement.id
-      console.log(this.$store.getters.getProperties)
       this.$store.dispatch('removeRentee', id)
       this.data.ServiceRecievers = this.$store.getters.getServiceRecievers
     },
