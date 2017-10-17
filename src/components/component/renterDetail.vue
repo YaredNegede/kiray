@@ -31,7 +31,9 @@ export default {
       data['PhoneNumber'] = document.getElementById('PhoneNumber').value
       console.log(data)
       if (this.validate(data)) {
+        console.log('--------------------')
         this.$store.dispatch('updateServiceRecievers', data)
+        console.log('--------------------')
         this.data = {}
       } else {
         alert('Invalid input')

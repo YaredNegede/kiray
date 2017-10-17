@@ -22,7 +22,7 @@ export default {
 <template>
     <div id="warning">
     
-        <div class="panel-heading " style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰ</div>
+        <div class="panel-heading " style="background-color:#00BBBB;color:white">የማስጠንቀቂያ ወር የደረሰባቸው</div>
     
         <div style="padding:30px">
     
@@ -30,13 +30,13 @@ export default {
     
                 <tr>
     
-                        <th>Name</th>
+                        <th>ስም</th>
         
-                        <th>Father Name</hd>
+                        <th>የአባት ስም</hd>
                         
-                        <th>PhoneNumber</th>
+                        <th>ስልክ ቁጥር</th>
 
-                        <th>ShopNumber</th>
+                        <th>የሱቅ ቁጥር</th>
     
                 </tr>
     

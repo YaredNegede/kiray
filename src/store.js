@@ -198,8 +198,6 @@ const actions = {
     })
   },
   updateServiceRecievers: function ({ commit }, userData) {
-    console.log(userData)
-    console.log(userData)
     var db = firebaseApp.do.database().ref().child('ServiceRecievers')
     var keys = db.push().key
 
@@ -295,6 +293,7 @@ const actions = {
     console.log('---------------------------------------------------------------------')
     console.log(state.data.Contracts[userData.Renteekey] !== null && state.data.Contracts[userData.ShopNumbereekey] !== null)
     if (state.data.Contracts[userData.Renteekey] !== null && state.data.Contracts[userData.ShopNumbereekey] !== null) {
+      alert('ያለ ኮንትራት ነው')
       throw new Error('Already exists')
     } else {
       db.update(updates).then(function () {
@@ -442,38 +441,21 @@ const getters = {
   getUnpaid: function (state) {
     console.log('Getting Unpaid')
     if (state.data.Contracts) {
-      var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
+      var ret = state.data.Contracts
       return ret
     }
   },
   getOneMonthRemaining: function (state) {
     console.log('getting stat')
-    if (state.data.Contracts) {
-      var ret = state.data.Contracts.filter(
-       function (ret) {
-         return (parseInt(ret.EndTime.split('-')[1]) - parseInt(ret.StartTime.split('-')[1])) === 1
-       }
-      )
-      return ret
-    }
+    return state.data.Contracts
   },
   unpaidSize: function (state) {
     console.log('getting stat')
-    if (state.data.Contracts) {
-      var ret = state.data.Contracts.filter(function (Contract) { return Contract.StartTime >= Contract.EndTime })
-      return ret.length
-    }
+    return state.data.Contracts
   },
   oneMonthRemainingSize: function () {
     console.log('getting stat')
-    if (state.data.Contracts) {
-      var ret = state.data.Contracts.filter(
-      function (ret) {
-        return (parseInt(ret.EndTime.split('-')[1]) - parseInt(ret.StartTime.split('-')[1])) === 1
-      }
-      )
-      return ret.length
-    }
+    return state.data.Contracts
   },
   getStat: function (state) {
     console.log('getting stat')

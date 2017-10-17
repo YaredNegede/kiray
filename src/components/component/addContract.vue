@@ -98,12 +98,12 @@ export default {
 					<select class="form-control" style="background-color:#00AAAA;color:white" id="ShopNumber">
 						<option v-for="(shop,index) in shops"  style="background-color:#00AAAA;color:white"  v-bind:id=index>{{shop.ShopNumber}}</option>
 					</select>
+          
 				</td>
 			</tr>
 			<tr><td>የተከራይ ስም</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
-						<option  style="background-color:#00AAAA;color:white"   
 									<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.ID}}</option>
 					</select>
 				</td>

@@ -56,6 +56,9 @@ export default {
     payement: function () {
       return this.$store.getters.getPayements
     },
+    contracts: function () {
+      return this.$store.getters.getContracts
+    },
     id: function () {}
   }
 }
@@ -66,16 +69,34 @@ export default {
 
 <template >
 <div  id="payementDetail">
+
 	<div class="panel panel-default" style="background-color:#00AAAA;color:white">
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ክፍያ</div> 
-	<div style="padding:30px">
+    	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ክፍያ</div> 
+    	<div style="padding:30px">
 		
-			<div class="row">
-		  		 <div class="col-lg-6">
+
+            <div class="row" >
+            
+              <div class="col-lg-6">
+								<label  forname="contract" style="color:white">ኮንትራት</label>
+							</div>
+
+              <div class="col-lg-6">
+                  <select id="contract" class="form-control" style="background-color:#00AAAA;color:white">
+                  
+                    <option v-for="(contract,index) in contracts" v-bind:id=index>{{contract.name}}</option>
+
+                  </select>
+              </div>
+
+
+		  		   <div class="col-lg-6">
 								<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
-							</div><div class="col-lg-6">
-							<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
-           </div>
+						</div>
+              
+              <div class="col-lg-6">
+						  	<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
+              </div>
 
             <div class="col-lg-6">
 								<label  forname="PayedAmount" style="color:white">የከፈሉት ገንዘብ</label>
@@ -104,20 +125,25 @@ export default {
             <div class="col-lg-6">
 								<label  forname="monthsPaid" style="color:white">የከፈሉት ወራት</label>
              </div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="monthsPaid"/>
+								<input  type="number" class="form-control"   style="background-color:#00AAAA;color:white"  id="monthsPaid"/>
             </div>
 
             <div class="col-lg-6">
 								<label  forname="ShopNumber" style="color:white">የሱቅ ቁጥር</label>
 								</div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="ShopNumber"/>
+                	<select class="form-control" style="background-color:#00AAAA;color:white" id="ShopNumber">
+                    <option v-for="(shop,index) in shops"  style="background-color:#00AAAA;color:white"  v-bind:id=index>{{shop.ShopNumber}}</option>
+                  </select>
             </div>
 
             <div class="col-lg-6">
 			<label  forname="Rentee" style="color:white">ተከራይ </label>
-			</div><div class="col-lg-6">
-			<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Rentee"/>
-            </div>
+			</div>
+      <div class="col-lg-6">
+          <select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
+						<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.ID}}</option>
+					</select>
+      </div>
 			
 		</div>
 
@@ -147,6 +173,8 @@ export default {
 					<th>የከፈሉት ወራት</th>
 					<th>የሱቅ ቁጥር</th>
 					<th>ተከራይ</th>
+          <th>የቀራቸው ወራቶች</th>
+          <th>የቀራቸው ጊዜ</th>
 				</tr>
 
 				<tr v-for="(tekeray, index)  in payement">
@@ -165,6 +193,7 @@ export default {
 
 	  </div>
 	</div>
+
 <div>
 <div class="row">
 <div class="col-lg-6">

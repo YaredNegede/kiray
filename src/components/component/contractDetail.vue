@@ -52,8 +52,17 @@ export default {
       <a style="color:white" href="#/addContract">አዲስ ኮንትራት መዝግብ</a>
 	<hr>
 		<table class="table" style="color:white"> 
-			<th>ስም</th><th>የአባት ስም</th><th>ካሬ</th><th>መለኪያ</th><th>ሁኔታ</th><th>የከፈሉት ወራት</th><th>ኪራያቸው የሚጀምርበት ቀን</th><th>ኪራያቸው የሚያልቅበት ቀን</th>
-			<th>የተከራይ ስም</th>	<th>የሱቅ ቁጥር</th>	
+			<th>ስም</th>
+      <th>የአባት ስም</th>
+      <th>ካሬ</th>
+      <th>መለኪያ</th>
+      <th>ሁኔታ</th>
+      <th>የከፈሉት ወራት</th>
+      <th>ኪራያቸው የሚጀምርበት ቀን</th>
+      <th>ኪራያቸው የሚያልቅበት ቀን</th>
+			<th>የተከራይ ስም</th>
+      <th>የሱቅ ቁጥር</th>
+      <th>ኮንትራት የቀራቸው ጊዜ</th>	
 			<tr v-for="(contract,index) in contracts">
 				<td>{{contract.name}}</td>
 				<td>{{contract.FatherName}}</td>

@@ -26,7 +26,7 @@ export default {
 
     <div id="paidDetail">
     
-        <div class="panel-heading" style="background-color:#00BBBB; color:white">ያልከፈሉ ተከራይ </div>
+        <div class="panel-heading" style="background-color:#00BBBB; color:white">ያልከፈሉ ተከራዮች</div>
     
         <div style="padding:30px">
     
@@ -34,25 +34,25 @@ export default {
     
                 <tr>
         
-                        <th>Name</th>
-        
-                        <th>Father Name</th>
-        
-                        <th>PhoneNumber</th>
+                    <th>ስም</th>
+    
+                    <th>የአባት ስም</hd>
+                    
+                    <th>ስልክ ቁጥር</th>
 
-                        <th>ShopNumber</th>
+                    <th>የሱቅ ቁጥር</th>
     
                 </tr>
     
                 <tr>
             
-                        <td>{{data.Name}}</td>
-            
-                        <td>{{data.FatherName}}</td>
-            
-                        <td>{{data.PhoneNumber}}</td>
-                        
-                        <td>{{data.ShopNumber}}</td>
+                    <td>{{data.Name}}</td>
+        
+                    <td>{{data.FatherName}}</td>
+        
+                    <td>{{data.PhoneNumber}}</td>
+                    
+                    <td>{{data.ShopNumber}}</td>
             
                 </tr>
     
