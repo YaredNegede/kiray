@@ -74,8 +74,11 @@ export default {
 				<td>{{contract.EndTime}}</td>
 				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Rentee">{{contract.Rentee}}</a></td>
 				<td><a href="#" @click.stop.prevent="viewShop" v-bind:id="contract.Shop">{{contract.Shop}}</a></td>
+        <td>---</td>
 				<td><a href="#" @click.stop.prevent="viewContract" v-bind:id="contract.ID">Edit</a></td>
         <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="index">Remove</a></td>
+       
+        
 			</tr>
 		</table> 
 			

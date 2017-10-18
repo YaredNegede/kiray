@@ -50,7 +50,6 @@ export default {
       contract['Renteekey'] = Renteekey
       var ShopNumbereekey = shopItem.options[shopItem.selectedIndex].id
       contract['ShopNumbereekey'] = ShopNumbereekey
-      console.log(ShopNumbereekey + ' creating contracts' + Renteekey)
       var renteeObj = this.$store.getters.getServiceRecievers[Renteekey]
       contract.name = renteeObj.Name
       contract.FatherName = renteeObj.FatherName
@@ -140,10 +139,10 @@ export default {
 				<td><input  v-model="data.Period" type="number" class="form-control" style="background-color:#00AAAA;color:white"  id="Period"/></td></td></tr>
 			<tr>
 				<td>ኪራያቸው የሚጀምርበት ቀን</td>
-				<td><input v-model="data.StartTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"  id="StartTime"/></td></td></tr>
+				<td><input v-model="data.StartTime" type="text" class="form-control" style="background-color:#00AAAA;color:white"  id="StartTime"/></td></td></tr>
 			<tr>
 				<td>ኪራያቸው የሚያልቅበት ቀን</td>
-				<td><input v-model="data.EndTime" type="date" class="form-control" style="background-color:#00AAAA;color:white"  id="EndTime"/></td></td></tr>
+				<td><input v-model="data.EndTime" type="text" class="form-control" style="background-color:#00AAAA;color:white"  id="EndTime"/></td></td></tr>
 		</table> 
 	  	<div class="row">
 				<div class=" col-lg-6">

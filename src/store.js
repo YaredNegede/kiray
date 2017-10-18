@@ -156,12 +156,7 @@ const actions = {
     updates[keys] = userData
     console.log('-----------------------1')
     db.update(updates).then(function () {
-      db.once('value').then(function (snapshot) {
-        state.data.Payements = snapshot.val()
-        commit('addPayement', keys, userData)
-      }).catch(function (error) {
-        console.log(error)
-      })
+      state.data.Payements[keys] = userData
     }).catch(function (error) {
       console.log(error)
     })
@@ -286,15 +281,26 @@ const actions = {
     })
   },
   addContract: function ({ commit }, userData) {
+    console.log(userData)
     var db = firebaseApp.do.database().ref().child('Contracts')
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
-    console.log('---------------------------------------------------------------------')
-    console.log(state.data.Contracts[userData.Renteekey] !== null && state.data.Contracts[userData.ShopNumbereekey] !== null)
-    if (state.data.Contracts[userData.Renteekey] !== null && state.data.Contracts[userData.ShopNumbereekey] !== null) {
-      alert('ያለ ኮንትራት ነው')
-      throw new Error('Already exists')
+    console.log(state.data.Contracts !== null)
+    if (state.data.Contracts !== null) {
+      for (var k in state.data.Contracts) {
+        if (state.data.Contracts[k].Renteekey === userData.Renteekey && state.data.Contracts[k].ShopNumbereekey) {
+          alert('ያለ ኮንትራት ነው')
+          throw new Error('Already exists')
+        } else {
+          db.update(updates).then(function () {
+            console.log('adding to firebase')
+            commit('addContract', userData)
+          }).catch(function (error) {
+            console.log(error)
+          })
+        }
+      }
     } else {
       db.update(updates).then(function () {
         console.log('adding to firebase')

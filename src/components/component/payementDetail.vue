@@ -44,6 +44,7 @@ export default {
       payement.monthsPaid = monthsPaid
       payement.ShopNumber = ShopNumber
       payement.Rentee = Rentee
+      console.log(payement)
       this.$store.dispatch('addPayement', payement)
     },
     removePayement: function (event) {
@@ -54,12 +55,22 @@ export default {
   },
   computed: {
     payement: function () {
+      console.log('Payements')
       return this.$store.getters.getPayements
     },
     contracts: function () {
+      console.log('Contracts')
       return this.$store.getters.getContracts
     },
-    id: function () {}
+    shops: function () {
+      console.log('shops')
+      return this.$store.getters.getProperties
+    },
+    rentees: function () {
+      console.log('rentees')
+      return this.$store.getters.getServiceRecievers
+    }
+
   }
 }
 </script>
@@ -67,7 +78,7 @@ export default {
 
 </scope>
 
-<template >
+<template>
 <div  id="payementDetail">
 
 	<div class="panel panel-default" style="background-color:#00AAAA;color:white">
@@ -107,7 +118,7 @@ export default {
             <div class="col-lg-6">
 								<label  forname="PayableDeuDate" style="color:white">የከፈሉበት ቀን</label>
 								</div><div class="col-lg-6">
-								<input  type="date" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
             </div>
 
             <div class="col-lg-6">
@@ -119,7 +130,7 @@ export default {
             <div class="col-lg-6">
 								<label  forname="NextPayementDate" style="color:white">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
              </div><div class="col-lg-6">
-								<input  type="date" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
             </div>
 
             <div class="col-lg-6">
