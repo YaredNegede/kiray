@@ -165,7 +165,7 @@ export default {
 
 				<div class=" col-lg-12">
 
-					<button @click.stop.prevent="addPayement" v-bind:id="id" class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
+					<button @click.stop.prevent="addPayement" class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
 
 				</div>
 			</div>	
