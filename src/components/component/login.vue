@@ -39,7 +39,7 @@ export default {
   <div class="col-lg-2"></div>
 	<div class="col-lg-4">
    
-   <center><h1><b>ባላሱር ሕንጻ</b></h1></center>
+   <center><h1><b>ባለሶር ሕንጻ ኪራይ</b></h1></center>
 
 		  <div class="row">
 			  	 <label for="username" style="color:white">Username</label>

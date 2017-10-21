@@ -88,7 +88,7 @@ export default {
                   <div class="row">
                      <div class="col-md-2"></div>
                       <div class="col-md-6">
-                        <h1><b>ባላሱር ሕንጻ</b></h1>
+                        <h1><b>ባለሶር ሕንጻ ኪራይ</b></h1>
                       
                       </div>
                   </div>

@@ -63,12 +63,11 @@ export default {
       contract.Rentee = Rentee
       if (this.validate(contract)) {
         this.$store.dispatch('addContract', contract)
-        this.$router.push('/contractDetail')
+        console.log('---------------------0')
       } else {
         alert('input error')
         console.log(contract.Shop + '\t' + contract.Rentee + '\t' + contract.StartTime + '\t' + contract.EndTime + '\t' + contract.Magnitude)
       }
-      console.log('---------------------')
     },
     validate (contract) {
       console.log('validating')
@@ -103,7 +102,7 @@ export default {
 			<tr><td>የተከራይ ስም</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
-									<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.ID}}</option>
+									<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.Name}}</option>
 					</select>
 				</td>
 			</tr>
@@ -120,8 +119,8 @@ export default {
 				<td>መለኪያ</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Unit">
-						<option  style="background-color:#00AAAA;color:white">Square Meter</option>
-						<option  style="background-color:#00AAAA;color:white">Time</option>
+						<option  style="background-color:#00AAAA;color:white">ስኩዌር ሜትር</option>
+						<option  style="background-color:#00AAAA;color:white">ጊዜ</option>
 					</select>
 				</td>
 				</tr>
@@ -129,8 +128,8 @@ export default {
 				<td>ሁኔታ</td>
 				<td>
 					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Status">
-						<option   style="background-color:#00AAAA;color:white">Rented</option>
-						<option   style="background-color:#00AAAA;color:white">Available</option>
+						<option   style="background-color:#00AAAA;color:white">ተከራይቷል</option>
+						<option   style="background-color:#00AAAA;color:white">አልተከራየም</option>
 					</select>
 				</td>
 			</tr>

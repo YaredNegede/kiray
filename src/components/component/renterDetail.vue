@@ -29,6 +29,7 @@ export default {
       data['ID'] = document.getElementById('ID').value
       data['IDType'] = document.getElementById('IDType').value
       data['PhoneNumber'] = document.getElementById('PhoneNumber').value
+      data['tinNumber'] = document.getElementById('tinNumber').value
       console.log(data)
       if (this.validate(data)) {
         console.log('--------------------')
@@ -40,7 +41,7 @@ export default {
       }
     },
     validate: function (data) {
-      return ((data.Name !== '') && (data.FatherName !== '') && (data.ID !== '') && (data.IDType !== '') && (data.PhoneNumber !== ''))
+      return ((data.Name !== '') && (data.tinNumber !== '') && (data.FatherName !== '') && (data.ID !== '') && (data.IDType !== '') && (data.PhoneNumber !== ''))
     }
   },
   computed: {
@@ -80,10 +81,19 @@ export default {
 
 					<div class="row">
 						<div class=" col-lg-3">
-							<label  style="color:white">መታወቂያ ቁጥር</label>
+							<label  style="color:white">የተከራይ አድራሻ</label>
 						</div>
 						<div class=" col-lg-9">
-							<input  id = "ID" v-model="data.ID"  type="text"  class="form-control" placeholder="መታወቂያ ቁጥር"   style="background-color:#00AAAA;color:white"/>
+							<input  id = "ID" v-model="data.ID"  type="text"  class="form-control" placeholder="የተከራይ አድራሻ"   style="background-color:#00AAAA;color:white"/>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class=" col-lg-3">
+							<label  style="color:white">ቲን ነምበር</label>
+						</div>
+						<div class=" col-lg-9">
+							<input  id = "tinNumber" v-model="data.tinNumber"  type="text"  class="form-control" placeholder="ቲን ነምበር"   style="background-color:#00AAAA;color:white"/>
 						</div>
 					</div>
 
@@ -138,6 +148,7 @@ export default {
 								<th>የአባት ስም</th>
 								<th>መታወቂያ ቁጥር</th>
 								<th>መታወቂያ አይነት</th>
+								<th>ቲንነምበር</th>
 								<th>ስልክ ቁጥር</th>
 							</tr>
 							
@@ -147,6 +158,7 @@ export default {
 								<td>{{renter.ID}}</td>
 								<td>{{renter.IDType}}</td>
 								<td>{{renter.PhoneNumber}}</td>
+								<td>{{renter.tinNumber}}</td>
 								<td><a v-bind:id="index" href="#" @click.stop.prevent="removeRentee"> X </a>
 
 						</tr>

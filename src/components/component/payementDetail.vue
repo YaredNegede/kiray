@@ -35,7 +35,10 @@ export default {
       var monthsPaid = document.getElementById('monthsPaid').value
       var ShopNumber = document.getElementById('ShopNumber').value
       var Rentee = document.getElementById('Rentee').value
+      var contract = document.getElementById('contract')
+      var contractKey = document.getElementById('contract').options[contract.selectedIndex].id
       var payement = {}
+      payement['contractKey'] = contractKey
       payement.Magnitude = Magnitude
       payement.PayedAmount = PayedAmount
       payement.PayableDeuDate = PayableDeuDate
@@ -84,22 +87,25 @@ export default {
 	<div class="panel panel-default" style="background-color:#00AAAA;color:white">
     	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ክፍያ</div> 
     	<div style="padding:30px">
-		
 
             <div class="row" >
             
               <div class="col-lg-6">
-								<label  forname="contract" style="color:white">ኮንትራት</label>
+								<label  forname="baks" style="color:white">የከፈሉበት ባንክ</label>
 							</div>
 
               <div class="col-lg-6">
-                  <select id="contract" class="form-control" style="background-color:#00AAAA;color:white">
+
+                  <select id="banks" class="form-control" style="background-color:#00AAAA;color:white">
                   
-                    <option v-for="(contract,index) in contracts" v-bind:id=index>{{contract.name}}</option>
+                    <option >ኦሮሚያ ኢንተርናሽናል ባንክ</option>
+
+                    <option >ኢትዮጵያ ንግድ ባንክ</option>
+
+                    <option >ንብ ኢንተርናሽናል ባንክ</option>
 
                   </select>
               </div>
-
 
 		  		   <div class="col-lg-6">
 								<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
@@ -110,7 +116,13 @@ export default {
               </div>
 
             <div class="col-lg-6">
-								<label  forname="PayedAmount" style="color:white">የከፈሉት ገንዘብ</label>
+								<label  forname="PayedAmountBeforerVat" style="color:white">ከቫት በፊት</label>
+								</div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmountBeforerVat"/>
+            </div>
+            
+            <div class="col-lg-6">
+								<label  forname="PayedAmount" style="color:white">ከቫት በኋላ</label>
 								</div><div class="col-lg-6">
 								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmount"/>
             </div>
@@ -152,7 +164,7 @@ export default {
 			</div>
       <div class="col-lg-6">
           <select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
-						<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.ID}}</option>
+						<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.Name}}</option>
 					</select>
       </div>
 			

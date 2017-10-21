@@ -6,7 +6,7 @@ import router from './router'
 Vue.use(Vuex)
 
 const state = {
-  'user': {'Lang': 'AM', 'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
+  'user': {'Lang': 'AM', 'authenticated': true, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
   'componentState': [],
   'temp': {'ID': ''},
   'surf': {'currentPath': 'home', 'previousPath': '', 'rediretTo': '/addInformation'},
@@ -281,20 +281,27 @@ const actions = {
     })
   },
   addContract: function ({ commit }, userData) {
-    console.log(userData)
+    console.log('adding contrtact action')
     var db = firebaseApp.do.database().ref().child('Contracts')
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
     console.log(state.data.Contracts !== null)
-    if (state.data.Contracts !== null) {
+    if (state.data.Contracts) {
+      console.log('------------------------------------1')
+      console.log(state.data)
       for (var k in state.data.Contracts) {
+        console.log('------------------------------------2')
+        console.log(state.data.Contracts[k].Renteekey === userData.Renteekey && state.data.Contracts[k].ShopNumbereekey)
         if (state.data.Contracts[k].Renteekey === userData.Renteekey && state.data.Contracts[k].ShopNumbereekey) {
           alert('ያለ ኮንትራት ነው')
           throw new Error('Already exists')
         } else {
+          console.log('------------------------------------3')
+          console.log('trying to post data to firebase')
           db.update(updates).then(function () {
-            console.log('adding to firebase')
+            console.log('------------------------------------4')
+            console.log('adding to firebase started')
             commit('addContract', userData)
           }).catch(function (error) {
             console.log(error)
@@ -302,6 +309,7 @@ const actions = {
         }
       }
     } else {
+      console.log('no contracts found')
       db.update(updates).then(function () {
         console.log('adding to firebase')
         commit('addContract', userData)
@@ -400,28 +408,16 @@ const getters = {
     return state.data.Properties
   },
   getServiceReciever: function (state) {
-    var id = state.temp.ID
+    var key = state.temp.ID
     console.log('Getting ServiceReciever for : ')
-    console.log(state.data.ServiceRecievers)
-    if (id) {
-      for (var key in state.data.ServiceRecievers) {
-        if (state.data.ServiceRecievers[key].ID === id) {
-          return state.data.ServiceRecievers[key]
-        }
-      }
-    }
+    console.log(state.data.ServiceRecievers[key])
+    return state.data.ServiceRecievers[key]
   },
   getProperty: function (state) {
     console.log('Getting Property for ' + state.temp.ID)
-    var id = state.temp.ID
+    var key = state.temp.ID
     console.log(state.data.Properties)
-    if (state.temp.ID) {
-      for (var key in state.data.Properties) {
-        if (state.data.Properties[key].ShopNumber === id) {
-          return state.data.Properties[key]
-        }
-      }
-    }
+    return state.data.Properties[key]
   },
   getContracts: function (state) {
     console.log('Getting contracts')

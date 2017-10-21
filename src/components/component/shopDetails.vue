@@ -8,7 +8,7 @@ export default {
     console.log('=============Shop Detail==============')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
     console.log(this.$store.getters.getTemp)
-    var dt = this.$store.state.data.Properties
+    var dt = this.$store.state.data.Property
     this.data = (typeof dt === 'undefined' || dt === null) ? {'ShopNumber': '', 'Floor': '', 'Purpuse': ''} : dt
     console.log(this.data)
   },
@@ -29,13 +29,16 @@ export default {
 	
 <template>
   <div id= "shopDetail" class="panel panel-default them" style="background-color:#00AAAA">
-	<div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">Shops</div> 
+	<div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">ሱቅ</div> 
 		<div style="padding:30px">
 
 				<div class="row" style="color:white">
 						<div class=" col-lg-12">
 							<table class="table">
-							<th>ShopNumber</th> <th>Floor</th> <th>Purpuse</th>
+							<th>የሱቅ ቁጥር</th>
+              <th>ፍሎር</th>
+              <th>ስፋት</th>
+
                   <tr v-for="shop in data">
                       <td>{{shop.ShopNumber}}</td> <td>{{shop.Floor}}</td><td>{{shop.Purpuse}}</td><td><a href="#"> X </a>
                   </tr>

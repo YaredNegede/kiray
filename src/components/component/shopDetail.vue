@@ -71,7 +71,6 @@ export default {
 		<div class="panel panel-default them" style="background-color:#00AAAA">
 	    <div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">ሱቅ መመዝገቢያ</div> 
 		<div style="padding:30px">
-
 					<div class="row">
 						<div class="col-lg-3">
 							<label  style="color:white">የሱቅ ቁጥር</label>

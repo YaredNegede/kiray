@@ -24,13 +24,17 @@ export default {
   methods: {
     viewRentee (event) {
       console.log('renterDetail ' + event.srcElement.id)
+      console.log(this.$store)
+      this.$store.state.temp.ID = event.srcElement.id
       this.$router.push({name: 'renterDetail', params: {renteeKey: event.srcElement.id}})
     },
     viewShop (event) {
       console.log('shopDetail  ' + event.srcElement.id)
+      this.$store.state.temp.ID = event.srcElement.id
       this.$router.push({name: 'shopDetail', params: {ID: event.srcElement.id}})
     },
     viewContract (event) {
+      this.$store.state.temp.ID = event.srcElement.id
       this.$router.push({name: 'viewContract', params: {ID: event.srcElement.id}})
     },
     removeContract (event) {
@@ -64,7 +68,7 @@ export default {
       <th>የሱቅ ቁጥር</th>
       <th>ኮንትራት የቀራቸው ጊዜ</th>	
 			<tr v-for="(contract,index) in contracts">
-				<td>{{contract.name}}</td>
+				<td>{{contract.Rentee}}</td>
 				<td>{{contract.FatherName}}</td>
 				<td>{{contract.Magnitude}}</td>
 				<td>{{contract.Unit}}</td>
@@ -72,13 +76,10 @@ export default {
 				<td>{{contract.Period}}</td>
 				<td>{{contract.StartTime}}</td>
 				<td>{{contract.EndTime}}</td>
-				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Rentee">{{contract.Rentee}}</a></td>
-				<td><a href="#" @click.stop.prevent="viewShop" v-bind:id="contract.Shop">{{contract.Shop}}</a></td>
-        <td>---</td>
-				<td><a href="#" @click.stop.prevent="viewContract" v-bind:id="contract.ID">Edit</a></td>
+				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Renteekey">{{contract.Rentee}}</a></td>
+				<td><a href="#" @click.stop.prevent="viewShop" v-bind:id="contract.ShopNumbereekey">{{contract.Shop}}</a></td>
+				<td>{{contract.EndTime -contract.StartTime}}</td>
         <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="index">Remove</a></td>
-       
-        
 			</tr>
 		</table> 
 			
