@@ -33,7 +33,7 @@ export default {
    <ul class="nav navbar-nav">
 	   <li><router-link to="/home"  style="color:white"><h3><b>ወደ መጀመሪያ</b></h3></router-link></li>
      <li><router-link to="/addInformation"  style="color:white" v-show="!login"><h3><b>ዳታ ማስገቢያ</b></h3></router-link></li>
-     <li><router-link to="/contractDetail"  style="color:white" v-show="!login"><h3><b>ኮንትራት</b></h3></router-link></li>
+     <li><router-link to="/addContract"  style="color:white" v-show="!login"><h3><b>ኮንትራት</b></h3></router-link></li>
      <li><router-link to="/payementDetail"  style="color:white" v-show="!login"><h3><b>ክፍያ</b></h3></router-link></li>
 
      <li><router-link to="/shopDetails"  style="color:white" v-show="!login"><h3><b>ኪራይ</b></h3></router-link></li>     

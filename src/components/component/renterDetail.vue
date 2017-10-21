@@ -47,6 +47,9 @@ export default {
   computed: {
     ServiceRecievers: function () {
       return this.$store.getters.getServiceRecievers
+    },
+    datas: function () {
+      return this.$store.getters.getServiceReciever
     }
   }
 }
@@ -131,12 +134,6 @@ export default {
 
 			</div>
 
-
-
-
-
-
-
 	</div>
 
 <!--TABLE-->
@@ -157,8 +154,8 @@ export default {
 								<td>{{renter.FatherName}}</td>
 								<td>{{renter.ID}}</td>
 								<td>{{renter.IDType}}</td>
-								<td>{{renter.PhoneNumber}}</td>
 								<td>{{renter.tinNumber}}</td>
+								<td>{{renter.PhoneNumber}}</td>
 								<td><a v-bind:id="index" href="#" @click.stop.prevent="removeRentee"> X </a>
 
 						</tr>

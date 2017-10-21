@@ -286,23 +286,20 @@ const actions = {
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
-    console.log(state.data.Contracts !== null)
-    if (state.data.Contracts) {
-      console.log('------------------------------------1')
-      console.log(state.data)
+    console.log(state.data.Contracts)
+    if (!(state.data.Contracts.length === 0)) {
+      console.log('contracts found')
+      console.log(state.data.Contracts)
       for (var k in state.data.Contracts) {
-        console.log('------------------------------------2')
         console.log(state.data.Contracts[k].Renteekey === userData.Renteekey && state.data.Contracts[k].ShopNumbereekey)
         if (state.data.Contracts[k].Renteekey === userData.Renteekey && state.data.Contracts[k].ShopNumbereekey) {
           alert('ያለ ኮንትራት ነው')
           throw new Error('Already exists')
         } else {
-          console.log('------------------------------------3')
-          console.log('trying to post data to firebase')
           db.update(updates).then(function () {
-            console.log('------------------------------------4')
-            console.log('adding to firebase started')
-            commit('addContract', userData)
+            db.once('value').then(function (snapshot) {
+              state.data.Contracts = snapshot.val()
+            })
           }).catch(function (error) {
             console.log(error)
           })
@@ -312,7 +309,9 @@ const actions = {
       console.log('no contracts found')
       db.update(updates).then(function () {
         console.log('adding to firebase')
-        commit('addContract', userData)
+        db.once('value').then(function (snapshot) {
+          state.data['Contracts'] = snapshot.val()
+        })
       }).catch(function (error) {
         console.log(error)
       })
@@ -326,10 +325,8 @@ const actions = {
       firebaseApp.do.database().ref().once('value').then(function (snapshot) {
         console.log('____________________LOGIN_______________________________')
         state.data = snapshot.val()
-        // var savedState = JSON.stringify(snapshot.val())
-        // window.sessionStorage.setItem('state', savedState)
         commit('login', userData)
-        router.push('/contractDetail')
+        router.push('/addContract')
       })
     }).catch(
           function (error) {

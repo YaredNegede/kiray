@@ -189,7 +189,8 @@ export default {
 	       <table class="table" style="color:white"> 
 			    <tr>
 					<th>የገቢ ደረሰኝ ቁጥር</th>
-					<th>የከፈሉት ገንዘብ</th>
+					<th>ከቫት በፊት</th>
+          <th>ከቫት በኋላ</th>
 					<th>የከፈሉበት ቀን</hd>
 					<th>ቀጣይ ክፍያ </th>
 					<th>ቀጣይ ክፍያ መከፈል ያለበት ቀን</th>
@@ -201,10 +202,11 @@ export default {
 				</tr>
 
 				<tr v-for="(tekeray, index)  in payement">
+          <td>{{tekeray.PayedAmountBeforerVat}}</td>
+					<td>{{tekeray.PayedAmount}} </td>
 				  <td>{{tekeray.Magnitude}} </td>
 					<td>{{tekeray.NextPayementDate}} </td>
 					<td>{{tekeray.PayableDeuDate}} </td>
-					<td>{{tekeray.PayedAmount}} </td>
 					<td>{{tekeray.RemainingPayement}} </td>
 					<td>{{tekeray.Rentee}} </td>
 					<td>{{tekeray.ShopNumber}} </td>

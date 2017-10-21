@@ -10,16 +10,19 @@ export default {
       this.$router.push('login')
     }
   },
+  create: function () {
+    this.data['Contracts'] = this.$store.getters.getContracts
+  },
   name: 'contractDetail',
   props: { show: true },
   components: {firebaseApp},
   computed: {
-    contracts: function () {
-      return this.$store.getters.getContracts
-    }
+    // contracts: function () {
+    //   return this.$store.getters.getContracts
+    // }
   },
   data: function () {
-    return {}
+    return { Contracts: [] }
   },
   methods: {
     viewRentee (event) {
@@ -40,6 +43,7 @@ export default {
     removeContract (event) {
       console.log('remove contract ' + event.srcElement.id)
       this.$store.dispatch('removeContract', event.srcElement.id)
+      this.data.data = this.$store.getters.getContracts
     }
   }
 }
@@ -67,7 +71,7 @@ export default {
 			<th>የተከራይ ስም</th>
       <th>የሱቅ ቁጥር</th>
       <th>ኮንትራት የቀራቸው ጊዜ</th>	
-			<tr v-for="(contract,index) in contracts">
+			<tr v-for="(contract,index) in Contracts">
 				<td>{{contract.Rentee}}</td>
 				<td>{{contract.FatherName}}</td>
 				<td>{{contract.Magnitude}}</td>

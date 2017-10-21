@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import App from '../App'
 import SignUp from '../components/component/SignUp'
 import addInformation from '../components/component/addInformation'
-import contractDetail from '../components/component/contractDetail'
 import home from '../components/component/home'
 import renterDetail from '../components/component/renterDetail'
 import shopDetail from '../components/component/shopDetail'
@@ -33,9 +32,9 @@ const routes = [
     component: payementDetail
   },
   {
-    path: '/contractDetail',
-    name: 'contractDetail',
-    component: contractDetail
+    path: '/addContract',
+    name: 'addContract',
+    component: addContract
   },
   {
     path: '/SignUp',

@@ -21,18 +21,36 @@ export default {
     }
   },
   computed: {
+    viewRentee: function (event) {
+      console.log('renterDetail ' + event.srcElement.id)
+      console.log(this.$store)
+      this.$store.state.temp.ID = event.srcElement.id
+      this.$router.push({name: 'renterDetail', params: {renteeKey: event.srcElement.id}})
+    },
+    viewShop: function (event) {
+      console.log('shopDetail  ' + event.srcElement.id)
+      this.$store.state.temp.ID = event.srcElement.id
+      this.$router.push({name: 'shopDetail', params: {ID: event.srcElement.id}})
+    },
+    viewContract: function (event) {
+      this.$store.state.temp.ID = event.srcElement.id
+      this.$router.push({name: 'viewContract', params: {ID: event.srcElement.id}})
+    },
     shops: function () {
       return this.$store.getters.getProperties
     },
     rentees: function () {
       return this.$store.getters.getServiceRecievers
+    },
+    contracts: function () {
+      return this.$store.getters.getContracts
     }
   },
   data: function () {
     return {}
   },
   methods: {
-    add () {
+    add: function () {
       console.log('creating contracts')
       var Magnitude = document.getElementById('Magnitude').value
       var Unit = document.getElementById('Unit').value
@@ -63,15 +81,20 @@ export default {
       contract.Rentee = Rentee
       if (this.validate(contract)) {
         this.$store.dispatch('addContract', contract)
-        console.log('---------------------0')
+        this.data.contract = this.$store.getters.getContracts
       } else {
         alert('input error')
         console.log(contract.Shop + '\t' + contract.Rentee + '\t' + contract.StartTime + '\t' + contract.EndTime + '\t' + contract.Magnitude)
       }
     },
-    validate (contract) {
+    validate: function (contract) {
       console.log('validating')
       return ((contract.Shop !== '') && (contract.Rentee !== '' && contract.StartTime !== '') && (contract.EndTime !== '' && contract.Magnitude !== ''))
+    },
+    removeContract: function (event) {
+      console.log('remove contract ' + event.srcElement.id)
+      this.$store.dispatch('removeContract', event.srcElement.id)
+      this.data.contract = this.$store.getters.getContracts
     }
   }
 }
@@ -83,7 +106,7 @@ export default {
  }
 </scope>
 <template>
-
+<div>
   <div id ="addContract" class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading" style="background-color:#00BBBB;color:white">ኮንትራት</div> 
 	
@@ -156,7 +179,43 @@ export default {
 			</div>
 	  </div>
 
-		<contractDetail></contractDetail>
+
+
    </div>
 	 
+
+   	<!--TABLE-->
+ <div class="panel panel-default" style="background-color:#00AAAA;color:white">
+	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ኮንትራት</div> 
+
+	<table class="table" style="color:white"> 
+			<th>ስም</th>
+      <th>የአባት ስም</th>
+      <th>ካሬ</th>
+      <th>መለኪያ</th>
+      <th>ሁኔታ</th>
+      <th>የከፈሉት ወራት</th>
+      <th>ኪራያቸው የሚጀምርበት ቀን</th>
+      <th>ኪራያቸው የሚያልቅበት ቀን</th>
+			<th>የተከራይ ስም</th>
+      <th>የሱቅ ቁጥር</th>
+      <th>ኮንትራት የቀራቸው ጊዜ</th>	
+			<tr v-for="(contract,index) in contracts">
+				<td>{{contract.Rentee}}</td>
+				<td>{{contract.FatherName}}</td>
+				<td>{{contract.Magnitude}}</td>
+				<td>{{contract.Unit}}</td>
+				<td>{{contract.Status}}</td>
+				<td>{{contract.Period}}</td>
+				<td>{{contract.StartTime}}</td>
+				<td>{{contract.EndTime}}</td>
+				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Renteekey">{{contract.Rentee}}</a></td>
+				<td><a href="#" @click.stop.prevent="viewShop" v-bind:id="contract.ShopNumbereekey">{{contract.Shop}}</a></td>
+				<td>{{contract.EndTime -contract.StartTime}}</td>
+        <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="index">Remove</a></td>
+			</tr>
+		</table>
+
+    </div>
+     </div>
 </template>
