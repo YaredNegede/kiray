@@ -154,9 +154,10 @@ const actions = {
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
-    console.log('-----------------------1')
     db.update(updates).then(function () {
-      state.data.Payements[keys] = userData
+      db.once('value').then(function (snapshot) {
+        state.data.Payements = userData
+      })
     }).catch(function (error) {
       console.log(error)
     })
@@ -281,7 +282,7 @@ const actions = {
     })
   },
   addContract: function ({ commit }, userData) {
-    console.log('adding contrtact action')
+    console.log('adding contract action')
     var db = firebaseApp.do.database().ref().child('Contracts')
     var keys = db.push().key
     var updates = {}

@@ -27,19 +27,21 @@ export default {
   },
   methods: {
     addPayement: function () {
-      var Magnitude = document.getElementById('Magnitude').value
+      var PayedAmountBeforerVat = document.getElementById('PayedAmountBeforerVat').value
       var PayedAmount = document.getElementById('PayedAmount').value
       var PayableDeuDate = document.getElementById('PayableDeuDate').value
       var RemainingPayement = document.getElementById('RemainingPayement').value
       var NextPayementDate = document.getElementById('NextPayementDate').value
       var monthsPaid = document.getElementById('monthsPaid').value
       var ShopNumber = document.getElementById('ShopNumber').value
+      var InvoiceNumber = document.getElementById('InvoiceNumber').value
+      var date = document.getElementById('date').value
       var Rentee = document.getElementById('Rentee').value
-      var contract = document.getElementById('contract')
-      var contractKey = document.getElementById('contract').options[contract.selectedIndex].id
+
       var payement = {}
-      payement['contractKey'] = contractKey
-      payement.Magnitude = Magnitude
+      payement.date = date
+      payement.PayedAmountBeforerVat = PayedAmountBeforerVat
+      payement.InvoiceNumber = InvoiceNumber
       payement.PayedAmount = PayedAmount
       payement.PayableDeuDate = PayableDeuDate
       payement.RemainingPayement = RemainingPayement
@@ -58,19 +60,15 @@ export default {
   },
   computed: {
     payement: function () {
-      console.log('Payements')
       return this.$store.getters.getPayements
     },
     contracts: function () {
-      console.log('Contracts')
       return this.$store.getters.getContracts
     },
     shops: function () {
-      console.log('shops')
       return this.$store.getters.getProperties
     },
     rentees: function () {
-      console.log('rentees')
       return this.$store.getters.getServiceRecievers
     }
 
@@ -112,7 +110,7 @@ export default {
 						</div>
               
               <div class="col-lg-6">
-						  	<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
+						  	<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="InvoiceNumber"/>
               </div>
 
             <div class="col-lg-6">
@@ -125,6 +123,12 @@ export default {
 								<label  forname="PayedAmount" style="color:white">ከቫት በኋላ</label>
 								</div><div class="col-lg-6">
 								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmount"/>
+            </div>
+
+            <div class="col-lg-6">
+								<label  forname="date" style="color:white">የከፈሉበት ቀን</label>
+								</div><div class="col-lg-6">
+								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="date"/>
             </div>
 
             <div class="col-lg-6">
@@ -197,20 +201,20 @@ export default {
 					<th>የከፈሉት ወራት</th>
 					<th>የሱቅ ቁጥር</th>
 					<th>ተከራይ</th>
-          <th>የቀራቸው ወራቶች</th>
           <th>የቀራቸው ጊዜ</th>
 				</tr>
 
 				<tr v-for="(tekeray, index)  in payement">
+          <td>{{tekeray.InvoiceNumber}}</td>
           <td>{{tekeray.PayedAmountBeforerVat}}</td>
 					<td>{{tekeray.PayedAmount}} </td>
-				  <td>{{tekeray.Magnitude}} </td>
+				  <td>{{tekeray.date}} </td>
 					<td>{{tekeray.NextPayementDate}} </td>
 					<td>{{tekeray.PayableDeuDate}} </td>
-					<td>{{tekeray.RemainingPayement}} </td>
-					<td>{{tekeray.Rentee}} </td>
-					<td>{{tekeray.ShopNumber}} </td>
 					<td>{{tekeray.monthsPaid}}</td>
+					<td>{{tekeray.ShopNumber}} </td>
+					<td>{{tekeray.Rentee}} </td>
+					<td>{{tekeray.RemainingPayement}} </td>
           <td><a v-bind:id="index" href="#" @click.stop.prevent="removePayement"> X </a>
 				</tr>
 
