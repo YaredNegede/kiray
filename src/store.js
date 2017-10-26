@@ -180,9 +180,9 @@ const actions = {
     })
   },
   editProperty: function ({ commit }, userData) {
-    console.log('actions Update updateProperty')
+    console.log('actions Update Property')
     var db = firebaseApp.do.database().ref().child('Properties')
-    var updates
+    var updates = {}
     updates[userData[0]] = userData[1]
     db.update(updates).then(function () {
       db.once('value').then(function (snapshot) {
@@ -221,9 +221,9 @@ const actions = {
     })
   },
   editServiceReciever: function ({ commit }, userData) {
-    console.log('actions Update ServiceRecievers')
+    console.log('actions Update editServiceReciever')
     var db = firebaseApp.do.database().ref().child('ServiceRecievers')
-    var updates
+    var updates = {}
     updates[userData[0]] = userData[1]
     db.update(updates).then(function () {
       db.once('value').then(function (snapshot) {

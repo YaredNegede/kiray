@@ -69,7 +69,7 @@ export default {
       userdata[1] = data
       if (this.validate(data)) {
         console.log('--------------------')
-        this.$store.dispatch('addServiceRecievers', userdata)
+        this.$store.dispatch('editServiceReciever', userdata)
         console.log('--------------------')
         this.data = {}
       } else {

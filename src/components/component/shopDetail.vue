@@ -65,7 +65,7 @@ export default {
       userdata[0] = this.$store.state.temp.ID
       userdata[1] = data
       if (this.validate(data)) {
-        this.$store.dispatch('updateProperties', userdata)
+        this.$store.dispatch('editProperty', userdata)
       } else {
         alert('invalid input')
       }
