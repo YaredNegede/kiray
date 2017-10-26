@@ -9,7 +9,6 @@ EventBus.$on('removeProperty', function () {
 
 export default {
   name: 'shopDetail',
-  props: { show: true },
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
@@ -17,7 +16,6 @@ export default {
     var dt = this.$store.getters.getProperty
     if (dt) {
       this.data = dt
-      this.$store.state.temp.ID = null
     } else {
       this.data = {'ShopNumber': '', 'Floor': '', 'Purpuse': ''}
     }
@@ -52,12 +50,36 @@ export default {
       return ((data.ShopNumber !== '') && (data.Floor !== '') && (data.Purpuse !== ''))
     },
     editProperty: function (event) {
-      router.push({path: 'shopDetail', query: {ID: event.srcElement.name}})
+      var edit = true
+      router.push({path: 'shopDetail', query: {ID: event.srcElement.name, edit: edit}})
+    },
+    edit: function (event) {
+      console.log('edit clicked')
+      var userdata = []
+      var data = {}
+      data['ShopNumber'] = document.getElementById('ShopNumber').value
+      data['Floor'] = document.getElementById('Floor').value
+      data['area'] = document.getElementById('area').value
+      data['Note'] = document.getElementById('Note').value
+      data['Purpuse'] = document.getElementById('Purpuse').value
+      userdata[0] = this.$store.state.temp.ID
+      userdata[1] = data
+      if (this.validate(data)) {
+        this.$store.dispatch('updateProperties', userdata)
+      } else {
+        alert('invalid input')
+      }
     }
   },
   computed: {
     Properties: function () {
       return this.$store.getters.getProperties
+    },
+    proprtyId: function () {
+      return this.$store.state.temp.ID
+    },
+    show: function () {
+      return this.$store.state.temp.ID
     }
   }
 }
@@ -119,17 +141,23 @@ export default {
 						<div class=" col-lg-9">
 							<input id="Purpuse" v-model="data.Purpuse" type="text"  class="form-control" placeholder="የስራ ዘርፍ"   style="background-color:#00AAAA;color:white"/>
 						</div>
+
+           	<div class=" col-lg-9">
+							<input id="proprtyId" v-bind:value=proprtyId type="hidden" />
+						</div>
 					</div>
 
 
-					<div class="row">
+				   	<div class="row">
 							
 								<div class=" col-lg-12">
-
-									<button @click="add" class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
+									<button @click="add" class="btn btn-primary pull-right glyphicon-floppy-disk"  style="background-color:#00AAAA" v-show="!show">+</button>
+                  <button @click="edit" class="btn btn-primary pull-right  glyphicon-floppy-disk"  style="background-color:#00AAAA" v-show="show">+</button>
 
 								</div>
+
 							</div>	
+
 		
 				</div>
 

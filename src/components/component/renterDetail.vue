@@ -12,12 +12,10 @@ export default {
     var dt = this.$store.getters.getServiceReciever
     if (dt) {
       this.data = dt
-      this.$store.state.temp.ID = null
     } else {
       this.data = {'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''}
     }
   },
-  props: { show: true },
   components: {router},
   data: function () {
     return {}
@@ -52,8 +50,31 @@ export default {
     },
     editRetee: function (event) {
       console.log(event.srcElement)
+      var edit = true
       this.$store.state.temp.ID = event.srcElement.name
-      router.push({path: 'renterDetail', query: {ID: event.srcElement.name}})
+      router.push({path: 'renterDetail', query: {ID: event.srcElement.name, edit: edit}})
+    },
+    edit: function (event) {
+      console.log('edit')
+      var userdata = []
+      var data = {}
+      data['Name'] = document.getElementById('Name').value
+      data['FatherName'] = document.getElementById('FatherName').value
+      data['ID'] = document.getElementById('ID').value
+      data['IDType'] = document.getElementById('IDType').value
+      data['PhoneNumber'] = document.getElementById('PhoneNumber').value
+      data['tinNumber'] = document.getElementById('tinNumber').value
+      console.log(data)
+      userdata[0] = this.$store.state.temp.ID
+      userdata[1] = data
+      if (this.validate(data)) {
+        console.log('--------------------')
+        this.$store.dispatch('addServiceRecievers', userdata)
+        console.log('--------------------')
+        this.data = {}
+      } else {
+        alert('Invalid input')
+      }
     }
   },
   computed: {
@@ -62,6 +83,9 @@ export default {
     },
     datas: function () {
       return this.$store.getters.getServiceReciever
+    },
+    show: function () {
+      return this.$store.state.temp.ID
     }
   }
 }
@@ -139,7 +163,9 @@ export default {
 
 				<div class=" col-lg-12">
 
-					<button  @click="add"  class="btn btn-primary pull-right"  style="background-color:#00AAAA">+</button>
+					<button  @click="add"  class="btn btn-primary pull-right glyphicon-floppy-disk"  style="background-color:#00AAAA"  v-show="!show">+</button>
+
+					 <button @click="edit" class="btn btn-primary pull-right  glyphicon-floppy-disk"  style="background-color:#00AAAA" v-show="show">+</button>
 
 				</div>
 			</div>	

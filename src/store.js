@@ -179,6 +179,21 @@ const actions = {
       console.log(error)
     })
   },
+  editProperty: function ({ commit }, userData) {
+    console.log('actions Update updateProperty')
+    var db = firebaseApp.do.database().ref().child('Properties')
+    var updates
+    updates[userData[0]] = userData[1]
+    db.update(updates).then(function () {
+      db.once('value').then(function (snapshot) {
+        state.data.Properties = snapshot.val()
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
   updateProperties: function ({ commit }, userData) {
     var db = firebaseApp.do.database().ref().child('Properties')
     var keys = db.push().key
@@ -201,6 +216,21 @@ const actions = {
 
     db.update(updates).then(function () {
       state.data.Properties[keys] = userData
+    }).catch(function (error) {
+      console.log(error)
+    })
+  },
+  editServiceReciever: function ({ commit }, userData) {
+    console.log('actions Update ServiceRecievers')
+    var db = firebaseApp.do.database().ref().child('ServiceRecievers')
+    var updates
+    updates[userData[0]] = userData[1]
+    db.update(updates).then(function () {
+      db.once('value').then(function (snapshot) {
+        state.data.ServiceRecievers = snapshot.val()
+      }).catch(function (error) {
+        console.log(error)
+      })
     }).catch(function (error) {
       console.log(error)
     })
