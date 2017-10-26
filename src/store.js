@@ -6,7 +6,7 @@ import router from './router'
 Vue.use(Vuex)
 
 const state = {
-  'user': {'Lang': 'AM', 'authenticated': true, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
+  'user': {'Lang': 'AM', 'authenticated': false, 'name': '', 'email': '', 'tel': '', 'password': '', 'password2': '', 'userType': ['Renter', 'Rentee']},
   'componentState': [],
   'temp': {'ID': ''},
   'surf': {'currentPath': 'home', 'previousPath': '', 'rediretTo': '/addInformation'},
@@ -112,7 +112,6 @@ const mutations = {
   removeProperty: function (state, key) {
     console.log('remove removeProperty' + key)
     delete state.data.Properties[key]
-    console.log(state.data.Properties)
   },
   removeRentee: function (state, key) {
     console.log('remove rentee mutuation')
@@ -236,13 +235,14 @@ const actions = {
     })
   },
   removeProperty: function ({ commit }, key) {
-    var db = firebaseApp.do.database().ref()
+    var db = firebaseApp.do.database().ref().child('Properties')
     var data = {}
-    data['Properties/' + key] = null
+    data[key] = null
     db.update(data).then(function () {
+      console.log(key)
       db.once('value').then(function (snapshot) {
-        state.data.Properties = snapshot.val()
         commit('removeProperty', key)
+        state.data.Properties = snapshot.val()
       }).catch(function (error) {
         console.log(error)
       })
@@ -252,10 +252,16 @@ const actions = {
   },
   removeRentee: function ({ commit }, key) {
     console.log('action')
+    var db = firebaseApp.do.database().ref().child('ServiceRecievers')
     var data = {}
-    data['ServiceRecievers/' + key] = null
-    firebaseApp.do.database().ref().update(data).then(function () {
-      commit('removeRentee', key)
+    data[key] = null
+    db.update(data).then(function () {
+      db.once('value').then(function (snapshot) {
+        commit('removeRentee', key)
+        state.data.ServiceRecievers = snapshot.val()
+      }).catch(function (error) {
+        console.log(error)
+      })
     }).catch(function (error) {
       alert(error.message)
     })
@@ -287,8 +293,8 @@ const actions = {
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
-    console.log(state.data.Contracts)
-    if (!(state.data.Contracts.length === 0)) {
+    console.log(typeof state.data.Contracts)// === 'undefined' && state.data.Contracts === null)
+    if (!(typeof state.data.Contracts === 'undefined' || state.data.Contracts === null)) {
       console.log('contracts found')
       console.log(state.data.Contracts)
       for (var k in state.data.Contracts) {
@@ -348,8 +354,7 @@ const actions = {
     var rets = firebaseApp.do.signOut()
     rets.then(function () {
       state.user.authenticated = false
-      window.sessionStorage.clear()
-      router.push('login')
+      router.push('/login')
     }).catch(
       function (error) {
         var errorCode = error.code
@@ -361,7 +366,6 @@ const actions = {
           alert(error.message)
         }
       })
-    state.user.authenticated = false
   },
   signUp: function ({ commit }, userData) {},
   updateUserState: function ({ commit }, userData) {
@@ -407,14 +411,12 @@ const getters = {
   },
   getServiceReciever: function (state) {
     var key = state.temp.ID
-    console.log('Getting ServiceReciever for : ')
-    console.log(state.data.ServiceRecievers[key])
+    console.log('Getting ServiceReciever for : ' + key)
     return state.data.ServiceRecievers[key]
   },
   getProperty: function (state) {
     console.log('Getting Property for ' + state.temp.ID)
     var key = state.temp.ID
-    console.log(state.data.Properties)
     return state.data.Properties[key]
   },
   getContracts: function (state) {

@@ -42,7 +42,8 @@ export default {
     rentees: function () {
       return this.$store.getters.getServiceRecievers
     },
-    contracts: function () {
+    cs: function () {
+      console.log('***************************')
       return this.$store.getters.getContracts
     }
   },
@@ -51,7 +52,6 @@ export default {
   },
   methods: {
     add: function () {
-      console.log('creating contracts')
       var Magnitude = document.getElementById('Magnitude').value
       var Unit = document.getElementById('Unit').value
       var Status = document.getElementById('Status').value
@@ -88,7 +88,6 @@ export default {
       }
     },
     validate: function (contract) {
-      console.log('validating')
       return ((contract.Shop !== '') && (contract.Rentee !== '' && contract.StartTime !== '') && (contract.EndTime !== '' && contract.Magnitude !== ''))
     },
     removeContract: function (event) {
@@ -187,7 +186,6 @@ export default {
    	<!--TABLE-->
  <div class="panel panel-default" style="background-color:#00AAAA;color:white">
 	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ኮንትራት</div> 
-
 	<table class="table" style="color:white"> 
 			<th>ስም</th>
       <th>የአባት ስም</th>
@@ -200,7 +198,7 @@ export default {
 			<th>የተከራይ ስም</th>
       <th>የሱቅ ቁጥር</th>
       <th>ኮንትራት የቀራቸው ጊዜ</th>	
-			<tr v-for="(contract,index) in contracts">
+			<tr v-for="(contract,index) in cs">
 				<td>{{contract.Rentee}}</td>
 				<td>{{contract.FatherName}}</td>
 				<td>{{contract.Magnitude}}</td>

@@ -36,8 +36,8 @@ export default {
 
 <div >
 	
-  <div class="col-lg-2"></div>
-	<div class="col-lg-4">
+  <div class="col-lg-4"></div>
+	<div class="col-lg-4" >
    
    <center><h1><b>ባለሶር ሕንጻ ኪራይ</b></h1></center>
 
@@ -52,7 +52,7 @@ export default {
 		</div>
 
 		<div class="row" style="padding:15px">
-			  <input name="login" type="button"  value="login" class="btn btn-primary" @click="login"/>
+			  <input name="login" type="button"  value="login" class="btn btn-primary" @click="login" style="width:100%"/>
 		</div>
 
 	</div>	

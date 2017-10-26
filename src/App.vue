@@ -10,8 +10,10 @@
 		beforeCreate: function() {
 			this.$router.push(this.$store.getters.getSurf.currentPath)
 			console.log('============App===============')
-			this.$store.commit('updateUserState', true)
 			this.$router.push('login')
+		},
+		data: function () {
+			return this.$store.state.user
 		},
 		name: 'app',
 		components: {
@@ -53,7 +55,7 @@
 <template>
 	<div id="app" class="container contenerMyStyle card">
 	
-		<menus></menus>
+		<menus v-show="authenticated"></menus>
 	
 		<div class="row bodyStyle">
 	

@@ -1,6 +1,7 @@
 
 <script>
 import { EventBus } from '../../event-bus'
+import router from '../../router'
 
 EventBus.$on('removeProperty', function () {
   console.log(`Oh, that's nice. It's gotten clicks! :)`)
@@ -12,25 +13,25 @@ export default {
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
-    console.log(this.$store.getters.getTemp)
+    this.$store.state.temp.ID = this.$route.query.ID
     var dt = this.$store.getters.getProperty
     if (dt) {
       this.data = dt
+      this.$store.state.temp.ID = null
     } else {
       this.data = {'ShopNumber': '', 'Floor': '', 'Purpuse': ''}
     }
     console.log(this.data)
   },
-  components: {EventBus},
+  components: {EventBus, router},
   data: function () {
     return {}
   },
   methods: {
     removeProperty: function (event) {
-      console.log(event.srcElement.id)
-      EventBus.$emit('removeProperty', this.data)
-      console.log(this.$store.getters.getProperties)
-      var id = event.srcElement.id
+      console.log(event.srcElement.name)
+      EventBus.$emit('removeProperty', event.srcElement.name)
+      var id = event.srcElement.name
       this.$store.dispatch('removeProperty', id)
     },
     add: function () {
@@ -49,6 +50,9 @@ export default {
     },
     validate: function (data) {
       return ((data.ShopNumber !== '') && (data.Floor !== '') && (data.Purpuse !== ''))
+    },
+    editProperty: function (event) {
+      router.push({path: 'shopDetail', query: {ID: event.srcElement.name}})
     }
   },
   computed: {
@@ -146,7 +150,8 @@ export default {
           <td>{{shop.Floor}}</td>
           <td>{{shop.Purpuse}}</td>
           <td>{{shop.area}}</td>
-          <td><a href="#" @click.stop.prevent="removeProperty" v-bind:id="index"> X </a>
+          <td><a href="#" @click.stop.prevent="removeProperty"  v-bind:name="index" class="material-icons">delete</a>
+          <td><a href="#" @click.stop.prevent="editProperty"  v-bind:name="index" class="material-icons"> edit</a>
       </tr>
     </table>
   </div>	

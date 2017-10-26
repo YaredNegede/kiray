@@ -37,7 +37,7 @@ export default {
      <li><router-link to="/payementDetail"  style="color:white" v-show="!login"><h3><b>ክፍያ</b></h3></router-link></li>
 
      <li><router-link to="/shopDetails"  style="color:white" v-show="!login"><h3><b>ኪራይ</b></h3></router-link></li>     
-	   <li><a href="#"  style="color:white" @click="logout" v-show="!login"><h3><b>ውጣ</b></h3></a>
+	   <li><a href="#"  style="color:white" @click.stop.prevent="logout" v-show="!login"><h3><b>ውጣ</b></h3></a>
     </ul>
     </div>
 	</div>

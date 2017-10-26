@@ -1,24 +1,31 @@
 
 <script>
+import router from '../../router'
 
 export default {
   name: 'renterDetail',
   beforeCreate: function () {
     console.log('=======Renter Detail=======')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
-    console.log(this.$router)
+    this.$store.state.temp.ID = this.$route.query.ID
+    console.log(this.$route.query.ID)
     var dt = this.$store.getters.getServiceReciever
-    this.data = (typeof dt === 'undefined' || dt === null) ? {'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''} : dt
+    if (dt) {
+      this.data = dt
+      this.$store.state.temp.ID = null
+    } else {
+      this.data = {'Name': '', 'FatherName': '', 'ID': '', 'IDType': '', 'PhoneNumber': ''}
+    }
   },
   props: { show: true },
-  components: {},
+  components: {router},
   data: function () {
     return {}
   },
   methods: {
     removeRentee: function (event) {
-      console.log(event.srcElement.id)
-      var id = event.srcElement.id
+      console.log(event.srcElement.name)
+      var id = event.srcElement.name
       this.$store.dispatch('removeRentee', id)
       this.data.ServiceRecievers = this.$store.getters.getServiceRecievers
     },
@@ -42,6 +49,11 @@ export default {
     },
     validate: function (data) {
       return ((data.Name !== '') && (data.tinNumber !== '') && (data.FatherName !== '') && (data.ID !== '') && (data.IDType !== '') && (data.PhoneNumber !== ''))
+    },
+    editRetee: function (event) {
+      console.log(event.srcElement)
+      this.$store.state.temp.ID = event.srcElement.name
+      router.push({path: 'renterDetail', query: {ID: event.srcElement.name}})
     }
   },
   computed: {
@@ -156,8 +168,8 @@ export default {
 								<td>{{renter.IDType}}</td>
 								<td>{{renter.tinNumber}}</td>
 								<td>{{renter.PhoneNumber}}</td>
-								<td><a v-bind:id="index" href="#" @click.stop.prevent="removeRentee"> X </a>
-
+								<td><a  v-bind:name="index" href="#" @click.stop.prevent="removeRentee"  class="material-icons">delete</a>
+							 <td><a v-bind:name="index" href="#" @click.stop.prevent="editRetee"  class="material-icons">edit </a>
 						</tr>
 					</table> 
 				</div>
