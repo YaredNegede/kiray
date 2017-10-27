@@ -40,10 +40,10 @@ export default {
       return this.$store.getters.getProperties
     },
     rentees: function () {
+      console.log(this.$store.getters.getServiceRecievers)
       return this.$store.getters.getServiceRecievers
     },
-    cs: function () {
-      console.log('***************************')
+    contracts: function () {
       return this.$store.getters.getContracts
     }
   },
@@ -59,17 +59,17 @@ export default {
       var StartTime = document.getElementById('StartTime').value
       var EndTime = document.getElementById('EndTime').value
       var shopItem = document.getElementById('ShopNumber')
-      var ShopNumber = shopItem.value
       var renteeItem = document.getElementById('Rentee')
       var Rentee = renteeItem.value
-      var contract = {'ID': '', 'name': '', 'FatherName': '', 'Magnitude': '', 'Unit': '', 'Status': '', 'Period': '', 'StartTime': '', 'EndTime': '', 'Rentee': '', 'ShopNumber': ''}
+      var contract = {}
       this.$store.state.temp.ID = Rentee
-      var Renteekey = renteeItem.options[renteeItem.selectedIndex].id
+      var Renteekey = renteeItem.options[renteeItem.selectedIndex].value
       contract['Renteekey'] = Renteekey
-      var ShopNumbereekey = shopItem.options[shopItem.selectedIndex].id
+      var ShopNumbereekey = shopItem.options[shopItem.selectedIndex].value
       contract['ShopNumbereekey'] = ShopNumbereekey
-      var renteeObj = this.$store.getters.getServiceRecievers[Renteekey]
-      contract.name = renteeObj.Name
+      var renteeObj = this.$store.state.data.ServiceRecievers[Renteekey]
+      var shopObj = this.$store.state.data.Properties[ShopNumbereekey]
+      contract.Name = renteeObj.Name
       contract.FatherName = renteeObj.FatherName
       contract.Magnitude = Magnitude
       contract.Unit = Unit
@@ -77,11 +77,10 @@ export default {
       contract.Period = Period
       contract.StartTime = StartTime
       contract.EndTime = EndTime
-      contract.Shop = ShopNumber
+      contract.Shop = shopObj.ShopNumber
       contract.Rentee = Rentee
       if (this.validate(contract)) {
         this.$store.dispatch('addContract', contract)
-        this.data.contract = this.$store.getters.getContracts
       } else {
         alert('input error')
         console.log(contract.Shop + '\t' + contract.Rentee + '\t' + contract.StartTime + '\t' + contract.EndTime + '\t' + contract.Magnitude)
@@ -93,7 +92,6 @@ export default {
     removeContract: function (event) {
       console.log('remove contract ' + event.srcElement.id)
       this.$store.dispatch('removeContract', event.srcElement.id)
-      this.data.contract = this.$store.getters.getContracts
     }
   }
 }
@@ -103,67 +101,70 @@ export default {
 	 background-color:#00AAAA;
 	 color:white
  }
-</scope>
+</style>
+
 <template>
-<div>
-  <div id ="addContract" class="panel panel-default" style="background-color:#00AAAA;color:white">
-	<div class="panel-heading" style="background-color:#00BBBB;color:white">ኮንትራት</div> 
+  <div>
+  <div id ="addContract" class="panel panel-default theme">
+	<div class="panel-heading theme" >ኮንትራት</div> 
 	
-		<div style="padding:30px">
+		<div class="theme" style="padding:30px">
 	
-		<table class="table" style="color:white"> 
+		<table class="table theme" > 
 	
+  	<tr><td>የተከራይ ስም</td>
+				<td>
+					<select class="form-control theme" id="Rentee" >
+									<option v-for="(rentee,index) in rentees" v-bind:value="index" v-if="rentee">{{rentee.Name}}</option>
+					</select>
+				</td>
+			</tr>
+
 			<tr><td>የሱቅ ቁጥር</td>
 				<td>
-					<select class="form-control" style="background-color:#00AAAA;color:white" id="ShopNumber">
-						<option v-for="(shop,index) in shops"  style="background-color:#00AAAA;color:white"  v-bind:id=index>{{shop.ShopNumber}}</option>
+					<select class="form-control theme"  id="ShopNumber">
+						<option v-for="(shop,index) in shops"  class="theme"  v-bind:value="index">{{shop.ShopNumber}}</option>
 					</select>
           
 				</td>
 			</tr>
-			<tr><td>የተከራይ ስም</td>
-				<td>
-					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Rentee">
-									<option v-for="(rentee,index) in rentees" v-bind:id=index>{{rentee.Name}}</option>
-					</select>
-				</td>
-			</tr>
+		
 			<tr>
 			<td>
 						ካሬ
 			</td>
 					<td>
-						<input v-model="data.Magnitude" type="number" class="form-control"   style="background-color:#00AAAA;color:white"  id="Magnitude"/>
+						<input v-model="data.Magnitude" type="number" class="form-control theme"  id="Magnitude"/>
 					</td>
 				</td>
 			</tr>
 			<tr>
 				<td>መለኪያ</td>
 				<td>
-					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Unit">
-						<option  style="background-color:#00AAAA;color:white">ስኩዌር ሜትር</option>
-						<option  style="background-color:#00AAAA;color:white">ጊዜ</option>
+					<select class="form-control theme"  id="Unit">
+						<option class="theme">ስኩዌር ሜትር</option>
+						<option class="theme">ጊዜ</option>
 					</select>
 				</td>
 				</tr>
 			<tr>
 				<td>ሁኔታ</td>
 				<td>
-					<select class="form-control" style="background-color:#00AAAA;color:white"  id="Status">
-						<option   style="background-color:#00AAAA;color:white">ተከራይቷል</option>
-						<option   style="background-color:#00AAAA;color:white">አልተከራየም</option>
+					<select class="form-control theme" id="Status">
+						<option class="theme" >ተከራይቷል</option>
+						<option  class="theme" >አልተከራየም</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>	የከፈሉት ወራት</td>
-				<td><input  v-model="data.Period" type="number" class="form-control" style="background-color:#00AAAA;color:white"  id="Period"/></td></td></tr>
+				<td><input  v-model="data.Period" type="number" class="form-control theme"  id="Period"/></td></tr>
 			<tr>
 				<td>ኪራያቸው የሚጀምርበት ቀን</td>
-				<td><input v-model="data.StartTime" type="text" class="form-control" style="background-color:#00AAAA;color:white"  id="StartTime"/></td></td></tr>
+				<td><input v-model="data.StartTime" type="text" class="form-control theme"  id="StartTime"/></td></tr>
 			<tr>
 				<td>ኪራያቸው የሚያልቅበት ቀን</td>
-				<td><input v-model="data.EndTime" type="text" class="form-control" style="background-color:#00AAAA;color:white"  id="EndTime"/></td></td></tr>
+				<td><input v-model="data.EndTime" type="text" class="form-control theme"  id="EndTime"/></td></tr>
 		</table> 
 	  	<div class="row">
 				<div class=" col-lg-6">
@@ -172,21 +173,20 @@ export default {
 
 				<div class=" col-lg-6">
 
-					<button class="btn btn-primary pull-right" @click="add" style="background-color:#00AAAA">+</button>
+					<button class="btn btn-primary pull-right theme" @click="add" v-show=show>+</button>
+
+          <button class="btn btn-primary pull-right theme" @click="add" v-show=!show>+</button>
 
 				</div>
 			</div>
 	  </div>
 
-
-
    </div>
 	 
-
    	<!--TABLE-->
- <div class="panel panel-default" style="background-color:#00AAAA;color:white">
-	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ኮንትራት</div> 
-	<table class="table" style="color:white"> 
+ <div class="panel panel-default theme">
+	<div class="panel-heading theme " >ኮንትራት</div> 
+	<table class="table theme"> 
 			<th>ስም</th>
       <th>የአባት ስም</th>
       <th>ካሬ</th>
@@ -198,8 +198,8 @@ export default {
 			<th>የተከራይ ስም</th>
       <th>የሱቅ ቁጥር</th>
       <th>ኮንትራት የቀራቸው ጊዜ</th>	
-			<tr v-for="(contract,index) in cs">
-				<td>{{contract.Rentee}}</td>
+			<tr v-for="(contract,index) in contracts">
+				<td>{{contract.Name}}</td>
 				<td>{{contract.FatherName}}</td>
 				<td>{{contract.Magnitude}}</td>
 				<td>{{contract.Unit}}</td>
@@ -207,7 +207,7 @@ export default {
 				<td>{{contract.Period}}</td>
 				<td>{{contract.StartTime}}</td>
 				<td>{{contract.EndTime}}</td>
-				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Renteekey">{{contract.Rentee}}</a></td>
+				<td><a href="#" @click.stop.prevent='viewRentee'  v-bind:id="contract.Renteekey">{{contract.Name}}</a></td>
 				<td><a href="#" @click.stop.prevent="viewShop" v-bind:id="contract.ShopNumbereekey">{{contract.Shop}}</a></td>
 				<td>{{contract.EndTime -contract.StartTime}}</td>
         <td><a href="#" @click.stop.prevent="removeContract" v-bind:id="index">Remove</a></td>

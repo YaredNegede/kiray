@@ -191,9 +191,6 @@ export default {
     ServiceRecievers: function () {
       return this.$store.getters.getServiceRecievers
     },
-    datas: function () {
-      return this.$store.getters.getServiceReciever
-    },
     show: function () {
       return this.$store.state.temp.ID
     }

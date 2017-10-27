@@ -323,18 +323,17 @@ const actions = {
     var keys = db.push().key
     var updates = {}
     updates[keys] = userData
-    console.log(typeof state.data.Contracts)// === 'undefined' && state.data.Contracts === null)
     if (!(typeof state.data.Contracts === 'undefined' || state.data.Contracts === null)) {
       console.log('contracts found')
       console.log(state.data.Contracts)
       for (var k in state.data.Contracts) {
-        console.log(state.data.Contracts[k].Renteekey === userData.Renteekey && state.data.Contracts[k].ShopNumbereekey)
         if (state.data.Contracts[k].Renteekey === userData.Renteekey && state.data.Contracts[k].ShopNumbereekey) {
           alert('ያለ ኮንትራት ነው')
           throw new Error('Already exists')
         } else {
           db.update(updates).then(function () {
             db.once('value').then(function (snapshot) {
+              commit('addContract', keys, userData)
               state.data.Contracts = snapshot.val()
             })
           }).catch(function (error) {
@@ -348,6 +347,7 @@ const actions = {
         console.log('adding to firebase')
         db.once('value').then(function (snapshot) {
           state.data['Contracts'] = snapshot.val()
+          console.log(state.data.Contracts)
         })
       }).catch(function (error) {
         console.log(error)
