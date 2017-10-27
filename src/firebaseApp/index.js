@@ -5,12 +5,12 @@ import VueFire from 'vuefire'
 Vue.use(VueFire)
 
 var config = {
-  apiKey: 'AIzaSyAdwP8hs3FgblRL6cLAP3fO6vKYNpTG9cU',
-  authDomain: 'rman-643b3.firebaseapp.com',
-  databaseURL: 'https://rman-643b3.firebaseio.com',
-  projectId: 'rman-643b3',
-  storageBucket: 'rman-643b3.appspot.com',
-  messagingSenderId: '904008983828'
+  apiKey: 'AIzaSyD9tKI5EMX5GRnEkGRPOVFnrVyOtkYXaU4',
+  authDomain: 'kiray-jablue.firebaseapp.com',
+  databaseURL: 'https://kiray-jablue.firebaseio.com',
+  projectId: 'kiray-jablue',
+  storageBucket: 'kiray-jablue.appspot.com',
+  messagingSenderId: '574057661841'
 }
 var app = fb.initializeApp(config)
 

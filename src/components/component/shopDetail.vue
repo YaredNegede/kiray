@@ -8,7 +8,7 @@ EventBus.$on('removeProperty', function () {
 })
 
 export default {
-  name: 'shopDetail',
+  id: 'shopDetail',
   beforeCreate: function () {
     console.log('=============Shop Detail==============')
     this.$store.getters.getSurf.currentPath = this.$router.currentRoute
@@ -86,14 +86,54 @@ export default {
 </script>
 <style scoped>
 
-.them{
-  background-color:#00BBBB;
-  color:white
+
+.scrollbar
+{
+	margin-left: 10px;
+	float: left;
+	height: 500px;
+	overflow-y: scroll;
+	margin-bottom: 25px;
 }
-</scope>
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+#wrapper
+{
+	text-align: center;
+	width: 500px;
+	margin: auto;
+}
+
+#style-5::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #00AAAA;
+}
+
+#style-5::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #00AAAA;
+}
+
+#style-5::-webkit-scrollbar-thumb
+{
+	background-color: #0ae;	
+	background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	                   color-stop(.5, rgba(255, 255, 255, .2)),
+					   color-stop(.5, transparent), to(transparent));
+}
+
+</style>
 	
 <template>
+
 <div id= "shopDetail">
+  
 		<div class="panel panel-default them" style="background-color:#00AAAA">
 	    <div class="panel-heading postJob"  style="background-color:#00BBBB;color:white">ሱቅ መመዝገቢያ</div> 
 		<div style="padding:30px">
@@ -165,8 +205,8 @@ export default {
 
 <!--TABLE-->
 
-<div class="row" style="color:white">
-  <div class=" col-lg-12">
+<div class="row scrollbar" style="color:white;width:100%" id="style-5">
+  <div class="col-lg-12 force-overflow">
     <table class="table">
       <th>የሱቅ ቁጥር</th>
       <th>ፍሎር</th>
