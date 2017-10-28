@@ -346,6 +346,7 @@ const actions = {
       db.update(updates).then(function () {
         console.log('adding to firebase')
         db.once('value').then(function (snapshot) {
+          commit('addContract', keys, userData)
           state.data['Contracts'] = snapshot.val()
           console.log(state.data.Contracts)
         })
@@ -361,6 +362,7 @@ const actions = {
     ret.then(function (response) {
       firebaseApp.do.database().ref().once('value').then(function (snapshot) {
         console.log('____________________LOGIN_______________________________')
+        console.log(snapshot.val())
         state.data = snapshot.val()
         commit('login', userData)
         router.push('/addContract')
@@ -496,6 +498,28 @@ const getters = {
       'unpaid': []
     }
     return statData
+  },
+  getUnrented: function (state) {
+    var unrented = {}
+    for (var key in state.data.Properties) {
+      for (var key2 in state.data.Contracts) {
+        if (state.data.Contracts[key2].ShopNumbereekey !== key) {
+          unrented[key] = state.data.Properties[key]
+        }
+      }
+    }
+    return unrented
+  },
+  getRented: function (state) {
+    var rented = {}
+    for (var key in state.data.Properties) {
+      for (var key2 in state.data.Contracts) {
+        if (state.data.Contracts[key2].ShopNumbereekey === key) {
+          rented[key] = state.data.Properties[key]
+        }
+      }
+    }
+    return rented
   }
 }
 

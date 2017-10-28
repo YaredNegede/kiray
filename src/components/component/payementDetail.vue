@@ -76,25 +76,67 @@ export default {
 }
 </script>
 <style scoped>
+ .theme{
+	 background-color:#00AAAA;
+	 color:white
+ }
+ 
+.scrollbar
+{
+	float: left;
+	height: 450px;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
 
-</scope>
+.force-overflow
+{
+	min-height: 450px;
+}
+
+#wrapper
+{
+	text-align: center;
+	margin: auto;
+}
+
+#style-5::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #00AAAA;
+}
+
+#style-5::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #00AAAA;
+}
+
+#style-5::-webkit-scrollbar-thumb
+{
+	background-color: #0ae;	
+	background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	                   color-stop(.5, rgba(255, 255, 255, .2)),
+					   color-stop(.5, transparent), to(transparent));
+}
+</style>
 
 <template>
 <div  id="payementDetail">
 
-	<div class="panel panel-default" style="background-color:#00AAAA;color:white">
-    	<div class="panel-heading postJob" style="background-color:#00BBBB;color:white">ክፍያ</div> 
-    	<div style="padding:30px">
+	<div class="panel panel-default theme" >
+    	<div class="panel-heading theme" scrollbar>ክፍያ</div> 
+    	<div style="padding:30px   force-overflow">
 
             <div class="row" >
             
               <div class="col-lg-6">
-								<label  forname="baks" style="color:white">የከፈሉበት ባንክ</label>
+								<label  forname="baks" class="theme">የከፈሉበት ባንክ</label>
 							</div>
 
               <div class="col-lg-6">
 
-                  <select id="banks" class="form-control" style="background-color:#00AAAA;color:white">
+                  <select id="banks" class="form-control theme" >
                   
                     <option >ኦሮሚያ ኢንተርናሽናል ባንክ</option>
 
@@ -106,60 +148,54 @@ export default {
               </div>
 
 		  		   <div class="col-lg-6">
-								<label  forname="InvoiceNumber" style="color:white">የገቢ ደረሰኝ ቁጥር</label>
+								<label  forname="InvoiceNumber" class="theme">የገቢ ደረሰኝ ቁጥር</label>
 						</div>
               
               <div class="col-lg-6">
-						  	<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="InvoiceNumber"/>
+						  	<input  type="text" class="form-control theme"   id="InvoiceNumber"/>
               </div>
 
             <div class="col-lg-6">
-								<label  forname="PayedAmountBeforerVat" style="color:white">ከቫት በፊት</label>
+								<label  forname="PayedAmountBeforerVat" class="theme">ከቫት በፊት</label>
 								</div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmountBeforerVat"/>
+								<input  type="number" class="form-control theme" id="PayedAmountBeforerVat"/>
             </div>
             
             <div class="col-lg-6">
-								<label  forname="PayedAmount" style="color:white">ከቫት በኋላ</label>
+								<label  forname="PayedAmount" class="theme">ከቫት በኋላ</label>
 								</div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayedAmount"/>
+								<input  type="number" class="form-control theme" id="PayedAmount"/>
             </div>
 
             <div class="col-lg-6">
-								<label  forname="date" style="color:white">የከፈሉበት ቀን</label>
+								<label  forname="PayableDeuDate" class="theme">የከፈሉበት ቀን</label>
 								</div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="date"/>
+								<input  type="date" class="form-control theme"  id="PayableDeuDate"/>
             </div>
 
             <div class="col-lg-6">
-								<label  forname="PayableDeuDate" style="color:white">የከፈሉበት ቀን</label>
-								</div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="PayableDeuDate"/>
-            </div>
-
-            <div class="col-lg-6">
-							<label  forname="RemainingPayement" style="color:white">ቀጣይ ክፍያ </label>
+							<label  forname="RemainingPayement" class="theme">ቀጣይ ክፍያ </label>
 							 </div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="RemainingPayement"/>
+								<input  type="text" class="form-control theme"  id="RemainingPayement"/>
             </div>
 
             <div class="col-lg-6">
-								<label  forname="NextPayementDate" style="color:white">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
+								<label  forname="NextPayementDate " class="theme">ቀጣይ ክፍያ መከፈል ያለበት ቀን</label>
              </div><div class="col-lg-6">
-								<input  type="text" class="form-control"   style="background-color:#00AAAA;color:white"  id="NextPayementDate"/>
+								<input  type="date" class="form-control theme"   id="NextPayementDate"/>
             </div>
 
             <div class="col-lg-6">
-								<label  forname="monthsPaid" style="color:white">የከፈሉት ወራት</label>
+								<label  forname="monthsPaid" class="theme">የከፈሉት ወራት</label>
              </div><div class="col-lg-6">
-								<input  type="number" class="form-control"   style="background-color:#00AAAA;color:white"  id="monthsPaid"/>
+								<input  type="number" class="form-control theme"    id="monthsPaid"/>
             </div>
 
             <div class="col-lg-6">
-								<label  forname="ShopNumber" style="color:white">የሱቅ ቁጥር</label>
+								<label  forname="ShopNumber" class="theme">የሱቅ ቁጥር</label>
 								</div><div class="col-lg-6">
-                	<select class="form-control" style="background-color:#00AAAA;color:white" id="ShopNumber">
-                    <option v-for="(shop,index) in shops"  style="background-color:#00AAAA;color:white"  v-bind:id=index>{{shop.ShopNumber}}</option>
+                	<select class="form-control theme"  id="ShopNumber">
+                    <option v-for="(shop,index) in shops"  class="theme" v-bind:id=index>{{shop.ShopNumber}}</option>
                   </select>
             </div>
 

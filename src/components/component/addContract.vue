@@ -40,7 +40,6 @@ export default {
       return this.$store.getters.getProperties
     },
     rentees: function () {
-      console.log(this.$store.getters.getServiceRecievers)
       return this.$store.getters.getServiceRecievers
     },
     contracts: function () {
@@ -101,6 +100,44 @@ export default {
 	 background-color:#00AAAA;
 	 color:white
  }
+ .scrollbar
+{
+	float: left;
+	height: 450px;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+#wrapper
+{
+	text-align: center;
+	margin: auto;
+}
+
+#style-5::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #00AAAA;
+}
+
+#style-5::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #00AAAA;
+}
+
+#style-5::-webkit-scrollbar-thumb
+{
+	background-color: #0ae;	
+	background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	                   color-stop(.5, rgba(255, 255, 255, .2)),
+					   color-stop(.5, transparent), to(transparent));
+}
 </style>
 
 <template>
@@ -161,12 +198,14 @@ export default {
 				<td><input  v-model="data.Period" type="number" class="form-control theme"  id="Period"/></td></tr>
 			<tr>
 				<td>ኪራያቸው የሚጀምርበት ቀን</td>
-				<td><input v-model="data.StartTime" type="text" class="form-control theme"  id="StartTime"/></td></tr>
+				<td><input v-model="data.StartTime" type="date" class="form-control theme"  id="StartTime"/></td></tr>
 			<tr>
 				<td>ኪራያቸው የሚያልቅበት ቀን</td>
-				<td><input v-model="data.EndTime" type="text" class="form-control theme"  id="EndTime"/></td></tr>
+				<td><input v-model="data.EndTime" type="date" class="form-control theme"  id="EndTime"/></td></tr>
 		</table> 
+
 	  	<div class="row">
+
 				<div class=" col-lg-6">
 
 				</div>
@@ -185,7 +224,7 @@ export default {
 	 
    	<!--TABLE-->
  <div class="panel panel-default theme">
-	<div class="panel-heading theme " >ኮንትራት</div> 
+	<div class="panel-heading theme  " >ኮንትራት</div> 
 	<table class="table theme"> 
 			<th>ስም</th>
       <th>የአባት ስም</th>
