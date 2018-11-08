@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # cheb
 
 > Retailler Site
@@ -28,3 +29,6 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# kiray
+>>>>>>> 7638baa0cbe3799580b419a0a822f0e3c5162e51
